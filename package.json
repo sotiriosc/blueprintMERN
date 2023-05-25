@@ -1,6 +1,27 @@
 {
+  "name": "blueprintmern",
+  "version": "1.0.0",
+  "description": "Learning MERN Stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sotiriosc/blueprintMERN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sotiriosc/blueprintMERN/issues"
+  },
+  "homepage": "https://github.com/sotiriosc/blueprintMERN#readme",
   "dependencies": {
-    "apollo-server-express": "^3.12.0",
-    "graphql": "^16.6.0"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0",
+    "mongoose": "^7.2.1"
   }
 }

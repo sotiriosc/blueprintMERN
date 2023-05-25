@@ -1,4 +1,6 @@
 # Logs
+package-lock.json
+```
 logs
 *.log
 npm-debug.log*
@@ -133,3 +135,6 @@ dist
 package-lock.json
 .env
 ```
+package-lock.json
+```
+package-lock.json
