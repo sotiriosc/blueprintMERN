@@ -1,4 +1,5 @@
 import { useQuery, useMutation, gql } from '@apollo/client';
+import { Link, useParams } from 'react-router-dom';
 
 const GET_POST_AND_COMMENTS = gql`
   query GetPostAndComments($id: ID!) {
@@ -27,7 +28,7 @@ const ADD_COMMENT = gql`
 `;
 
 function BlogPostPage({ match }) {
-  const postId = match.params.id;
+  const { id: postId } = useParams();
   const { loading, error, data } = useQuery(GET_POST_AND_COMMENTS, { variables: { id: postId } });
   const [addComment] = useMutation(ADD_COMMENT, {
     refetchQueries: [{ query: GET_POST_AND_COMMENTS, variables: { id: postId } }],
@@ -53,7 +54,12 @@ function BlogPostPage({ match }) {
 
   return (
     <div>
-      <h1>{data.post.title}</h1>
+    <h1>
+      <Link to={`/blog/${data.post.id}`}>
+         {data.post.title}
+      </Link>
+    </h1>
+
       <p>By {data.post.author}</p>
       <div>{data.post.content}</div>
       <h2>Comments</h2>
