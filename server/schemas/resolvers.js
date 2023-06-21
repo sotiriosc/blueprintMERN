@@ -61,22 +61,19 @@ const resolvers = {
       return { token, user };
     },
     addBlog: async (parent, { title, content }, context) => {
-      if (context.user) {
-        const blog = await Blog.create({
-          title,
-          content,
-          author: context.user._id,
-        });
-
-        await User.findByIdAndUpdate(context.user._id, {
-          $addToSet: { blogs: blog._id },
-        });
-
-        return blog;
-      }
-
-      throw new AuthenticationError('You need to be logged in!');
+      const blog = await Blog.create({
+        title,
+        content,
+        author: context.user._id,
+      });
+    
+      await User.findByIdAndUpdate(context.user._id, {
+        $addToSet: { blogs: blog._id },
+      });
+    
+      return blog;
     },
+
     addComment: async (parent, { blogId, content }, context) => {
       if (context.user) {
         const comment = await Comment.create({
@@ -99,17 +96,13 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addProduct: async (parent, { description, price, imageUrl }, context) => {
-      if (context.user && context.user.admin) {
-        const product = await Product.create({
-          description,
-          price,
-          imageUrl,
-        });
-
-        return product;
-      }
-
-      throw new AuthenticationError('You need to be an admin!');
+      const product = await Product.create({
+        description,
+        price,
+        imageUrl,
+      });
+    
+      return product;
     },
   },
 };

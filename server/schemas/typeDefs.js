@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+directive @adminDirective on FIELD_DEFINITION
+
   type User {
     _id: ID!
     firstName: String!
