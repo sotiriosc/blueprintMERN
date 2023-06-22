@@ -13,7 +13,6 @@ module.exports = {
       token = token.split(' ').pop().trim();
     }
 
-    // If no token, return request as is
     if (!token) {
       return req;
     }
