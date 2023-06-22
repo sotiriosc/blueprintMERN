@@ -28,6 +28,14 @@ export const QUERY_ME = gql`
   }
 `;
 
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($products: [ID]!) {
+    checkout(products: $products) {
+      session
+    }
+  }
+`;
+
 export const QUERY_BLOGS = gql`
   query getBlogs {
     blogs {
