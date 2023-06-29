@@ -25,6 +25,16 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
+            <Link to="/blogs">
+              Blogs
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/shop">
+              Shop
+            </Link>
+          </li>
+          <li className="mx-1">
             <Link to="/signup">
               Signup
             </Link>
@@ -44,7 +54,7 @@ function Nav() {
       <h1>
         <Link to="/">
           <span role="img" aria-label="shopping bag">🛍️</span>
-          -Shop-Shop
+          Balanced Blueprint Blog
         </Link>
       </h1>
 
