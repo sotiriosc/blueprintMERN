@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Signup from './pages/SignUp.js';
 import Blogs from './pages/Blogs';
 import Blog1 from './pages/Blog1';
+import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
@@ -22,7 +23,7 @@ import OrderHistory from './pages/OrderHistory';
 import './App.css';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -51,6 +52,10 @@ function App() {
               <Route 
                 path="/" 
                 element={<Home />} 
+              />
+               <Route 
+                path="/shop"
+                element={<Shop />} 
               />
               <Route 
                 path="/login" 
