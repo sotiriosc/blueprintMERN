@@ -9,12 +9,14 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
+import FAQ from './pages/FAQ';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/SignUp.js';
 import Blogs from './pages/Blogs';
 import Blog1 from './pages/Blog1';
+import Blog2 from './pages/Blog2';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -86,6 +88,10 @@ function App() {
                 path="/blog1"
                 element={<Blog1 />}
               />
+              <Route
+                path="/blog2"
+                element={<Blog2 />}
+              />
               <Route 
                 path="/success" 
                 element={<Success />} 
@@ -102,7 +108,12 @@ function App() {
                 path="*" 
                 element={<NoMatch />} 
               />
+              <Route
+                path="/faq"
+                element={<FAQ />}
+              />
             </Routes>
+            
             
           </StoreProvider>
         </div>

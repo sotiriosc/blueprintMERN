@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_COMMENT } from '../utils/mutations';
 import { QUERY_BLOG } from '../utils/queries';
 import AuthService from '../utils/auth';
-import bunnyImg from '../assets/bunnystretch.png'
+import food from '../assets/food.jpg'
 import { Helmet } from 'react-helmet';
 
 const styles = {
@@ -14,7 +14,6 @@ const styles = {
     margin: 'auto',
   },
   title: {
-    margin: '50px',
     fontSize: '2em',
     textAlign: 'center',
   },
@@ -88,7 +87,7 @@ const Blog1 = () => {
           commentText: formState.commentText,
           firstName: user.data.firstName, // Assuming the firstName is stored in user object
           blogId: blogId, 
-          filePath: '/blog1'
+          filePath: '/blog2'
         }
       });
   
@@ -107,17 +106,17 @@ const Blog1 = () => {
   return (
     <>
       <Helmet>
-        <title>The Science of Stretching: Benefits and Techniques for Optimal Performance - Balanced Blueprint Blog</title>
-        <meta name="description" content="Learn the science of stretching, its benefits, and techniques for optimal performance. Improve flexibility, reduce injury risk, and enhance your athletic performance." />
-        <meta name="keywords" content="stretching, flexibility, injury prevention, athletic performance, exercise, healthy living, dynamic stretching, static stretching, PNF stretching, yoga" />
+        <title>The Mental and Physical Benefits of Outdoor Activities</title>
+	    <meta name="description" content="Learn about the mental and physical benefits of outdoor activities, including how they can improve your mood, boost your immune system, and help you stay active."/>
+	    <meta name="keywords" content="outdoor activities, mental health, physical health, nature, exercise"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
         <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
         
       </Helmet>
     <div style={styles.content}>
-       <h2 style={styles.title}>The Science of Stretching: Benefits and Techniques for Optimal Performance</h2>
-       <img src={bunnyImg} alt="Bunny Stretching" style={styles.img} />
+       <h2 style={styles.title}>Building a Balanced Diet: A Comprehensive Guide to Macronutrients and Micronutrients</h2>
+       <img src={food} alt="Bunny Stretching" style={styles.img} />
            
               <h3>Introduction:</h3>
               <br />
