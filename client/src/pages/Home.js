@@ -13,16 +13,16 @@ const styles = {
     justifyContent: "space-between"
   },
   content: {
-    width: "50%",
+    width: "100%",
     paddingRight: "10px"
   },
   image: {
-    width: "50%",
+    width: "100%",
     paddingLeft: "10px",
     objectFit: "cover",
     borderRadius: "10%",
     margin: "20px",
-    boxShadow: "0px 0px 5px 5px #888888"
+    boxShadow: "0px 5px 15px rgba(0,0,0,0.9)"
   },
 };
 
@@ -42,7 +42,7 @@ const Home = () => {
             <li><strong>Healthy Living:</strong> Healthy Living: We believe that a truly balanced life goes beyond just exercise and nutrition. Our content covers various aspects of mental, emotional, and social well-being, such as stress management, sleep hygiene, and self-care practices. We aim to support you in creating a holistic approach to health and wellness that recognizes the importance of personal growth and community engagement. Together, we can build stronger, healthier communities by empowering individuals to take charge of their well-being.</li>
           </ul>
         </div>
-        <img src={image} alt="frontimg" className="img-fluid" style={styles.image} />
+        <img src={image} alt="frontimg" className="img-fluid img-responsive" style={styles.image} />
       </div>
     </div>
   );

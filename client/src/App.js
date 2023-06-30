@@ -22,6 +22,7 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import './App.css';
+import backgroundImage from './assets/blueprint.png'; 
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -43,10 +44,21 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const styles = {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',  // Ensures the container takes up the full height
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    minWidth: '100vw',
+  };
+
   return (
+    <div style={styles} className='backgroundImage'>
     <ApolloProvider client={client}>
       <Router>
-        <div>
+      <div style={{ flex: 1 }}>
           <StoreProvider>
             <Nav />
             <Routes>
@@ -91,11 +103,14 @@ function App() {
                 element={<NoMatch />} 
               />
             </Routes>
-            <Footer />
+            
           </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>
+    <Footer />
+    </div>
+    
   );
 }
 

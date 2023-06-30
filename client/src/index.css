@@ -98,6 +98,7 @@ button {
   background-color: var(--secondary);
 }
 
+
 button:hover {
   opacity: .8;
 }
@@ -202,14 +203,30 @@ input:focus {
   color: var(--error);
 }
 
-.logo {
-  
-}
+
+
 @media screen and (max-width: 768px) {
   .card {
     width: 100%;
   }
+  .content-container {
+    flex-direction: column;
+  }
+  .content {
+    width: 100%;
+  }
+  .img-responsive {
+    display: none;
+  }
 }
+
+@media screen and (min-width: 768px) {
+  .content {
+    width: 50%;
+  }
+}
+
+
 
 @keyframes rotation {
   from {
