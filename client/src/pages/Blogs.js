@@ -8,7 +8,7 @@ const Blogs = () => {
     { title: 'The Science of Stretching: Benefits and Techniques for Optimal Performance', link: '/blog1', content: 'Stretching an overlooked therapy' },
     { title: 'The Mental and Physical Benefits of Outdoor Activities', link: '/blog2', content: 'A breath of fresh air can really keep you going!' },
     { title: 'Top 10 Cardio Workouts for a Healthy Heart, Youthfulness & Improved Performance', link: '/blog3', content: 'Your heart is never gets a break! One unbelievable muscle!' },
-    { title: 'The Mental and Physical Benefits of Outdoor Activities', link: '/blog4', content: 'A breath of fresh air can really keep you going!' },
+    { title: 'The Art of Meal Prepping: How to Plan, Cook, and Store Meals for a Healthier Lifestyle', link: '/blog4', content: 'If you already have a healthy meal ready you wont eat junk!!' },
     // Add more blogs here...
   ];
 

@@ -60,7 +60,7 @@ const styles = {
 };
 
 
-const Blog1 = () => {
+const Blog2 = () => {
   const [formState, setFormState] = useState({ commentText: '' });
 
   const blogId = '649e56bb2bb4c3f565b07dfe'; // Replace this with the actual blog ID
@@ -215,4 +215,4 @@ const Blog1 = () => {
   );
 };
 
-export default Blog1;
+export default Blog2;

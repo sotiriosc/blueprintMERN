@@ -18,6 +18,7 @@ import Blogs from './pages/Blogs';
 import Blog1 from './pages/Blog1';
 import Blog2 from './pages/Blog2';
 import Blog3 from './pages/Blog3';
+import Blog4 from './pages/Blog4';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -96,6 +97,10 @@ function App() {
               <Route
                 path="/blog3"
                 element={<Blog3 />} 
+              />
+              <Route
+                path="/blog4"
+                element={<Blog4 />}
               />
               <Route 
                 path="/success" 
