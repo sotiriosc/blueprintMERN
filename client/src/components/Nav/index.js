@@ -28,9 +28,19 @@ const styles = {
     left: "10px",
     height: "150px",
     borderRadius: "50%",
-    animation: "rotation 60s infinite linear"
+    animation: "rotation 60s infinite linear",
+    '@media (max-width: 768px)': {
+      height: "100px",
+    }
+  },
+  title: {
+    fontSize: "2em",
+    '@media (max-width: 768px)': {
+      fontSize: "0.5em",
+    }
   }
 };
+
 
 function Nav() {
 
@@ -73,21 +83,22 @@ function Nav() {
     }
   }
 
-  return (
-    <header style={styles.navContainer}>
-      <img src={logo} alt="My logo" style={styles.logo}></img>
-      <div style={styles.titleContainer}>
-        <h1>
-          <Link to="/">
-            Balanced Blueprint Blog
-          </Link>
-        </h1>
-      </div>
-      <nav>
-        {showNavigation()}
-      </nav>
-    </header>
-  );
+    return (
+      <header style={styles.navContainer}>
+        <img src={logo} alt="My logo" className="logo"></img>
+        <div style={styles.titleContainer}>
+          <h1 className="title">
+            <Link to="/">
+              Balanced Blueprint Blog
+            </Link>
+          </h1>
+        </div>
+        <nav>
+          {showNavigation()}
+        </nav>
+      </header>
+    );
+    
 }
 
 export default Nav;

@@ -236,3 +236,28 @@ input:focus {
     transform: rotate(359deg);
   }
 }
+
+/* styles.css */
+
+.logo {
+  position: absolute;
+  left: 10px;
+  height: 150px;
+  border-radius: 50%;
+  animation: rotation 60s infinite linear;
+}
+
+.title {
+  font-size: 2em;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 75px;
+  }
+
+  .title {
+    font-size: 1em;
+  }
+}
+

@@ -42,8 +42,13 @@ const Home = () => {
             <li><strong>Healthy Living:</strong> Healthy Living: We believe that a truly balanced life goes beyond just exercise and nutrition. Our content covers various aspects of mental, emotional, and social well-being, such as stress management, sleep hygiene, and self-care practices. We aim to support you in creating a holistic approach to health and wellness that recognizes the importance of personal growth and community engagement. Together, we can build stronger, healthier communities by empowering individuals to take charge of their well-being.</li>
           </ul>
         </div>
-        <img src={image} alt="frontimg" className="img-fluid img-responsive" style={styles.image} />
-      </div>
+        <div style={styles.imageContainer}>
+    <img src={image} alt="frontimg" className="img-fluid img-responsive" style={styles.image} />
+  </div>
+</div>
+<p>At Balanced Blueprint Blog, our ultimate vision is to inspire and foster personal growth and transformation. We wholeheartedly believe that within each individual lies a seed of infinite potential, capable of blossoming into miraculous achievements. Whether these accomplishments are personal or extend to family and community, they contribute to the nurturing of a more connected, harmonious world.</p>
+        <p>Our end goal transcends the confines of physical health and fitness. It's about constructing a life that resonates with your deepest values, ambitions, and passions. We believe that the blueprint for success remains consistent across all spheres of life. The cornerstones of this blueprint are commitment, a positive mindset, ceaseless learning, and the unwavering desire to make the most out of our situations.</p>
+        <p>Our mission is to provide you with the knowledge, tools, and resources necessary to follow this blueprint and cultivate a balanced life. We strive to guide you on your journey towards self-discovery, empowering you to unlock your full potential and cultivate a life of wellness, fulfillment, and satisfaction. As you traverse the path of personal development with us, you'll not only transform your own life but also contribute to the collective growth of our global community. That's the power and promise of the Balanced Blueprint Blog. Together, we can create a world where success, health, and happiness are within everyone's reach.</p>
     </div>
   );
 };
