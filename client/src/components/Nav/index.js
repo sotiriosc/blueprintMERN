@@ -28,6 +28,7 @@ const styles = {
     left: "10px",
     height: "150px",
     borderRadius: "50%",
+    animation: "rotation 60s infinite linear"
   }
 };
 
