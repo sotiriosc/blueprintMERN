@@ -30,16 +30,28 @@ class AuthService {
   login(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
-
+  
+    // Decode the token to get the user's profile and save it to localStorage
+    const profile = decode(idToken);
+    localStorage.setItem('profile', JSON.stringify(profile));
+  
     window.location.assign('/');
   }
+
+  getProfile() {
+    // Retrieves the user profile from localStorage
+    return JSON.parse(localStorage.getItem('profile'));
+  }
+  
 
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('profile');
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
+  
 }
 
 export default new AuthService();

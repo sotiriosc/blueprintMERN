@@ -18,7 +18,7 @@ const commentSchema = new Schema({
         required: true,
         default: Date.now
     },
-    userName: {
+    firstName: {
         type: String,
         required: true,
         trim: true

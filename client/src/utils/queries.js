@@ -79,3 +79,19 @@ export const QUERY_COMMENTS = gql`
         }
     }
 `;
+
+export const QUERY_BLOG = gql`
+  query getBlog($_id: ID!) {
+    blog(_id: $_id) {
+        _id
+        title
+        filePath
+        comments {
+          _id
+          commentText
+          createdAt
+          firstName  
+        }
+    }
+  }
+`;

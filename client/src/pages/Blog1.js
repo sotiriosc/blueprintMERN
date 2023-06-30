@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../utils/mutations';
+import AuthService from '../utils/auth';
 
 const Blog1 = () => {
   const [formState, setFormState] = useState({ commentText: '' });
@@ -9,26 +10,30 @@ const Blog1 = () => {
   // Handle form submit
   const handleFormSubmit = async event => {
     event.preventDefault();
-
+  
     try {
-      // Add the comment to the database
+      const user = AuthService.getProfile(); // Get the user's profile
+  
       const mutationResponse = await addComment({
         variables: {
           _id: '1', // Update this with the actual ID of the blog post
           commentText: formState.commentText
         }
       });
-
+      
+  
       console.log(mutationResponse);
     } catch (e) {
       console.error(e);
     }
-
+  
     // Clear the form
     setFormState({
       commentText: ''
     });
-  };
+};
+
+
 
   // Handle form field changes
   const handleChange = event => {
@@ -39,6 +44,7 @@ const Blog1 = () => {
       [name]: value
     });
   };
+  
 
   return (
     <div>
