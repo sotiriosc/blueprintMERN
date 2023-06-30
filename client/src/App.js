@@ -51,7 +51,7 @@ function App() {
     backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    minWidth: '100vw',
+    maxWidth: '100vw',
   };
 
   return (

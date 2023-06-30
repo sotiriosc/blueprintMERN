@@ -5,7 +5,7 @@ const Blogs = () => {
 
   // An array of blog objects. Each blog has a title, link and content
   const blogs = [
-    { title: 'Blog Title 1', link: '/blog1', content: 'Content of blog 1' },
+    { title: 'The Science of Stretching: Benefits and Techniques for Optimal Performance', link: '/blog1', content: 'Stretching an overlooked therapy' },
     { title: 'Blog Title 2', link: '/blog2', content: 'Content of blog 2' },
     // Add more blogs here...
   ];
