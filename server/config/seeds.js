@@ -13,29 +13,15 @@ async function main() {
         const blogPosts = [
             { 
                 _id: new ObjectId(), 
-                title: 'First Blog', 
-                filePath: '/blog1',
-                comments: [
-                    {
-                        firstName: 'Alice',
-                        commentText: 'This is a comment.',
-                        createdAt: new Date()
-                    },
-                    // Add more comments as needed
-                ] 
+                title: 'Top 10 Cardio Workouts for a Healthy Heart, Youthfulness & Improved Performance', 
+                filePath: '/blog3',
+                comments: [] 
             },
             { 
                 _id: new ObjectId(), 
-                title: 'Second Blog', 
-                filePath: '/blog2',
-                comments: [
-                    {
-                        firstName: 'Bob',
-                        commentText: 'This is another comment.',
-                        createdAt: new Date()
-                    },
-                    // Add more comments as needed
-                ] 
+                title: 'The Art of Meal Prepping: How to Plan, Cook, and Store Meals for a Healthier Lifestyle', 
+                filePath: '/blog4',
+                comments: [] 
             },
             // Add more blog posts as needed
         ];

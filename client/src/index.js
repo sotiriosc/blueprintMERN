@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('G-K50HC7JR3S'); // Replace with your Google Analytics tracking ID
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

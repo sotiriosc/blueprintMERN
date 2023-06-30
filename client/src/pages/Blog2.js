@@ -46,6 +46,17 @@ const styles = {
     boxSizing: 'border-box',
     resize: 'vertical',
   },
+  author: {
+    fontSize: '1em',
+    color: '#888',
+    marginBottom: '1em',
+  },
+
+  date: {
+    fontSize: '0.8em',
+    color: '#aaa',
+    marginBottom: '1em',
+  },
 };
 
 
@@ -117,7 +128,9 @@ const Blog1 = () => {
       </Helmet>
     <div style={styles.content}>
        <h2 style={styles.title}>Building a Balanced Diet: A Comprehensive Guide to Macronutrients and Micronutrients</h2>
-       <img src={food} alt="Bunny Stretching" style={styles.img} />
+       <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
+       <p style={styles.date}>Written on: May 10th 2023</p>
+       <img src={food} alt="Extremely Healthy Plate of Food" style={styles.img} />
            
               <h3>Introduction:</h3>
               <br />
@@ -195,7 +208,7 @@ const Blog1 = () => {
         />
         <button type="submit">Submit</button>
       </form>
-
+      <br />
       {error && <div>Comment submission failed</div>}
     </div>
     </>
