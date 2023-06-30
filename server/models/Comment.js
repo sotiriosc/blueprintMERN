@@ -17,10 +17,10 @@ const CommentSchema = new Schema({
     },
     blogId: {
       type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'Blog', // replace 'Blog' with the name of your blog schema model if it's different
+      ref: 'Blog',
     },
 });
+
   
 const Comment = mongoose.model('Comment', CommentSchema);
   

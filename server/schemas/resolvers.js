@@ -141,10 +141,25 @@ const resolvers = {
     
           return { token, user };
         },
-        addComment: async (parent, { blogId, firstName, commentText }, context) => {
-          const comment = await Comment.create({ blogId, firstName, commentText });
+        addComment: async (parent, { firstName, commentText, blogId }, context, info) => {
+          // create a new comment
+          const comment = new Comment({
+              firstName,
+              commentText,
+              blogId,
+          });
+          // save the comment to the database
+          await comment.save();
+      
+          // find the blog by its id and push the new comment to its comments array
+          const blog = await Blog.findById(blogId);
+          blog.comments.push(comment);
+          await blog.save();
+      
+          // return the new comment
           return comment;
-        },
+      },
+      
         
         
       },
