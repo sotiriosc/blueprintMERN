@@ -2,57 +2,70 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
+import logo from "../../assets/logo.png";
+
+const styles = {
+  navContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "200px",
+  },
+  titleContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  ul: {
+    listStyleType: "none",
+    display: "flex",
+    justifyContent: "space-around",
+    padding: 0,
+  },
+  logo: {
+    position: "absolute",
+    left: "10px",
+    height: "150px",
+    borderRadius: "50%",
+  }
+};
+
 function Nav() {
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
+        <ul style={styles.ul}>
           <li className="mx-1">
-            <Link to="/blogs">
-              Blogs
-            </Link>
+            <Link to="/blogs">Blogs</Link>
           </li>
           <li className="mx-1">
-            <Link to="/shop">
-              Shop
-            </Link>
+            <Link to="/shop">Shop</Link>
           </li>
           <li className="mx-1">
-            <Link to="/orderHistory">
-              Order History
-            </Link>
+            <Link to="/orderHistory">Order History</Link>
           </li>
           <li className="mx-1">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
-              Logout
-            </a>
+            <a href="/" onClick={() => Auth.logout()}>Logout</a>
           </li>
         </ul>
       );
     } else {
       return (
-        <ul className="flex-row">
+        <ul style={styles.ul}>
           <li className="mx-1">
-            <Link to="/blogs">
-              Blogs
-            </Link>
+            <Link to="/blogs">Blogs</Link>
           </li>
           <li className="mx-1">
-            <Link to="/shop">
-              Shop
-            </Link>
+            <Link to="/shop">Shop</Link>
           </li>
           <li className="mx-1">
-            <Link to="/signup">
-              Signup
-            </Link>
+            <Link to="/signup">Signup</Link>
           </li>
           <li className="mx-1">
-            <Link to="/login">
-              Login
-            </Link>
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       );
@@ -60,14 +73,15 @@ function Nav() {
   }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          Balanced Blueprint Blog
-        </Link>
-      </h1>
-
+    <header style={styles.navContainer}>
+      <img src={logo} alt="My logo" style={styles.logo}></img>
+      <div style={styles.titleContainer}>
+        <h1>
+          <Link to="/">
+            Balanced Blueprint Blog
+          </Link>
+        </h1>
+      </div>
       <nav>
         {showNavigation()}
       </nav>
