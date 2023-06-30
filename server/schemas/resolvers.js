@@ -88,9 +88,10 @@ const resolvers = {
   
         return { session: session.id };
       },
-        blog: async (parent, { _id }) => {
-        return await Blog.findById(_id).populate('comment');
-        }
+      blog: async (parent, { _id }) => {
+        return await Blog.findById(_id).populate('comments');
+      }
+      
     },
     Mutation: {
         addUser: async (parent, args) => {

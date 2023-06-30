@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../utils/mutations';
 import AuthService from '../utils/auth';
+import { useQuery } from '@apollo/client';
+import { QUERY_BLOG } from '../utils/queries';
 
 const Blog1 = () => {
   const [formState, setFormState] = useState({ commentText: '' });
@@ -16,7 +18,7 @@ const Blog1 = () => {
   
       const mutationResponse = await addComment({
         variables: {
-          _id: '1', // Update this with the actual ID of the blog post
+          _id: '649e56bb2bb4c3f565b07dfd', // Update this with the actual ID of the blog post
           commentText: formState.commentText
         }
       });
@@ -44,15 +46,34 @@ const Blog1 = () => {
       [name]: value
     });
   };
+
+  const { loading, data } = useQuery(QUERY_BLOG, {
+    variables: { _id: '649e56bb2bb4c3f565b07dfd' },
+  });
+
+  console.log(data);
   
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
   return (
     <div>
       <h2>Blog Title 1</h2>
       <p>Blog content goes here...</p>
+  
+       <h3>Comments</h3>
 
-      <h3>Comments</h3>
-
+      {data && data.blog && data.blog.comments.length > 0 ? (
+        data.blog.comments.map(comment => (
+          <div key={comment._id}>
+            <h4>{comment.firstName}</h4>
+            <p>{comment.commentText}</p>
+          </div>
+        ))
+      ) : (
+        <p>No comments yet</p>
+      )}
+  
       <form onSubmit={handleFormSubmit}>
         <textarea 
           name="commentText" 

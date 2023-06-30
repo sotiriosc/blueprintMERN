@@ -12,7 +12,7 @@ async function main() {
 
         const blogPosts = [
             { 
-                _id: 1, 
+                _id: new ObjectId(), 
                 title: 'First Blog', 
                 filePath: '/blog1',
                 comments: [
@@ -25,7 +25,7 @@ async function main() {
                 ] 
             },
             { 
-                _id: 2, 
+                _id: new ObjectId(), 
                 title: 'Second Blog', 
                 filePath: '/blog2',
                 comments: [

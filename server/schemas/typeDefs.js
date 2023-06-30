@@ -12,10 +12,10 @@ const typeDefs = gql`
 
     type Comment {
         _id: ID
+        firstName: String
         commentText: String
         createdAt: String
-        username: String
-    }
+      }
 
     type Order {
         _id: ID
@@ -62,7 +62,7 @@ const typeDefs = gql`
         title: String
         filePath: String
         comments: [Comment]
-    }
+      }
 
     type Mutation {
         addComment(_id: ID!, commentText: String!): Blog

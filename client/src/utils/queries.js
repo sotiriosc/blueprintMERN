@@ -87,10 +87,9 @@ export const QUERY_BLOG = gql`
         title
         filePath
         comments {
-          _id
+          firstName  
           commentText
           createdAt
-          firstName  
         }
     }
   }
