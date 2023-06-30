@@ -15,11 +15,16 @@ const Blog1 = () => {
   
     try {
       const user = AuthService.getProfile(); // Get the user's profile
+
+      console.log(user.data.firstName);
   
       const mutationResponse = await addComment({
         variables: {
           _id: '649e56bb2bb4c3f565b07dfd', // Update this with the actual ID of the blog post
-          commentText: formState.commentText
+          commentText: formState.commentText,
+          firstName: user.data.firstName, // Assuming the firstName is stored in user object
+          blogId: '649e56bb2bb4c3f565b07dfd', // Replace this with the actual blog ID
+          filePath: '/blog1'
         }
       });
       
@@ -34,6 +39,7 @@ const Blog1 = () => {
       commentText: ''
     });
 };
+
 
 
 

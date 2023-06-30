@@ -141,25 +141,13 @@ const resolvers = {
     
           return { token, user };
         },
-        addComment: async (parent, { _id, commentText }, context) => {
-          if (context.user) {
-              const comment = await Comment.create({
-                  commentText,
-                  firstName: context.user.firstName  // updated this line
-              });
-      
-              const blog = await Blog.findById(_id);
-              blog.comment.push(comment);
-              await blog.save();
-      
-              return comment;
-          }
-      
-          throw new AuthenticationError('Not logged in');
-      },
-      
-      },
+        addComment: async (parent, { blogId, firstName, commentText }, context) => {
+          const comment = await Comment.create({ blogId, firstName, commentText });
+          return comment;
+        },
         
+        
+      },
     };
     
     module.exports = resolvers;

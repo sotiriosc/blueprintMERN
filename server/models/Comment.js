@@ -15,9 +15,13 @@ const CommentSchema = new Schema({
       type: Date,
       default: Date.now,
     },
-  });
+    blogId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'Blog', // replace 'Blog' with the name of your blog schema model if it's different
+    },
+});
   
-  const Comment = mongoose.model('Comment', CommentSchema);
+const Comment = mongoose.model('Comment', CommentSchema);
   
-  module.exports = Comment;
-  
+module.exports = Comment;

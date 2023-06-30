@@ -12,10 +12,12 @@ const typeDefs = gql`
 
     type Comment {
         _id: ID
-        firstName: String
         commentText: String
         createdAt: String
+        firstName: String
+        blogId: ID
       }
+      
 
     type Order {
         _id: ID
@@ -65,7 +67,7 @@ const typeDefs = gql`
       }
 
     type Mutation {
-        addComment(_id: ID!, commentText: String!): Blog
+        addComment(_id: ID!, commentText: String!, firstName: String!, blogId: ID!): Comment
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
         addOrder(products: [ID]!): Order
         updateUser(firstName: String, lastName: String, email: String, password: String): User
