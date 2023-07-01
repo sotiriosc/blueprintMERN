@@ -21,7 +21,10 @@ import Blog3 from './pages/Blog3';
 import Blog4 from './pages/Blog4';
 import Blog5 from './pages/Blog5';
 import Blog6 from './pages/Blog6';
-
+import Blog7 from './pages/Blog7';
+import Blog8 from './pages/Blog8';
+import Blog9 from './pages/Blog9';
+import Blog10 from './pages/Blog10';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -30,6 +33,7 @@ import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import './App.css';
 import backgroundImage from './assets/blueprint.png'; 
+
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -112,6 +116,22 @@ function App() {
               <Route
                 path="/blog6"
                 element={<Blog6 />}
+              />
+              <Route
+                path="/blog7"
+                element={<Blog7 />}
+              />
+              <Route
+                path="/blog8"
+                element={<Blog8 />}
+              />
+              <Route
+                path="/blog9"
+                element={<Blog9 />}
+              />
+              <Route
+                path="/blog10"
+                element={<Blog10 />}
               />
               <Route 
                 path="/success" 

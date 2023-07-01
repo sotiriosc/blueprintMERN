@@ -11,6 +11,10 @@ const Blogs = () => {
     { title: 'The Art of Meal Prepping: How to Plan, Cook, and Store Meals for a Healthier Lifestyle', link: '/blog4', content: 'If you already have a healthy meal ready you wont eat junk!!' },
     { title: 'The Power of Protein: Best Sources, Benefits, and How Much You Need', link: '/blog5', content: 'Should you be concerned about your personal protein intake?' },
     { title: 'The Importance of Healing: 6 Key Components to Achieve Optimal Wellness', link: '/blog6', content: 'Rest is just as important as being active!' },
+    { title: 'Secrets to a Successful Weight Loss Program: Tips and Tricks for Reaching Your Imagined Physique', link: '/blog7', content: 'Never Worry about your weight again!' },
+    { title: 'The Mental and Physical Benefits of Outdoor Activities', link: '/blog8', content: 'Want another reason to never skip a workout?!' },
+    { title: 'The Road to Recovery: Handling Injuries Physically and Mentally', link: '/blog9', content: 'Injuries are blessings in disguise' },
+    { title: 'The Power of Commitment: Turning Small Victories into Great Success', link: '/blog10', content: 'Commitment a promise to yourself and you passions' },
 
     // Add more blogs here...
     
@@ -71,28 +75,28 @@ const Blogs = () => {
       />
 
       {filteredBlogs.map((blog, index) => (
-        <div
+        <a
           key={index}
+          href={blog.link}
           style={{
+            textDecoration: 'none', // remove default link styling
+            color: 'inherit', // inherit color from parent
             ...styles.blogContainer,
-            ...(hoverIndex === index && styles.hoverBlogContainer)
+            ...(hoverIndex === index && styles.hoverBlogContainer),
           }}
           onMouseEnter={() => setHoverIndex(index)}
           onMouseLeave={() => setHoverIndex(null)}
         >
-          <h3>
-            <a
-              href={blog.link}
-              style={{
-                ...styles.blogTitle,
-                ...(hoverIndex === index && styles.hoverBlogTitle)
-              }}
-            >
+          <div>
+            <h3 style={{
+              ...styles.blogTitle,
+              ...(hoverIndex === index && styles.hoverBlogTitle)
+            }}>
               {blog.title}
-            </a>
-          </h3>
-          <p>{blog.content}</p>
-        </div>
+            </h3>
+            <p>{blog.content}</p>
+          </div>
+        </a>
       ))}
     </div>
   );

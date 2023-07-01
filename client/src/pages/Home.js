@@ -1,6 +1,8 @@
 import React from "react";
 import image from "../assets/frontimg.jpg";
 
+const isSmallScreen = window.innerWidth <= 768;
+  
 const styles = {
   welcome: {
     fontSize: "3rem",
@@ -9,16 +11,16 @@ const styles = {
   },
   container: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: isSmallScreen ? "column" : "row",
     justifyContent: "space-between"
   },
   content: {
     width: "100%",
-    paddingRight: "10px"
+    paddingRight: isSmallScreen ? "0px" : "10px"
   },
   image: {
     width: "100%",
-    paddingLeft: "10px",
+    paddingLeft: isSmallScreen ? "0px" : "10px",
     objectFit: "cover",
     borderRadius: "10%",
     margin: "20px",

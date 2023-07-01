@@ -13,16 +13,23 @@ async function main() {
         const blogPosts = [
             { 
                 _id: new ObjectId(), 
-                title: 'The Power of Protein: Best Sources, Benefits, and How Much You Need', 
-                filePath: '/blog5',
+                title: 'Secrets to a Successful Weight Loss Program: Tips and Tricks for Reaching Your Imagined Physique', 
+                filePath: '/blog7',
                 comments: [] 
             },
             { 
                 _id: new ObjectId(), 
-                title: 'The Importance of Healing: 6 Key Components to Achieve Optimal Wellness', 
-                filePath: '/blog6',
+                title: 'The Mental and Physical Benefits of Outdoor Activities', 
+                filePath: '/blog8',
                 comments: [] 
             },
+            { 
+                _id: new ObjectId(), 
+                title: 'The Road to Recovery: Handling Injuries Physically and Mentally', 
+                filePath: '/blog9',
+                comments: [] 
+            },
+            
             // Add more blog posts as needed
         ];
 
