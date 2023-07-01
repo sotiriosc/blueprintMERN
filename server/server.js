@@ -5,6 +5,9 @@ const { authMiddleware } = require('./utils/auth');
 require('dotenv').config();
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const fs = require('fs');
+
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -16,6 +19,8 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Serve up static assets
 app.use('/images', express.static(path.join(__dirname, '../client/images')));
@@ -28,6 +33,17 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+
+app.get('/service-worker.js', (req, res) => {
+  // Check if the service worker file exists in the correct path
+  if (process.env.NODE_ENV === 'production' && fs.existsSync(path.join(__dirname, '../client/build/service-worker.js'))) {
+    res.sendFile(path.resolve(__dirname, '../client/build/service-worker.js'));
+  } else {
+    // In development mode, send a 404 as there likely won't be a service-worker file
+    res.status(404).send();
+  }
+});
+
 // This would go after all your other routes
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/build/index.html'), function(err) {
@@ -36,6 +52,8 @@ app.get('*', function(req, res) {
     }
   })
 })
+
+
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

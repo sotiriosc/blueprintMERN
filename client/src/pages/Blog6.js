@@ -24,6 +24,9 @@ const styles = {
     lineHeight: '1.5',  // improved line spacing
     fontSize: '16px',   // suitable font size
     color: '#333',      // darker text color for better contrast
+    '@media (max-width: 768px)': {
+        width: '95%',
+      }
   },
   comment: {
     border: '1px solid #ccc',
