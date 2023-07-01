@@ -20,6 +20,8 @@ import Blog2 from './pages/Blog2';
 import Blog3 from './pages/Blog3';
 import Blog4 from './pages/Blog4';
 import Blog5 from './pages/Blog5';
+import Blog6 from './pages/Blog6';
+
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -106,6 +108,10 @@ function App() {
               <Route
                 path="/blog5"
                 element={<Blog5 />}
+              />
+              <Route
+                path="/blog6"
+                element={<Blog6 />}
               />
               <Route 
                 path="/success" 

@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-
+import "./style.css";
 import logo from "../../assets/logo.png";
 
 const styles = {
@@ -22,6 +22,11 @@ const styles = {
     display: "flex",
     justifyContent: "space-around",
     padding: 0,
+    fontSize: "1.3em",
+    position: "relative",
+    '@media (max-width: 768px)': {
+      fontSize: "0.8em",
+    }
   },
   logo: {
     position: "absolute",
@@ -34,38 +39,89 @@ const styles = {
     }
   },
   title: {
-    fontSize: "2em",
+    fontSize: "3em",
     '@media (max-width: 768px)': {
-      fontSize: "0.5em",
+      fontSize: "1em",
     }
-  }
+  },
+  link: {
+    color: 'white', // Initial color of the link, change as needed
+    textDecoration: 'none',
+  },
+  linkHover: {
+    color: '#dd44f1', // Color of the link when hovered
+    textDecoration: 'none',
+  },
 };
 
 
 function Nav() {
+  const [hoverIndex, setHoverIndex] = React.useState(null);
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul style={styles.ul}>
-          <li className="mx-1">
-            <Link to="/blogs">Blogs</Link>
+      <ul style={styles.ul}>
+        <li className="mx-1">
+          <Link
+            to="/blogs"
+            style={hoverIndex === 1 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(1)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Blogs
+          </Link>
+        </li>
+        <li className="mx-1">
+          <Link
+            to="/shop"
+            style={hoverIndex === 2 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(2)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Shop
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/shop">Shop</Link>
+          <Link
+            to="/orderHistory"
+            style={hoverIndex === 3 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(3)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Order History
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/orderHistory">Order History</Link>
+          <Link
+            to="/faq"
+            style={hoverIndex === 4 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(4)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            FAQ
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/faq">FAQ</Link>
+          <Link
+            to="/about"
+            style={hoverIndex === 5 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(5)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            About
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/">About</Link>
-          </li>
-          <li className="mx-1">
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>Logout</a>
+          <Link
+            to="/"
+            style={hoverIndex === 6 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(6)}
+            onMouseLeave={() => setHoverIndex(null)}
+            onClick={() => Auth.logout()}
+          >
+            Logout
+          </Link>
           </li>
         </ul>
       );
@@ -73,22 +129,64 @@ function Nav() {
       return (
         <ul style={styles.ul}>
           <li className="mx-1">
-            <Link to="/blogs">Blogs</Link>
+          <Link
+            to="/blogs"
+            style={hoverIndex === 1 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(1)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Blogs
+          </Link>
+        </li>
+        <li className="mx-1">
+          <Link
+            to="/shop"
+            style={hoverIndex === 2 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(2)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Shop
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/shop">Shop</Link>
+          <Link
+            to="/signup"
+            style={hoverIndex === 3 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(3)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Signup
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/signup">Signup</Link>
+          <Link
+            to="/login"
+            style={hoverIndex === 4 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(4)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Login
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/login">Login</Link>
+          <Link
+            to="/faq"
+            style={hoverIndex === 5 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(5)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            FAQ
+          </Link>
           </li>
           <li className="mx-1">
-            <Link to="/faq">FAQ</Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/">About</Link>
+          <Link
+            to="/"
+            style={hoverIndex === 6 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(6)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            About
+          </Link>
           </li>
         </ul>
       );
@@ -99,10 +197,15 @@ function Nav() {
       <header style={styles.navContainer}>
         <img src={logo} alt="My logo" className="logo"></img>
         <div style={styles.titleContainer}>
-          <h1 className="title">
-            <Link to="/">
-              Balanced Blueprint Blog
-            </Link>
+          <h1 style={styles.title}>
+          <Link 
+            to="/"
+            style={hoverIndex === 0 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(0)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Balanced Blueprint Blog
+          </Link>
           </h1>
         </div>
         <nav>
