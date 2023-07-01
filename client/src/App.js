@@ -36,7 +36,9 @@ import backgroundImage from './assets/blueprint.png';
 
 
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_GRAPHQL_SERVER || 'http://localhost:3001/graphql',
+  uri: process.env.NODE_ENV === 'production' 
+    ? 'https://balancedblueprintblog-087c8e263340.herokuapp.com/graphql'
+    : 'http://localhost:3001/graphql',
 });
 
 
