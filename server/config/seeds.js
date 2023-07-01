@@ -13,14 +13,14 @@ async function main() {
         const blogPosts = [
             { 
                 _id: new ObjectId(), 
-                title: 'Top 10 Cardio Workouts for a Healthy Heart, Youthfulness & Improved Performance', 
-                filePath: '/blog3',
+                title: 'The Power of Protein: Best Sources, Benefits, and How Much You Need', 
+                filePath: '/blog5',
                 comments: [] 
             },
             { 
                 _id: new ObjectId(), 
-                title: 'The Art of Meal Prepping: How to Plan, Cook, and Store Meals for a Healthier Lifestyle', 
-                filePath: '/blog4',
+                title: 'The Importance of Healing: 6 Key Components to Achieve Optimal Wellness', 
+                filePath: '/blog6',
                 comments: [] 
             },
             // Add more blog posts as needed

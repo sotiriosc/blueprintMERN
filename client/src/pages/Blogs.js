@@ -9,7 +9,11 @@ const Blogs = () => {
     { title: 'The Mental and Physical Benefits of Outdoor Activities', link: '/blog2', content: 'A breath of fresh air can really keep you going!' },
     { title: 'Top 10 Cardio Workouts for a Healthy Heart, Youthfulness & Improved Performance', link: '/blog3', content: 'Your heart is never gets a break! One unbelievable muscle!' },
     { title: 'The Art of Meal Prepping: How to Plan, Cook, and Store Meals for a Healthier Lifestyle', link: '/blog4', content: 'If you already have a healthy meal ready you wont eat junk!!' },
+    { title: 'The Power of Protein: Best Sources, Benefits, and How Much You Need', link: '/blog5', content: 'Should you be concerned about your personal protein intake?' },
+    { title: 'The Importance of Healing: 6 Key Components to Achieve Optimal Wellness', link: '/blog6', content: 'Rest is just as important as being active!' },
+
     // Add more blogs here...
+    
   ];
 
   const filteredBlogs = blogs.filter(blog =>
