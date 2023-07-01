@@ -36,8 +36,10 @@ import backgroundImage from './assets/blueprint.png';
 
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: process.env.REACT_APP_GRAPHQL_SERVER || 'http://localhost:3001/graphql',
 });
+
+
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
