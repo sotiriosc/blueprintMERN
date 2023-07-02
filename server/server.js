@@ -29,10 +29,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.get('/serviceWorker.js', (req, res) => {
+app.get('/sw.js', (req, res) => {
   // Check if the service worker file exists in the correct path
-  if (process.env.NODE_ENV === 'production' && fs.existsSync(path.join(__dirname, '../client/build/serviceWorker.js'))) {
-    res.sendFile(path.resolve(__dirname, '../client/build/serviceWorker.js'));
+  if (process.env.NODE_ENV === 'production' && fs.existsSync(path.join(__dirname, '../client/build/sw.js'))) {
+    res.sendFile(path.resolve(__dirname, '../client/build/sw.js'));
   } else {
     // In development mode, send a 404 as there likely won't be a service-worker file
     res.status(404).send();
