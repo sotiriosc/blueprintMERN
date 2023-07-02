@@ -5,12 +5,31 @@ import "./style.css";
 import logo from "../../assets/logo.png";
 
 const styles = {
-  navContainer: {
+   navContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     height: "200px",
+    padding: "10px",
+  },
+  logoAndTitle: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+ 
+  logo: {
+    height: "100px",
+    borderRadius: "50%",
+    animation: "rotation 60s infinite linear",
+    marginTop: "15px",
+    marginRight: "15px",
+    justifyContent: "flex-start",
+    '@media (max-width: 768px)': {
+      height: "60px",
+    }
   },
   titleContainer: {
     display: "flex",
@@ -26,16 +45,6 @@ const styles = {
     position: "relative",
     '@media (max-width: 768px)': {
       fontSize: "0.8em",
-    }
-  },
-  logo: {
-    position: "absolute",
-    left: "10px",
-    height: "150px",
-    borderRadius: "50%",
-    animation: "rotation 60s infinite linear",
-    '@media (max-width: 768px)': {
-      height: "100px",
     }
   },
   title: {
@@ -193,26 +202,26 @@ function Nav() {
     }
   }
 
-    return (
-      <header style={styles.navContainer}>
-        <img src={logo} alt="My logo" className="logo"></img>
-        <div style={styles.titleContainer}>
-          <h1 style={styles.title}>
-          <Link 
-            to="/"
-            style={hoverIndex === 0 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(0)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            Balanced Blueprint Blog
-          </Link>
-          </h1>
-        </div>
-        <nav>
-          {showNavigation()}
-        </nav>
-      </header>
-    );
+   return (
+  <header style={styles.navContainer}>
+    <div style={styles.logoAndTitle}>
+      <img src={logo} alt="My logo" style={styles.logo}></img>
+      <h1 style={styles.title}>
+        <Link 
+          to="/"
+          style={hoverIndex === 0 ? styles.linkHover : styles.link}
+          onMouseEnter={() => setHoverIndex(0)}
+          onMouseLeave={() => setHoverIndex(null)}
+        >
+          Balanced Blueprint Blog
+        </Link>
+      </h1>
+    </div>
+    <nav>
+      {showNavigation()}
+    </nav>
+  </header>
+);
     
 }
 
