@@ -221,7 +221,7 @@ input:focus {
 
 @media (max-width: 768px) {
   .blog-content {
-    width: 100%;
+    width: 90%;
   }
 }
 
