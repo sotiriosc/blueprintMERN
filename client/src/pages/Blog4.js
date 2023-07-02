@@ -21,11 +21,11 @@ const styles = {
   content: {
     width: '60%',
     margin: '0 auto',
-    lineHeight: '1.5',  // improved line spacing
-    fontSize: '16px',   // suitable font size
-    color: '#333',      // darker text color for better contrast
+    lineHeight: '1.5',  
+    fontSize: '16px',   
+    color: '#333',      
     '@media (max-width: 768px)': {
-      width: '95%',
+      width: '100%',
     }
   },
   comment: {
@@ -133,7 +133,7 @@ const Blog4 = () => {
   <meta name="robots" content="index, follow" />
 </Helmet>
 
-<div style={styles.content}>
+<div className="blog-content">
        <h2 style={styles.title}>The Art of Meal Prepping: How to Plan, Cook, and Store Meals for a Healthier Lifestyle</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
        <p style={styles.date}>Written on: May 29th 2023</p>

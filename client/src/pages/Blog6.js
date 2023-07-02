@@ -134,7 +134,7 @@ const Blog6 = () => {
   <meta name="robots" content="index, follow" />
 </Helmet>
 
-<div style={styles.content}>
+<div className="blog-content">
        <h2 style={styles.title}>The Importance of Healing: 6 Key Components to Achieve Optimal Wellness</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
        <p style={styles.date}>Written on: June 17th 2023</p>

@@ -129,7 +129,7 @@ const Blog3 = () => {
         <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
         
       </Helmet>
-    <div style={styles.content}>
+      <div className="blog-content">
        <h2 style={styles.title}>Boost Your Cardio Fitness: The Top 10 Heart-Healthy Workouts</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
        <p style={styles.date}>Written on: May 20th 2023</p>

@@ -129,7 +129,7 @@ const Blog2 = () => {
         <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
         
       </Helmet>
-    <div style={styles.content}>
+      <div className="blog-content">
        <h2 style={styles.title}>Building a Balanced Diet: A Comprehensive Guide to Macronutrients and Micronutrients</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
        <p style={styles.date}>Written on: May 10th 2023</p>

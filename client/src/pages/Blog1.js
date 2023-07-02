@@ -129,7 +129,7 @@ const Blog1 = () => {
         <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
         
       </Helmet>
-    <div style={styles.content}>
+      <div className="blog-content">
        <h2 style={styles.title}>The Science of Stretching: Benefits and Techniques for Optimal Performance</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
        <p style={styles.date}>Written on: May 2nd 2023</p>

@@ -133,7 +133,7 @@ const Blog9 = () => {
   <meta name="robots" content="index, follow" />
 </Helmet>
 
-<div style={styles.content}>
+<div className="blog-content">
        <h2 style={styles.title}>The Road to Recovery: Handling Injuries Physically and Mentally</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
        <p style={styles.date}>Written on: June 28th 2023</p>

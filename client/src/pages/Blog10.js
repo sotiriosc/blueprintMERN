@@ -129,7 +129,7 @@ const Blog10 = () => {
         <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
         
       </Helmet>
-    <div style={styles.content}>
+      <div className="blog-content">
        <h2 style={styles.title}>The Power of Commitment: Turning Small Victories into Great Success</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
        <p style={styles.date}>Written on: July 1st 2023</p>
