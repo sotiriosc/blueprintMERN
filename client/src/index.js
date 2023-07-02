@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import serviceWorker from '..public/sw.js';
+
 
 import ReactGA from 'react-ga';
 
@@ -22,7 +22,7 @@ root.render(
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     // Register the service worker
-    navigator.serviceWorker.register('../public/sw.js').then(function(registration) {
+    navigator.serviceWorker.register('../public/sw').then(function(registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }, function(err) {
