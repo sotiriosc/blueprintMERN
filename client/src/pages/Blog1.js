@@ -19,6 +19,10 @@ const styles = {
     fontSize: '2em',
     textAlign: 'center',
   },
+  commentDate: {
+    fontSize: '0.75em',
+    color: '#b1b1b1',
+  },
   content: {
     width: '60%',
     margin: '0 auto',
