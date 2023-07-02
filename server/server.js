@@ -7,8 +7,6 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const fs = require('fs');
 
-
-
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
@@ -19,8 +17,6 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Serve up static assets
 app.use('/images', express.static(path.join(__dirname, '../client/images')));
@@ -32,7 +28,6 @@ if (process.env.NODE_ENV === 'production') {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
 
 app.get('/serviceWorker.js', (req, res) => {
   // Check if the service worker file exists in the correct path
@@ -53,8 +48,6 @@ app.get('*', function(req, res) {
   })
 })
 
-
-
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();
@@ -69,4 +62,4 @@ const startApolloServer = async () => {
   };
   
 // Call the async function to start the server
-  startApolloServer();
+startApolloServer();
