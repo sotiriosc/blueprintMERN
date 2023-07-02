@@ -4,7 +4,14 @@ import { pluralize } from "../../utils/helpers"
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import "./style.css";
 
+const styles = {
+  button: {
+    margin: "5px",
+  }
+
+}
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
@@ -52,7 +59,7 @@ function ProductItem(item) {
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
+      <button onClick={addToCart} style={styles.button}>Add to cart</button>
     </div>
   );
 }
