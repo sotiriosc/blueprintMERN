@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import serviceWorker from '..public/sw.js';
 
-import 'semantic-ui-css/semantic.min.css';
 import ReactGA from 'react-ga';
 
 ReactGA.initialize('G-K50HC7JR3S'); // Replace with your Google Analytics tracking ID
