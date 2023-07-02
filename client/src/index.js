@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import * as serviceWorker from './service-worker';
+import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
 import ReactGA from 'react-ga';
 
