@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import * as serviceWorker from './serviceWorker';
+
 import 'semantic-ui-css/semantic.min.css';
 import ReactGA from 'react-ga';
 
@@ -18,8 +18,21 @@ root.render(
   </React.StrictMode>
 );
 
-// Register the service worker
-serviceWorker.register({ scope: '/' });
+// Check if service workers are supported by the browser
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    // Register the service worker
+    navigator.serviceWorker.register('../public/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+} else {
+  console.log('Service workers are not supported by this browser.');
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
