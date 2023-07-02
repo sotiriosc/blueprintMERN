@@ -48,9 +48,9 @@ const styles = {
     }
   },
   title: {
-    fontSize: "3em",
+    fontSize: "2.5em",
     '@media (max-width: 768px)': {
-      fontSize: "1em",
+      fontSize: ".8em",
     }
   },
   link: {
