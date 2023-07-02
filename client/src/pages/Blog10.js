@@ -5,6 +5,7 @@ import { QUERY_BLOG } from '../utils/queries';
 import AuthService from '../utils/auth';
 import tree from '../assets/tree.jpg'
 import { Helmet } from 'react-helmet';
+import moment from 'moment'; 
 
 const styles = {
   img: {
@@ -12,6 +13,10 @@ const styles = {
     height: '300px',
     display: 'block',
     margin: 'auto',
+  },
+  commentDate: {
+    fontSize: '0.75em',
+    color: '#b1b1b1',
   },
   title: {
     margin: '50px',
@@ -177,11 +182,12 @@ const Blog10 = () => {
               <br />
 
 
-{data && data.blog && data.blog.comments.length > 0 ? (
+              {data && data.blog && data.blog.comments.length > 0 ? (
   data.blog.comments.map(comment => (
     <div key={comment._id} style={styles.comment}>
       <h4 style={styles.commentAuthor}>{comment.firstName}</h4>
       <p>{comment.commentText}</p>
+      <p style={styles.commentDate}>{moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</p> 
     </div>
   ))
 ) : (

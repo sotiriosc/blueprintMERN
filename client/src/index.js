@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import ReactGA from 'react-ga';
 
+
 ReactGA.initialize('G-K50HC7JR3S'); // Replace with your Google Analytics tracking ID
 ReactGA.pageview(window.location.pathname + window.location.search);
 

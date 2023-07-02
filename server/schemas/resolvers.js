@@ -89,8 +89,20 @@ const resolvers = {
         return { session: session.id };
       },
       blog: async (parent, { _id }) => {
-        return await Blog.findById(_id).populate('comments');
+        const blog = await Blog.findById(_id).populate('comments');
+      
+        // Convert to a regular JavaScript object
+        let blogObj = blog.toObject();
+      
+        // Modify comments
+        blogObj.comments = blogObj.comments.map(comment => ({
+          ...comment,
+          createdAt: new Date(comment.createdAt).toISOString(),
+        }));
+      
+        return blogObj;
       }
+      
       
     },
     Mutation: {

@@ -58,6 +58,7 @@ const typeDefs = gql`
         order(_id: ID!): Order
         checkout(products: [ID]!): Checkout
         blog(_id: ID!): Blog  
+        
     }
 
     type Blog {
