@@ -44,7 +44,7 @@ const styles = {
     fontSize: "1.3em",
     position: "relative",
     '@media (max-width: 768px)': {
-      fontSize: "0.8em",
+      fontSize: "0.5em",
     }
   },
   title: {
@@ -70,7 +70,7 @@ function Nav() {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-      <ul style={styles.ul}>
+      <ul className="ul">
         <li className="mx-1">
           <Link
             to="/blogs"
@@ -146,7 +146,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul style={styles.ul}>
+        <ul className="ul">
           <li className="mx-1">
           <Link
             to="/blogs"
