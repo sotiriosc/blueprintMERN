@@ -68,6 +68,13 @@ const typeDefs = gql`
         comments: [Comment]
       }
 
+     type Contact {
+        _id: ID
+        name: String
+        email: String
+        message: String
+      }
+
     type Mutation {
         addComment(_id: ID!, commentText: String!, firstName: String!, blogId: ID!): Comment
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
@@ -75,6 +82,7 @@ const typeDefs = gql`
         updateUser(firstName: String, lastName: String, email: String, password: String): User
         updateProduct(_id: ID!, quantity: Int!): Product
         login(email: String!, password: String!): Auth
+        submitContactForm(name: String!, email: String!, message: String!): Contact!
     }
 `;
 

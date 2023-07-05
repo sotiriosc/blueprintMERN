@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order, Comment, Blog } = require('../models');
+const { User, Product, Category, Order, Comment, Blog, Contact} = require('../models');
+
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -106,6 +107,7 @@ const resolvers = {
       
     },
     Mutation: {
+        
         addUser: async (parent, args) => {
           const user = await User.create(args);
           const token = signToken(user);
@@ -171,11 +173,13 @@ const resolvers = {
           // return the new comment
           return comment;
       },
+      submitContactForm: async (parent, { name, email, message }) => {
+        const contact = new Contact({ name, email, message });
+        await contact.save();
+        return contact;
+      }
       
-        
-        
-      },
-    };
-    
-    module.exports = resolvers;
+    },
+};    
+module.exports = resolvers;
     
