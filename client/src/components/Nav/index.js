@@ -113,7 +113,7 @@ function Nav() {
           </li>
           <li className="mx-1">
           <Link
-            to="/about"
+            to="/"
             style={hoverIndex === 5 ? styles.linkHover : styles.link}
             onMouseEnter={() => setHoverIndex(5)}
             onMouseLeave={() => setHoverIndex(null)}
@@ -123,9 +123,19 @@ function Nav() {
           </li>
           <li className="mx-1">
           <Link
-            to="/"
+            to="/contact"
             style={hoverIndex === 6 ? styles.linkHover : styles.link}
             onMouseEnter={() => setHoverIndex(6)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Contact
+          </Link>
+          </li>
+          <li className="mx-1">
+          <Link
+            to="/"
+            style={hoverIndex === 7 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(7)}
             onMouseLeave={() => setHoverIndex(null)}
             onClick={() => Auth.logout()}
           >
@@ -187,6 +197,7 @@ function Nav() {
             FAQ
           </Link>
           </li>
+          
           <li className="mx-1">
           <Link
             to="/"
@@ -195,6 +206,16 @@ function Nav() {
             onMouseLeave={() => setHoverIndex(null)}
           >
             About
+          </Link>
+          </li>
+          <li className="mx-1">
+          <Link
+            to="/contact"
+            style={hoverIndex === 7 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(7)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Contact
           </Link>
           </li>
         </ul>

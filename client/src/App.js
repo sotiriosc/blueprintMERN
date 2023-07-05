@@ -14,6 +14,7 @@ import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/SignUp.js';
+import ContactForm from './pages/ContactForm';
 import Blogs from './pages/Blogs';
 import Blog1 from './pages/Blog1';
 import Blog2 from './pages/Blog2';
@@ -156,6 +157,10 @@ function App() {
               <Route
                 path="/faq"
                 element={<FAQ />}
+              />
+              <Route
+                path="/contact"
+                element={<ContactForm />}
               />
             </Routes>
             

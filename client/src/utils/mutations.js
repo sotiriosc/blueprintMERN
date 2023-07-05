@@ -61,3 +61,10 @@ mutation AddComment($_id: ID!, $commentText: String!, $firstName: String!, $blog
 }
 `;
 
+export const SUBMIT_CONTACT_FORM = gql`
+  mutation SubmitContactForm($name: String!, $email: String!, $message: String!) {
+    submitContactForm(name: $name, email: $email, message: $message) {
+      _id
+    }
+  }
+`;
