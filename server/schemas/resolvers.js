@@ -155,12 +155,13 @@ const resolvers = {
     
           return { token, user };
         },
-        addComment: async (parent, { firstName, commentText, blogId }, context, info) => {
+        addComment: async (parent, { firstName, commentText, blogId, userId }, context, info) => {
           // create a new comment
           const comment = new Comment({
               firstName,
               commentText,
               blogId,
+              userId,
           });
           // save the comment to the database
           await comment.save();
@@ -169,6 +170,10 @@ const resolvers = {
           const blog = await Blog.findById(blogId);
           blog.comments.push(comment);
           await blog.save();
+
+          const user = await User.findById(context.user._id);
+          user.comments.push(comment);
+          await user.save();
       
           // return the new comment
           return comment;

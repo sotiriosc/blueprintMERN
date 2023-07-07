@@ -75,7 +75,7 @@ export const QUERY_COMMENTS = gql`
             _id
             commentText
             createdAt
-            username
+            firstName
         }
     }
 `;

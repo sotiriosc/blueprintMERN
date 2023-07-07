@@ -51,11 +51,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_COMMENT = gql`
-mutation AddComment($_id: ID!, $commentText: String!, $firstName: String!, $blogId: ID!) {
-  addComment(_id: $_id, commentText: $commentText, firstName: $firstName, blogId: $blogId) {
+mutation AddComment($_id: ID!, $commentText: String!, $firstName: String!, $userId: ID! $blogId: ID!) {
+  addComment(_id: $_id, commentText: $commentText, firstName: $firstName, userId: $userId, blogId: $blogId) {
     _id
     commentText
     firstName
+    userId
     blogId
   }
 }

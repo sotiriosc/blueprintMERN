@@ -15,6 +15,10 @@ const CommentSchema = new Schema({
       type: Date,
       default: Date.now,
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
     blogId: {
       type: Schema.Types.ObjectId,
       ref: 'Blog',

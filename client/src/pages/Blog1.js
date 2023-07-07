@@ -106,8 +106,9 @@ const Blog1 = () => {
           _id: blogId, 
           commentText: formState.commentText,
           firstName: user.data.firstName, // Assuming the firstName is stored in user object
-          blogId: blogId, 
-          filePath: '/blog1'
+          blogId: blogId,
+          userId: user.data._id, // Assuming the _id is stored in user object
+          filePath: '/blog1',
         }
       });
   
