@@ -51,8 +51,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_COMMENT = gql`
-mutation AddComment($_id: ID!, $commentText: String!, $firstName: String!, $userId: ID! $blogId: ID!) {
-  addComment(_id: $_id, commentText: $commentText, firstName: $firstName, userId: $userId, blogId: $blogId) {
+mutation AddComment($commentText: String!, $firstName: String!, $userId: ID!, $blogId: ID!) {
+  addComment(commentText: $commentText, firstName: $firstName, userId: $userId, blogId: $blogId) {
     _id
     commentText
     firstName
@@ -61,6 +61,7 @@ mutation AddComment($_id: ID!, $commentText: String!, $firstName: String!, $user
   }
 }
 `;
+
 
 export const SUBMIT_CONTACT_FORM = gql`
   mutation SubmitContactForm($name: String!, $email: String!, $message: String!) {

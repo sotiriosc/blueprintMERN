@@ -77,7 +77,7 @@ const typeDefs = gql`
       }
 
     type Mutation {
-        addComment(_id: ID!, commentText: String!, firstName: String!, userId: ID!, blogId: ID!): Comment
+        addComment(commentText: String!, firstName: String!, userId: ID!, blogId: ID!): Comment
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
         addOrder(products: [ID]!): Order
         updateUser(firstName: String, lastName: String, email: String, password: String): User

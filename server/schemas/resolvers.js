@@ -165,19 +165,26 @@ const resolvers = {
           });
           // save the comment to the database
           await comment.save();
-      
+        
           // find the blog by its id and push the new comment to its comments array
           const blog = await Blog.findById(blogId);
+          if (!blog) {
+            throw new Error('Blog not found');
+          }
           blog.comments.push(comment);
           await blog.save();
-
+        
           const user = await User.findById(context.user._id);
+          if (!user) {
+            throw new Error('User not found');
+          }
           user.comments.push(comment);
           await user.save();
-      
+        
           // return the new comment
           return comment;
-      },
+        }
+        ,
       submitContactForm: async (parent, { name, email, message }) => {
         const contact = new Contact({ name, email, message });
         await contact.save();

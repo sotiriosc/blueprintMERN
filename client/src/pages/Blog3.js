@@ -105,6 +105,7 @@ const Blog3 = () => {
         variables: {
           _id: blogId, 
           commentText: formState.commentText,
+          userId: user.data._id,
           firstName: user.data.firstName, // Assuming the firstName is stored in user object
           blogId: blogId, 
           filePath: '/blog3'
