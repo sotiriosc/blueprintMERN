@@ -27,9 +27,7 @@ const styles = {
     marginTop: "15px",
     marginRight: "15px",
     justifyContent: "flex-start",
-    '@media (max-width: 768px)': {
-      height: "60px",
-    }
+   
   },
   titleContainer: {
     display: "flex",
@@ -43,15 +41,11 @@ const styles = {
     padding: 0,
     fontSize: "1.3em",
     position: "relative",
-    '@media (max-width: 768px)': {
-      fontSize: "0.5em",
-    }
+ 
   },
   title: {
     fontSize: "2.5em",
-    '@media (max-width: 768px)': {
-      fontSize: ".8em",
-    }
+   
   },
   link: {
     color: 'white', // Initial color of the link, change as needed
