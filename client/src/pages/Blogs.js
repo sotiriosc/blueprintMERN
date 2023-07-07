@@ -15,6 +15,7 @@ const Blogs = () => {
     { title: 'The Mental and Physical Benefits of Outdoor Activities', link: '/blog8', content: 'Want another reason to never skip a workout?!' },
     { title: 'The Road to Recovery: Handling Injuries Physically and Mentally', link: '/blog9', content: 'Injuries are blessings in disguise' },
     { title: 'The Power of Commitment: Turning Small Victories into Great Success', link: '/blog10', content: 'Commitment a promise to yourself and you passions' },
+    { title: 'The Power of Words in Achieving a Balanced Lifestyle', link: '/blog11', content: 'Words are real Magic' },
 
     // Add more blogs here...
     

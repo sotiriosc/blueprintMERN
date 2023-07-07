@@ -6,6 +6,7 @@ require('dotenv').config();
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const fs = require('fs');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -17,6 +18,7 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 
 // Serve up static assets
 app.use('/images', express.static(path.join(__dirname, '../client/images')));
