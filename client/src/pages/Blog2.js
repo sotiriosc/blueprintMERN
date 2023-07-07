@@ -126,7 +126,7 @@ const Blog2 = () => {
   return (
     <>
       <Helmet>
-        <title>The Mental and Physical Benefits of Outdoor Activities</title>
+        <title>Building a Balanced Diet: A Comprehensive Guide to Macronutrients and Micronutrients</title>
 	    <meta name="description" content="Learn about the mental and physical benefits of outdoor activities, including how they can improve your mood, boost your immune system, and help you stay active."/>
 	    <meta name="keywords" content="outdoor activities, mental health, physical health, nature, exercise"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
