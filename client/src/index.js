@@ -5,12 +5,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import ReactGA from 'react-ga';
+import TagManager from 'react-gtm-module';
+
 
 
 ReactGA.initialize('G-K50HC7JR3S'); // Replace with your Google Analytics tracking ID
 ReactGA.pageview(window.location.pathname + window.location.search);
 
+const tagManagerArgs = {
+  gtmId: 'G-K50HC7JR3S'  // Replace with your GTM ID
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+TagManager.initialize(tagManagerArgs);
 
 root.render(
   <React.StrictMode>

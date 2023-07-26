@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Blogs.css';
 
 const Blogs = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -65,11 +66,11 @@ const Blogs = () => {
   };
 
   return (
-    <div style={styles.page}>
+    <div className='blogs-page'>
       <h2>Our Blogs</h2>
 
       <input
-        style={styles.searchBox}
+        className='search-box'
         type="text"
         placeholder="Search..."
         onChange={event => setSearchTerm(event.target.value)}
@@ -79,28 +80,15 @@ const Blogs = () => {
         <a
           key={index}
           href={blog.link}
-          style={{
-            textDecoration: 'none', // remove default link styling
-            color: 'inherit', // inherit color from parent
-            ...styles.blogContainer,
-            ...(hoverIndex === index && styles.hoverBlogContainer),
-          }}
-          onMouseEnter={() => setHoverIndex(index)}
-          onMouseLeave={() => setHoverIndex(null)}
+          className='blog-container'
         >
           <div>
-            <h3 style={{
-              ...styles.blogTitle,
-              ...(hoverIndex === index && styles.hoverBlogTitle)
-            }}>
-              {blog.title}
-            </h3>
+            <h3 className='blog-title'>{blog.title}</h3>
             <p>{blog.content}</p>
           </div>
         </a>
       ))}
     </div>
   );
-};
-
+}
 export default Blogs;
