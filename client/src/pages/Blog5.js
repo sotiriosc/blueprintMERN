@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_COMMENT } from '../utils/mutations';
 import { QUERY_BLOG } from '../utils/queries';
 import AuthService from '../utils/auth';
-import protein from '../assets/protein.png'
+import protein from '../assets/protein.avif'
 import { Helmet } from 'react-helmet';
 import moment from 'moment'; 
 

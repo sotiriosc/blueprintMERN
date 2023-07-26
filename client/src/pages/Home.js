@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../assets/frontimg.jpg";
+import image from "../assets/frontimg.avif";
 
 const isSmallScreen = window.innerWidth <= 768;
   

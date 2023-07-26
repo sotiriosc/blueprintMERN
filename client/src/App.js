@@ -34,7 +34,7 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import './App.css';
-import backgroundImage from './assets/blueprint.png'; 
+import backgroundImage from './assets/blueprint.avif'; 
 
 
 const httpLink = createHttpLink({
