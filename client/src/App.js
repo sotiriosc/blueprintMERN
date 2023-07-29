@@ -27,8 +27,9 @@ import Blog8 from './pages/Blog8';
 import Blog9 from './pages/Blog9';
 import Blog10 from './pages/Blog10';
 import Blog11 from './pages/Blog11';
+import Blog12 from './pages/Blog12';
 import Shop from './pages/Shop';
-import Nav from './components/Nav';
+import Nav from '../components/Nav';
 import Footer from './components/Footer';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
@@ -142,6 +143,10 @@ function App() {
               <Route
                 path="/blog11"
                 element={<Blog11 />}
+              />
+              <Route
+                path="/blog12"
+                element={<Blog12 />}
               />
               <Route 
                 path="/success" 

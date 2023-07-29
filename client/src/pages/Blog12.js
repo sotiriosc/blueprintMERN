@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_COMMENT } from '../utils/mutations';
 import { QUERY_BLOG } from '../utils/queries';
 import AuthService from '../utils/auth';
-import words from '../assets/words.avif'
+import posture from '../assets/posture.avif'
 import { Helmet } from 'react-helmet';
 import moment from 'moment'; 
 
@@ -68,10 +68,10 @@ const styles = {
 };
 
 
-const Blog11 = () => {
+const Blog12 = () => {
   const [formState, setFormState] = useState({ commentText: '' });
 
-  const blogId = '64a869a8e44b8dcd04dca31c'; // Replace this with the actual blog ID
+  const blogId = '64c53377822059db3f867ffc'; // Replace this with the actual blog ID
 
   const { loading, data, refetch } = useQuery(QUERY_BLOG, {
     variables: { _id: blogId },
@@ -108,7 +108,7 @@ const Blog11 = () => {
           firstName: user.data.firstName,
           userId: user.data._id,
           blogId: blogId, 
-          filePath: '/blog11'
+          filePath: '/blog12'
         }
       });
   
@@ -127,8 +127,8 @@ const Blog11 = () => {
   return (
     <>
       <Helmet>
-        <title>The Power of Words in Achieving a Balanced Lifestyle</title>
-        <meta name="description" content="Appreciating the power of words and a few as a reminder it's the power!" />
+        <title>The Power of Posture: Align Your Body, Elevate Your Life</title>
+        <meta name="description" content="The importance of posture and it's effects on your life and health!" />
         <meta name="keywords" content="words, Balanced Blueprint Blog, Healthy Living, Exercise, Healthy Eating, Wellness Journey, Motivation,  Consistency,  Determination,  Transformation,  Small Victories,  Growth,  Personal Development,  health Goals,  Fitness Goals,  Learning,Personal Growth, Well-being, Mindset, Persistence " />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
@@ -136,47 +136,59 @@ const Blog11 = () => {
         
       </Helmet>
       <div className="blog-content">
-       <h2 style={styles.title}>The Power of Words in Achieving a Balanced Lifestyle</h2>
+       <h2 style={styles.title}>The Power of Posture: Align Your Body, Elevate Your Life</h2>
        <p style={styles.author}>Written by: Sotirios Chortogiannos</p>
-       <p style={styles.date}>Written on: July 7th 2023</p>
-       <img src={words} alt="Image of letters making words" style={styles.img} />
+       <p style={styles.date}>Written on: July 29th 2023</p>
+       <img src={posture} alt="Image of A man standing with good posture" style={styles.img} />
            
               <h3>Introduction:</h3>
               <br />
 
-              <h3>Words as Seeds of Transformation</h3>
+              <p>In the holistic pursuit of health, we often focus on nutrition and exercise. Yet there's an equally crucial aspect we regularly overlook – our posture. The way we carry ourselves influences not just our physical health, but our mental wellbeing too. So let's delve into the multifaceted role of posture and its profound impact on our life and fitness.</p>
               <br />
 
-              <p>It all begins with words. Words carry the unique ability to paint pictures, evoke emotions, inspire action, and even build or shatter our realities. Just as we strive for physical fitness and a balanced diet, we should also exercise our vocabulary and feed our minds with robust and empowering words. Just as the right foods can nourish our bodies, the right words can nourish our minds.</p>
+              <h3>The Physiology of Posture</h3>
               <br />
 
-              <h3>Communication: The Key to Harmony</h3>
+              <p>Our body is a marvel of engineering. Every muscle, bone, and tendon work in harmony, allowing us to perform an array of activities, from intricate tasks to powerful athletic feats. This harmony relies heavily on our posture - the way we position our bodies while sitting, standing, and moving.</p>
               <br />
 
-              <p>Imagine you are in the middle of an intense workout, and you're struggling with a particularly challenging exercise. At that moment, a gym buddy comes over and encourages you with a few well-chosen words. "You've got this. Keep pushing!" These words can be the difference between giving up and pushing through.</p>
+              <p>Good posture entails aligning your body in a way that the stress on supporting ligaments, tendons, and muscles is distributed evenly. It optimizes your breathing, as a well-aligned spine and open chest cavity allow your lungs to expand to their fullest. This ensures optimal oxygen intake, which in turn enhances your blood circulation, nourishing every cell in your body.</p>
               <br />
 
-              <p>Effective communication, built on the right words, enables us to connect with our surroundings and people. When we articulate our thoughts, aspirations, and challenges, we open avenues for support, motivation, and collaborative problem-solving.</p>
+              <p>Furthermore, good posture facilitates efficient nerve impulse flow, allowing your brain to communicate swiftly and accurately with different body parts. This helps enhance your reflexes and overall physical performance.</p>
               <br />
 
-              <h3>The Linguistic Diet: Consuming Words Mindfully</h3>
+              <h3>The Aesthetics and Perception of Posture</h3>
               <br />
 
-              <p>Just as we mindfully select what we put into our bodies, we should be selective about the words we consume. The words we read, listen to, and engage with impact our thoughts and emotions, which in turn affect our actions. Much like a balanced diet contributes to a healthy body, a balanced 'linguistic diet' contributes to a healthy mind.</p>
+              <p>But good posture is not just about physiological well-being; it's also about how we present ourselves to the world. An upright posture exudes confidence, openness, and strength, affecting how others perceive us and how we view ourselves.</p>
               <br />
 
-              <p>Consume words that inspire, motivate, and bring positivity. Say 'no' to words that spread negativity, drain energy, or create self-doubt. Remember, your mind is much like your body – you are what you consume.</p>
+              <p>Good posture subtly improves your appearance. It gives the impression of a well-toned physique, enhances your height, and adds an air of self-assured grace to your movements. Moreover, an aligned spine and squared shoulders tend to minimize signs of aging, keeping you looking youthful and vibrant.</p>
               <br />
 
-              <h3>In Conclusion: Empower Your Life with Words</h3>
+              <h3>The Mental-Posture Connection</h3>
               <br />
 
-              <p>In the journey towards a balanced lifestyle, it's essential not only to consider our physical fitness and nutrition but also the words that we engage with daily. By consciously choosing empowering, positive words and effectively articulating our thoughts, we can enhance our motivation, connection with others, and overall wellbeing.</p>
+              <p>Our physical state mirrors our mental state. When we're stressed or low, our shoulders hunch, our necks bend forward, and we unwittingly adopt a posture that reinforces those negative emotions. This forms a vicious cycle, trapping us in a downward spiral of poor posture and low mood.</p>
               <br />
 
-              <p>Words are much more than mere communication tools. They are powerful forces that can guide us towards our goals and aspirations. So, let's use words to our advantage and empower ourselves towards a more balanced, fulfilling lifestyle. Today, take a moment to reflect on the words you use and consume. Are they propelling you forward or holding you back? The power to choose is in your hands.</p>
+              <p>WBut the reverse is also true. By consciously maintaining an upright posture, we can positively influence our mental state. Our bodies send powerful signals to our brains, and standing tall can make us feel more confident and assertive. So, proper posture is a form of self-care, a tool we can wield to cultivate a healthier, happier mindset.</p>
               <br />
 
+              <h3>Posture in Exercise and Bodybuilding</h3>
+              <br />
+
+              <p>Ensuring good posture is not an overnight task. It requires consistent awareness and adjustments in daily life. Regular exercise, mindful stretching, and ergonomically designed workspaces can support this endeavor.</p>
+
+              <h3>Conclusion</h3>
+              <br />
+
+              <p>Posture is the silent cornerstone of our health, aesthetics, mental wellbeing, and physical performance. It's not merely about standing tall, but about aligning ourselves with the best version of our lives. It’s time we give posture the attention it deserves, incorporating it into our health and fitness goals. So let's stand tall, breathe deeply, and stride forward in our journey to a more balanced and healthier life.</p>
+              <br />
+
+              <p>Remember, a good posture is not a destination, but a journey. It's not about attaining a perfect stance, but about cultivating an awareness of how we hold ourselves. This, in itself, is a powerful step towards a healthier and happier life.</p>
               <br />
 
               <h3>Comments:</h3>
@@ -214,4 +226,4 @@ const Blog11 = () => {
   );
 };
 
-export default Blog11;
+export default Blog12;
