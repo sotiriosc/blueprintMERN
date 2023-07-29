@@ -22,6 +22,7 @@ const styles = {
  
   logo: {
     height: "100px",
+    width: "100px",
     borderRadius: "50%",
     animation: "rotation 60s infinite linear",
     marginTop: "15px",
