@@ -17,7 +17,7 @@ const Blogs = () => {
     { title: 'The Road to Recovery: Handling Injuries Physically and Mentally', link: '/blog9', content: 'Injuries are blessings in disguise' },
     { title: 'The Power of Commitment: Turning Small Victories into Great Success', link: '/blog10', content: 'Commitment a promise to yourself and you passions' },
     { title: 'The Power of Words in Achieving a Balanced Lifestyle', link: '/blog11', content: 'Words are real Magic' },
-    { title: 'The Power of Words in Achieving a Balanced Lifestyle', link: '/blog12', content: 'Words are real Magic' },
+    { title: 'The Power of Posture: Align Your Body, Elevate Your Life', link: '/blog12', content: 'Discover how posture affects your health and how to improve it!' },
     // Add more blogs here...
     
   ];

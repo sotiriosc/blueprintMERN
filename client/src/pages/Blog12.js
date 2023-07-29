@@ -10,7 +10,7 @@ import moment from 'moment';
 const styles = {
   img: {
     width: '300px',
-    height: '300px',
+    height: 'auto',
     display: 'block',
     margin: 'auto',
   },
@@ -174,7 +174,7 @@ const Blog12 = () => {
               <p>Our physical state mirrors our mental state. When we're stressed or low, our shoulders hunch, our necks bend forward, and we unwittingly adopt a posture that reinforces those negative emotions. This forms a vicious cycle, trapping us in a downward spiral of poor posture and low mood.</p>
               <br />
 
-              <p>WBut the reverse is also true. By consciously maintaining an upright posture, we can positively influence our mental state. Our bodies send powerful signals to our brains, and standing tall can make us feel more confident and assertive. So, proper posture is a form of self-care, a tool we can wield to cultivate a healthier, happier mindset.</p>
+              <p>But the reverse is also true. By consciously maintaining an upright posture, we can positively influence our mental state. Our bodies send powerful signals to our brains, and standing tall can make us feel more confident and assertive. So, proper posture is a form of self-care, a tool we can wield to cultivate a healthier, happier mindset.</p>
               <br />
 
               <h3>Posture in Exercise and Bodybuilding</h3>
