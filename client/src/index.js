@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import ReactGA from 'react-ga';
 import TagManager from 'react-gtm-module';
+import 'bulma/css/bulma.css'
 
 
 

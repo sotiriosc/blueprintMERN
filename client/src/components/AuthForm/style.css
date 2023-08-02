@@ -1,0 +1,14 @@
+/* Custom.css */
+.modal-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .tabs ul li.is-active a {
+    background-color: #3273dc;
+    border-color: #3273dc;
+    color: #fff;
+  }
+  

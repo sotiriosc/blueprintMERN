@@ -1,8 +1,9 @@
-import React from "react";
-import Auth from "../../utils/auth";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
+import AuthForm from "../AuthForm";
+import Auth from "../../utils/auth";
 import logo from "../../assets/logo.avif";
+import "./style.css";
 
 const styles = {
    navContainer: {
@@ -56,11 +57,18 @@ const styles = {
     color: '#dd44f1', // Color of the link when hovered
     textDecoration: 'none',
   },
+  menuItem: {
+    
+    marginRight: '5px', // adjust as needed
+    marginLeft: '5px',  // adjust as needed
+  },
+
 };
 
 
 function Nav() {
   const [hoverIndex, setHoverIndex] = React.useState(null);
+  const [showLoginForm, setShowLoginForm] = useState(false);
 
   function showNavigation() {
     if (Auth.loggedIn()) {
@@ -69,7 +77,7 @@ function Nav() {
         <li className="mx-1">
           <Link
             to="/blogs"
-            style={hoverIndex === 1 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 1 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(1)}
             onMouseLeave={() => setHoverIndex(null)}
           >
@@ -79,7 +87,7 @@ function Nav() {
         <li className="mx-1">
           <Link
             to="/shop"
-            style={hoverIndex === 2 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 2 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(2)}
             onMouseLeave={() => setHoverIndex(null)}
           >
@@ -89,7 +97,7 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/orderHistory"
-            style={hoverIndex === 3 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 3 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(3)}
             onMouseLeave={() => setHoverIndex(null)}
           >
@@ -99,7 +107,7 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/faq"
-            style={hoverIndex === 4 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 4 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(4)}
             onMouseLeave={() => setHoverIndex(null)}
           >
@@ -109,7 +117,7 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/"
-            style={hoverIndex === 5 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 5 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(5)}
             onMouseLeave={() => setHoverIndex(null)}
           >
@@ -119,7 +127,7 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/contact"
-            style={hoverIndex === 6 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 6 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(6)}
             onMouseLeave={() => setHoverIndex(null)}
           >
@@ -129,7 +137,7 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/"
-            style={hoverIndex === 7 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 7 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(7)}
             onMouseLeave={() => setHoverIndex(null)}
             onClick={() => Auth.logout()}
@@ -145,9 +153,9 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/blogs"
-            style={hoverIndex === 1 ? styles.linkHover : styles.link}
+            style={{...styles.menuItem, ...(hoverIndex === 1 ? styles.linkHover : styles.link)}}
             onMouseEnter={() => setHoverIndex(1)}
-            onMouseLeave={() => setHoverIndex(null)}
+             onMouseLeave={() => setHoverIndex(null)}
           >
             Blogs
           </Link>
@@ -155,14 +163,28 @@ function Nav() {
         <li className="mx-1">
           <Link
             to="/shop"
-            style={hoverIndex === 2 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(2)}
-            onMouseLeave={() => setHoverIndex(null)}
+            style={{...styles.menuItem, ...(hoverIndex === 2 ? styles.linkHover : styles.link)}}
+           onMouseEnter={() => setHoverIndex(2)}
+           onMouseLeave={() => setHoverIndex(null)}
           >
             Shop
           </Link>
           </li>
-          <li className="mx-1">
+          <button
+          className="mx-1"
+           style={{
+          ...hoverIndex === 3 ? styles.linkHover : styles.link,
+          background: 'none',
+          margin: 'none',
+          padding: 'none',
+          fontWeight: 'bolder',}}
+          onMouseEnter={() => setHoverIndex(3)}
+          onMouseLeave={() => setHoverIndex(null)}
+          onClick={() => setShowLoginForm(!showLoginForm)}
+          >
+           Login
+          </button>
+          {/* <li className="mx-1">
           <Link
             to="/signup"
             style={hoverIndex === 3 ? styles.linkHover : styles.link}
@@ -171,8 +193,8 @@ function Nav() {
           >
             Signup
           </Link>
-          </li>
-          <li className="mx-1">
+          </li> */}
+          {/* <li className="mx-1">
           <Link
             to="/login"
             style={hoverIndex === 4 ? styles.linkHover : styles.link}
@@ -181,12 +203,12 @@ function Nav() {
           >
             Login
           </Link>
-          </li>
+          </li> */}
           <li className="mx-1">
           <Link
             to="/faq"
-            style={hoverIndex === 5 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(5)}
+            style={{...styles.menuItem, ...(hoverIndex === 4 ? styles.linkHover : styles.link)}}
+           onMouseEnter={() => setHoverIndex(4)}
             onMouseLeave={() => setHoverIndex(null)}
           >
             FAQ
@@ -196,9 +218,9 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/"
-            style={hoverIndex === 6 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(6)}
-            onMouseLeave={() => setHoverIndex(null)}
+            style={{...styles.menuItem, ...(hoverIndex === 5 ? styles.linkHover : styles.link)}}
+           onMouseEnter={() => setHoverIndex(5)}
+           onMouseLeave={() => setHoverIndex(null)}
           >
             About
           </Link>
@@ -206,9 +228,9 @@ function Nav() {
           <li className="mx-1">
           <Link
             to="/contact"
-            style={hoverIndex === 7 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(7)}
-            onMouseLeave={() => setHoverIndex(null)}
+            style={{...styles.menuItem, ...(hoverIndex === 6 ? styles.linkHover : styles.link)}}
+            onMouseEnter={() => setHoverIndex(6)}
+           onMouseLeave={() => setHoverIndex(null)}
           >
             Contact
           </Link>
@@ -218,27 +240,51 @@ function Nav() {
     }
   }
 
-   return (
-  <header style={styles.navContainer}>
-    <div style={styles.logoAndTitle}>
-      <img src={logo} alt="My logo" style={styles.logo}></img>
-      <h1 style={styles.title}>
-        <Link 
-          to="/"
-          style={hoverIndex === 0 ? styles.linkHover : styles.link}
-          onMouseEnter={() => setHoverIndex(0)}
-          onMouseLeave={() => setHoverIndex(null)}
-        >
-          Balanced Blueprint Blog
-        </Link>
-      </h1>
-    </div>
-    <nav>
-      {showNavigation()}
-    </nav>
-  </header>
-);
-    
+  return (
+    <header style={styles.navContainer}>
+      <div style={styles.logoAndTitle}>
+        <img src={logo} alt="My logo" style={styles.logo}></img>
+        <h1 style={styles.title}>
+          <Link 
+            to="/"
+            style={hoverIndex === 0 ? styles.linkHover : styles.link}
+            onMouseEnter={() => setHoverIndex(0)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            Balanced Blueprint Blog
+          </Link>
+        </h1>
+      </div>
+      <nav>
+        {showNavigation()}
+      </nav>
+
+      {/* Conditionally render the LoginForm modal if showLoginForm state is true */}
+      {showLoginForm && (
+        <div className="modal is-active">
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <header className="modal-card-head">
+              <p className="modal-card-title">Login</p>
+              <button
+                className="delete"
+                aria-label="close"
+                onClick={() => setShowLoginForm(false)}
+              ></button>
+            </header>
+            <section className="modal-card-body">
+            <AuthForm handleClose={() => setShowLoginForm(false)} />
+            </section>
+            <footer className="modal-card-foot">
+              <button className="button" onClick={() => setShowLoginForm(false)}>
+                Cancel
+              </button>
+            </footer>
+          </div>
+        </div>
+      )}
+    </header>
+  );
 }
 
 export default Nav;
