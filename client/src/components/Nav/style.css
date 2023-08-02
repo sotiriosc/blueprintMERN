@@ -3,15 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
-  background-color: #282c34;
+  background: #193875;
   height: 200px;
 }
 
-.logoContainer {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
 
 .logo {
   height: 100px;
@@ -30,6 +25,7 @@
   font-size: 2.5em;
   text-align: center;
   height: 100px;
+  background: #193875;
 }
 
 .ul {
@@ -42,10 +38,11 @@
 }
 
 .navBar {
+  position: relative;
   border-top: 1px solid #ddd;
   padding-top: 10px;
   width: 100%;
-  background-color: #282c34;
+  background-color: #193875;
 }
 
 .link {
@@ -58,6 +55,29 @@
 .linkHover {
   color: #dd44f1;
   text-decoration: none;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  display: none;
+  min-width: 160px;
+  z-index: 1;
+  background-color: #c2cceb;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 @media (max-width: 768px) {

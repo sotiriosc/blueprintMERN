@@ -11,29 +11,45 @@ const styles = {
     flexDirection: "column",
     justifyContent: "space-between",
     padding: "10px",
-    backgroundColor: "#282c34", // Add the color you used previously
+    backgroundColor: "#193875", 
+  },
+  navContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    backgroundColor: "#193875", 
   },
   logoContainer: {
-    position: "absolute",
-    top: "10px",
-    left: "10px",
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "#193875", 
+  },
+  titleContainer: {
+    display: "flex",
+    justifyContent: "center",
+    flex: 1,
+    backgroundColor: "#193875", 
   },
   logo: {
     height: "100px",
     width: "100px",
     borderRadius: "50%",
     animation: "rotation 60s infinite linear",
+    marginRight: "20px", 
   },
   title: {
     fontSize: "2.5em",
     textAlign: "center",
-    margin: "20px 0",
+    margin: 0, 
+    backgroundColor: "#193875", 
+    
   },
   navBar: {
-    borderTop: "1px solid #ddd", // You can adjust this color
+    borderTop: "1px solid #ddd", 
     paddingTop: "10px",
     width: "100%",
-    backgroundColor: "#282c34", // Add the color you used previously
+    backgroundColor: "#193875", 
   },
   ul: {
     display: "flex",
@@ -54,6 +70,32 @@ const styles = {
     marginLeft: '5px',
   },
 };
+function DropdownMenu({hoverIndex, setHoverIndex}) {
+  return (
+    <div 
+      className="dropdown-menu" 
+      onMouseEnter={() => setHoverIndex(8)}
+      onMouseLeave={() => setHoverIndex(null)}
+    >
+      <Link to="/exercises" className="dropdown-item">
+        Exercises
+      </Link>
+      <Link to="/nutrition" className="dropdown-item">
+        Nutrition
+      </Link>
+      <Link to="/stretching" className="dropdown-item">
+        Stretching
+      </Link>
+      <Link to="/mentalHealth" className="dropdown-item">
+        Mental Health
+      </Link>
+      <Link to="/healing" className="dropdown-item">
+        Healing
+      </Link>
+    </div>
+  );
+}
+
 
 function Nav() {
   const [hoverIndex, setHoverIndex] = useState(null);
@@ -73,16 +115,16 @@ function Nav() {
             Blogs
           </Link>
         </li>
-        <li className="mx-1">
-          <Link
-            to="/shop"
-            style={{...styles.menuItem, ...(hoverIndex === 2 ? styles.linkHover : styles.link)}}
-            onMouseEnter={() => setHoverIndex(2)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            Shop
-          </Link>
-          </li>
+        <li className="dropdown mx-1" 
+    onMouseEnter={() => setHoverIndex(8)}
+    onMouseLeave={() => setHoverIndex(null)}
+>
+  <div style={{...styles.menuItem, ...(hoverIndex === 8 ? styles.linkHover : styles.link)}}>
+    Health Directory
+  </div>
+  {hoverIndex === 8 && <DropdownMenu hoverIndex={hoverIndex} setHoverIndex={setHoverIndex}/>}
+</li>
+
           <li className="mx-1">
           <Link
             to="/orderHistory"
@@ -149,16 +191,16 @@ function Nav() {
             Blogs
           </Link>
         </li>
-        <li className="mx-1">
-          <Link
-            to="/shop"
-            style={{...styles.menuItem, ...(hoverIndex === 2 ? styles.linkHover : styles.link)}}
-           onMouseEnter={() => setHoverIndex(2)}
-           onMouseLeave={() => setHoverIndex(null)}
-          >
-            Shop
-          </Link>
-          </li>
+        <li className="dropdown mx-1" 
+    onMouseEnter={() => setHoverIndex(8)}
+    onMouseLeave={() => setHoverIndex(null)}
+>
+  <div style={{...styles.menuItem, ...(hoverIndex === 8 ? styles.linkHover : styles.link)}}>
+    Health Directory
+  </div>
+  {hoverIndex === 8 && <DropdownMenu hoverIndex={hoverIndex} setHoverIndex={setHoverIndex}/>}
+</li>
+
           <button
           className="mx-1"
            style={{
@@ -211,22 +253,26 @@ function Nav() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.logoContainer}>
-        <img src={logo} alt="My logo" style={styles.logo}></img>
-      </div>
-      <header>
-        <h1 class="title">
-          <Link 
-            to="/"
-            style={hoverIndex === 0 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(0)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            Balanced Blueprint Blog
-          </Link>
-        </h1>
-      </header>
       <nav style={styles.navBar}>
+        <div style={styles.navContainer}>
+          <div style={styles.logoContainer}>
+            <img src={logo} alt="My logo" style={styles.logo}></img>
+          </div>
+          <div style={styles.titleContainer}>
+            <header>
+              <h1 style={styles.title}>
+                <Link 
+                  to="/"
+                  style={hoverIndex === 0 ? styles.linkHover : styles.link}
+                  onMouseEnter={() => setHoverIndex(0)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                >
+                  Balanced Blueprint Blog
+                </Link>
+              </h1>
+            </header>
+          </div>
+        </div>
         {showNavigation()}
       </nav>
 
