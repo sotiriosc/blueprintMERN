@@ -28,6 +28,7 @@ import Blog9 from './pages/Blog9';
 import Blog10 from './pages/Blog10';
 import Blog11 from './pages/Blog11';
 import Blog12 from './pages/Blog12';
+import Exercises from './pages/ExerciseLanding';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -88,10 +89,10 @@ function App() {
                 path="/shop"
                 element={<Shop />} 
               />
-              {/* <Route
-                path="/healthDirectory"
-                element={<HealthDirectory />} 
-              /> */}
+              <Route
+                path="/exercises"
+                element={<Exercises />} 
+              />
               <Route 
                 path="/login" 
                 element={<Login />} 

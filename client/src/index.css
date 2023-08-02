@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 :root {
   --primary: #1a549c;
   --secondary: #47cbf3;
@@ -64,9 +68,6 @@ h6 {
   font-size: 1rem;
 }
 
-p {
-  margin-top: 0;
-} 
 
 a {
   color: var(--tertiary);
