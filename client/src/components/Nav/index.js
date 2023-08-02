@@ -38,7 +38,7 @@ const styles = {
     animation: "rotation 60s infinite linear",
     marginRight: "20px", 
   },
-  title: {
+  titleNav: {
     fontSize: "2.5em",
     textAlign: "center",
     margin: 0, 
@@ -260,7 +260,7 @@ function Nav() {
           </div>
           <div style={styles.titleContainer}>
             <header>
-              <h1 style={styles.title}>
+              <h1 style={styles.titleNav}>
                 <Link 
                   to="/"
                   style={hoverIndex === 0 ? styles.linkHover : styles.link}

@@ -21,7 +21,7 @@
   justify-content: center;
 }
 
-.title {
+.titleNav {
   font-size: 2.5em;
   text-align: center;
   height: 100px;
@@ -59,6 +59,7 @@
 
 .dropdown {
   position: relative;
+  
 }
 
 .dropdown-menu {
@@ -87,7 +88,7 @@
   .ul {
       font-size: 1em;
   }
-  .title {
+  .titleNav {
       font-size: 1.75em;
       margin-left: 25px;
   }
