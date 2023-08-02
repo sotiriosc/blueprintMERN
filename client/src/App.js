@@ -29,6 +29,10 @@ import Blog10 from './pages/Blog10';
 import Blog11 from './pages/Blog11';
 import Blog12 from './pages/Blog12';
 import Exercises from './pages/ExerciseLanding';
+import NutritionLandingPage from './pages/NutritionLanding';
+import StretchingLandingPage from './pages/StretchingLanding';
+import MentalHealthLandingPage from './pages/MentalHealthLanding';
+import HealingLandingPage from './pages/HealingLanding';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -92,6 +96,22 @@ function App() {
               <Route
                 path="/exercises"
                 element={<Exercises />} 
+              />
+              <Route
+                path="/nutrition"
+                element={<NutritionLandingPage />}
+              />
+              <Route
+                path="/stretching"
+                element={<StretchingLandingPage />}
+              />
+              <Route
+                path="/mentalhealth"
+                element={<MentalHealthLandingPage />}
+              />
+              <Route
+                path="/healing"
+                element={<HealingLandingPage />}
               />
               <Route 
                 path="/login" 

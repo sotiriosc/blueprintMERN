@@ -42,7 +42,7 @@ const IntroText = styled.p`
   margin: 0 1rem;
 `;
 
-const LandingPage = () => {
+const ExerciseLandingPage = () => {
   const title = "Welcome to Our Exercise Page";
   const introText = "Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.";
   const categories = [
@@ -73,4 +73,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default ExerciseLandingPage;
