@@ -6,68 +6,57 @@ import logo from "../../assets/logo.avif";
 import "./style.css";
 
 const styles = {
-   navContainer: {
+  container: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "200px",
+    justifyContent: "space-between",
     padding: "10px",
+    backgroundColor: "#282c34", // Add the color you used previously
   },
-  logoAndTitle: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+  logoContainer: {
+    position: "absolute",
+    top: "10px",
+    left: "10px",
   },
- 
   logo: {
     height: "100px",
     width: "100px",
     borderRadius: "50%",
     animation: "rotation 60s infinite linear",
-    marginTop: "15px",
-    marginRight: "15px",
-    justifyContent: "flex-start",
-   
-  },
-  titleContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  ul: {
-    listStyleType: "none",
-    display: "flex",
-    justifyContent: "space-around",
-    padding: 0,
-    fontSize: "1.3em",
-    position: "relative",
- 
   },
   title: {
     fontSize: "2.5em",
-   
+    textAlign: "center",
+    margin: "20px 0",
+  },
+  navBar: {
+    borderTop: "1px solid #ddd", // You can adjust this color
+    paddingTop: "10px",
+    width: "100%",
+    backgroundColor: "#282c34", // Add the color you used previously
+  },
+  ul: {
+    display: "flex",
+    justifyContent: "center",
+    padding: 0,
+    fontSize: "1.3em",
   },
   link: {
-    color: 'white', // Initial color of the link, change as needed
+    color: 'white',
     textDecoration: 'none',
   },
   linkHover: {
-    color: '#dd44f1', // Color of the link when hovered
+    color: '#dd44f1',
     textDecoration: 'none',
   },
   menuItem: {
-    
-    marginRight: '5px', // adjust as needed
-    marginLeft: '5px',  // adjust as needed
+    marginRight: '5px',
+    marginLeft: '5px',
   },
-
 };
 
-
 function Nav() {
-  const [hoverIndex, setHoverIndex] = React.useState(null);
+  const [hoverIndex, setHoverIndex] = useState(null);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   function showNavigation() {
@@ -184,26 +173,6 @@ function Nav() {
           >
            Login
           </button>
-          {/* <li className="mx-1">
-          <Link
-            to="/signup"
-            style={hoverIndex === 3 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(3)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            Signup
-          </Link>
-          </li> */}
-          {/* <li className="mx-1">
-          <Link
-            to="/login"
-            style={hoverIndex === 4 ? styles.linkHover : styles.link}
-            onMouseEnter={() => setHoverIndex(4)}
-            onMouseLeave={() => setHoverIndex(null)}
-          >
-            Login
-          </Link>
-          </li> */}
           <li className="mx-1">
           <Link
             to="/faq"
@@ -241,10 +210,12 @@ function Nav() {
   }
 
   return (
-    <header style={styles.navContainer}>
-      <div style={styles.logoAndTitle}>
+    <div style={styles.container}>
+      <div style={styles.logoContainer}>
         <img src={logo} alt="My logo" style={styles.logo}></img>
-        <h1 style={styles.title}>
+      </div>
+      <header>
+        <h1 class="title">
           <Link 
             to="/"
             style={hoverIndex === 0 ? styles.linkHover : styles.link}
@@ -254,8 +225,8 @@ function Nav() {
             Balanced Blueprint Blog
           </Link>
         </h1>
-      </div>
-      <nav>
+      </header>
+      <nav style={styles.navBar}>
         {showNavigation()}
       </nav>
 
@@ -283,7 +254,7 @@ function Nav() {
           </div>
         </div>
       )}
-    </header>
+    </div>
   );
 }
 

@@ -88,6 +88,10 @@ function App() {
                 path="/shop"
                 element={<Shop />} 
               />
+              {/* <Route
+                path="/healthDirectory"
+                element={<HealthDirectory />} 
+              /> */}
               <Route 
                 path="/login" 
                 element={<Login />} 
