@@ -125,7 +125,7 @@ function Nav() {
   {hoverIndex === 8 && <DropdownMenu hoverIndex={hoverIndex} setHoverIndex={setHoverIndex}/>}
 </li>
 
-          <li className="mx-1">
+          {/* <li className="mx-1">
           <Link
             to="/orderHistory"
             style={{...styles.menuItem, ...(hoverIndex === 3 ? styles.linkHover : styles.link)}}
@@ -134,7 +134,7 @@ function Nav() {
           >
             Order History
           </Link>
-          </li>
+          </li> */}
           <li className="mx-1">
           <Link
             to="/faq"
