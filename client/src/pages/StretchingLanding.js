@@ -47,7 +47,7 @@ const StretchingLandingPage = () => {
   const introText = "Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.";
   const categories = [
     { title: "Stretching routines", image: "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", link: "/routine" },
-    { title: "Arm Stretched", image: "https://plus.unsplash.com/premium_photo-1663076272920-642d29366595?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80", link: "/armStretches" },
+    { title: "Arm Stretches", image: "https://plus.unsplash.com/premium_photo-1663076272920-642d29366595?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80", link: "/armStretches" },
     { title: "Back Stretches", image: "https://images.unsplash.com/photo-1602520628350-fbf9db1f02ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80", link: "/backStretches" },
     { title: "Chest Stretches", image: "https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=768&q=80", link: "/chestStretches" },
     { title: "Shoulder Stretches", image: "https://plus.unsplash.com/premium_photo-1664528917131-f82be45ef625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80", link: "/shoulderStretches" },

@@ -48,7 +48,7 @@ const MentalHealthLandingPage = () => {
   const categories = [
     { title: "Stress Management", image: "https://images.unsplash.com/photo-1621252179027-94459d278660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", link: "/stressManagement" },
     { title: "Emotional development", image: "https://images.unsplash.com/photo-1665686377065-08ba896d16fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", link: "/emotionalDevelopment" },
-    { title: "Life Style Practices", image: "https://images.unsplash.com/photo-1478555718543-a87aa261dbc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80", link: "/lifestylePractices" },
+    { title: "Lifestyle Practices", image: "https://images.unsplash.com/photo-1478555718543-a87aa261dbc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80", link: "/lifestylePractices" },
     { title: "Mental Health Education", image: "https://plus.unsplash.com/premium_photo-1661346220428-6e58def38236?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", link: "/mentalHealthEducation" },
     { title: "Attitude", image: "https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1143&q=80", link: "/attitude" },
     
