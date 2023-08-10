@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 <Helmet>
   <title>Setting Up Workout Routine - Your Site</title>
