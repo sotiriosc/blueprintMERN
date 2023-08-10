@@ -71,7 +71,7 @@ const SettingUpWorkoutRoutine = () => {
     </li>
     <br/>
     <li>
-      <strong>Full Body:</strong> Especially beneficial for beginners, full-body exercises provide continuous engagement and quick results. Newcomers often find that they heal faster after the initial period, allowing for consistent progress. This approach also provides ample opportunities to hone form, which is a crucial aspect of any effective exercise routine.
+      <strong>Full Body:</strong> Especially beneficial for beginners, full-body exercises provide continuous engagement and quick results. Newcomers often find that they heal faster after the initial period, allowing for consistent progress. This approach also provides ample opportunities to hone form, which is a crucial aspect of any effective exercise routine. When you first start lifting weights, the stress can almost be debilitating. Doing a full body is best for beginners so they do no overwork a single body part. As your body strengthens and is more prepared to adapt, you can move on to a split or single body part routine.
     </li>
   </ol>
   <br/>
