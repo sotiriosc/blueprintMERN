@@ -1,5 +1,12 @@
 import React from 'react';
 
+<Helmet>
+  <title>Setting Up Workout Routine - Your Site</title>
+  <meta name="description" content="Guide on setting up a personalized workout routine, including habit formation, workout types, warm-up, and recovery." />
+  <meta name="keywords" content="workout, fitness, routine, exercise, gym, training" />
+    <meta name="robots" content="index, follow" />
+</Helmet>
+
 const SettingUpWorkoutRoutine = () => {
   return (
     <div className="container mx-auto mt-10 p-4 bg-white shadow-lg rounded-md">
