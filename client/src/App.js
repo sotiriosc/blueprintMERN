@@ -29,6 +29,7 @@ import Blog10 from './pages/Blog10';
 import Blog11 from './pages/Blog11';
 import Blog12 from './pages/Blog12';
 import Exercises from './pages/ExerciseLanding';
+import SettingUpWorkout from './pages/SettingUpWorkoutRoutine';
 import NutritionLandingPage from './pages/NutritionLanding';
 import StretchingLandingPage from './pages/StretchingLanding';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
@@ -96,6 +97,10 @@ function App() {
               <Route
                 path="/exercises"
                 element={<Exercises />} 
+              />
+              <Route
+                path="/settingUpWorkout"
+                element={<SettingUpWorkout />}  
               />
               <Route
                 path="/nutrition"

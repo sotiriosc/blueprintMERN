@@ -43,7 +43,7 @@ const IntroText = styled.p`
 `;
 
 const NutritionLandingPage = () => {
-  const title = "Welcome to Our Exercise Page";
+  const title = "Welcome to Our Nutrition Page";
   const introText = "Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.";
   const categories = [
     { title: "Creating your diet plan", image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80", link: "/dietPlan" },

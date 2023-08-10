@@ -129,7 +129,7 @@ const Blog2 = () => {
       <Helmet>
         <title>Building a Balanced Diet: A Comprehensive Guide to Macronutrients and Micronutrients</title>
 	    <meta name="description" content="Learn about the mental and physical benefits of outdoor activities, including how they can improve your mood, boost your immune system, and help you stay active."/>
-	    <meta name="keywords" content="outdoor activities, mental health, physical health, nature, exercise"/>
+	    <meta name="keywords" content="balanced diet, comprehensive guide, macronutrients, micronutrients, nutritional balance, healthy eating, food groups, diet planning, nutritional needs, vitamins, minerals, proteins, carbohydrates, fats"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
         <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
