@@ -15,15 +15,16 @@ const styles = {
   },
   navContainer: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "center", // Center items vertically
     justifyContent: "space-between",
     width: "100%",
     backgroundColor: "#193875", 
   },
   logoContainer: {
     display: "flex",
-    alignItems: "center",
-    backgroundColor: "#193875", 
+    alignItems: "center", // Center items vertically
+    backgroundColor: "#193875",
+    padding: "10px", // Padding to give some space around the logo
   },
   titleContainer: {
     display: "flex",
@@ -36,7 +37,9 @@ const styles = {
     width: "100px",
     borderRadius: "50%",
     animation: "rotation 60s infinite linear",
-    marginRight: "20px", 
+    
+    margin: "auto",
+    
   },
   titleNav: {
     fontSize: "2.5em",
@@ -46,24 +49,28 @@ const styles = {
     
   },
   navBar: {
-    borderTop: "1px solid #ddd", 
+    borderTop: "4px solid #E4AD0B",
+    borderBottom: "4px solid #E4AD0B", // Adjusted border size
     paddingTop: "10px",
+    paddingBottom: "10px",
     width: "100%",
-    backgroundColor: "#193875", 
+    backgroundColor: "#193875",
+    border: "4px solid #E4AD0B", // Added yellow border
   },
   ul: {
     display: "flex",
     justifyContent: "center",
-    padding: 0,
+    padding: "0 0 10px 0", // Added padding to the bottom
     fontSize: "1.3em",
   },
   link: {
     color: 'white',
     textDecoration: 'none',
+    padding: "5px 10px", // Added padding around the links
   },
   linkHover: {
     color: '#dd44f1',
-    textDecoration: 'none',
+    textDecoration: 'underline', // Added underline on hover
   },
   menuItem: {
     marginRight: '5px',
