@@ -66,7 +66,7 @@ const styles = {
   link: {
     color: 'white',
     textDecoration: 'none',
-    padding: "5px 10px", // Added padding around the links
+    padding: "5px 5px", // Added padding around the links
   },
   linkHover: {
     color: '#dd44f1',
