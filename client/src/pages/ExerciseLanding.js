@@ -85,6 +85,14 @@ const CloseButton = styled.button`
   }
 `;
 
+const IntroSection = styled.div`
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+`;
+
 
 
 const ExerciseLandingPage = () => {
@@ -122,9 +130,21 @@ const ExerciseLandingPage = () => {
       )}
 
       <Title>Welcome to Our Exercise Page</Title>
-      <IntroText>
-        Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.
-      </IntroText>
+      
+      <IntroSection>
+  <div className="intro-section">
+    <h2>Introduction: The Balanced Blueprint Approach</h2>
+    <p>If you're new to working out, don't fret about pushing yourself too hard initially. Your body will need time to adapt to this new, invigorating lifestyle. Overdoing it can lead to unnecessary soreness and hinder your long-term progress.</p>
+    <p>At Balanced Blueprint, we emphasize perfection in exercise—working to continuously improve, adapt, and fine-tune your routine. We believe that your body should function as a unified whole, operating in harmony both physically and mentally.</p>
+    <p>Be mindful of your entire being during each workout. A positive mental state, nurtured by supportive relationships and a sense of community, can boost your stamina and performance. Your emotional well-being is a crucial part of your overall fitness.</p>
+    <h3>Breathing and Form</h3>
+    <p>Conscious breathing can amplify your workouts. Typically, exhale during the challenging, concentric part of the movement and inhale during the easier, eccentric portion. Controlled breathing also allows you to stretch your body, broadening your back and enhancing your V-taper.</p>
+    <h3>Alignment and Posture</h3>
+    <p>Keeping your body in proper alignment is crucial. Focus on maintaining an upright posture, level shoulders, and a balanced neck and girdle. Over time, you can correct any misalignments, often brought on by emotional stress or insecurity, to improve your body's symmetry.</p>
+    <h3>Mindset Matters</h3>
+    <p>Lastly, your mental outlook can make or break your fitness journey. Aimlessness is the enemy; a ship without a destination drifts. By setting concrete goals, you navigate towards success. Recognize your own importance and the impact you can have on others. In doing so, you create an environment for mutual growth and happiness.</p>
+  </div>
+  </IntroSection>
 
       <Grid>
         {categories.map((category) => (

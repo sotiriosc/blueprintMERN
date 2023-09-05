@@ -16,13 +16,6 @@ const ExerciseContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
-const IntroSection = styled.div`
-  width: 100%;
-  max-width: 800px;
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.2rem;
-`;
 
 const ExerciseTitle = styled.h2`
   font-size: 2rem;
@@ -63,35 +56,43 @@ const VideoPlaceholder = styled.div`
 const ArmExercises = () => {
   const exercises = [
     {
-      title: 'Bicep Curl',
+      title: 'Double Bicep Curl',
       instructions: `Stand as straight and firm throughout your body. Ensure your posture is as aligned as possible and your shoulder axis is centered. While stretching your shoulders and pushing your chest out, allow the dumbbell to fully stretch your bicep. Slowly and with control, while holding your position, flex your target muscle as hard as you can, shortening its length to your best ability. Slowly bring down the weight, controlling its position and your posture, until it reaches its initial position, stretching your muscle to its longest length. Repeat to target repetition or until failure.`,
       videoUrl: 'https://www.youtube.com/embed/kwG2ipFRgfo',
     },
     {
+      title: 'Hammer Curl',
+      instructions: `Stand as straight and firm throughout your body. Ensure your posture is as aligned as possible and your shoulder axis is centered. While stretching your shoulders and pushing your chest out, allow the dumbbell to fully stretch your bicep. Slowly and with control, while holding your position, flex your target muscle as hard as you can, shortening its length to your best ability. Slowly bring down the weight, controlling its position and your posture, until it reaches its initial position, stretching your muscle to its longest length. Repeat to target repetition or until failure.`,
+      videoUrl: 'https://www.youtube.com/embed/0lZaQyt3b1Q',
+    },
+    {
+      title: 'Concentration Curl',
+      instructions: `Sit on a flat bench with your feet firmly on the floor and your back straight. Hold a dumbbell in one hand with your palm facing up. Rest your elbow on the inside of your thigh, just above your knee. Slowly curl the weight up toward your shoulder, keeping your upper arm still. Squeeze your biceps at the top of the movement, then lower the weight back to the starting position. Repeat for the desired number of repetitions, then switch arms.`,
+      videoUrl: 'https://www.youtube.com/embed/2-1iYXkxL8g',
+    },
+    {
       title: 'Tricep Dumbbell Extension',
       instructions: `Bend over and form an 'L' with your body, keeping your head parallel to the ground. Suck your gut in, push your chest out, and straighten your back. Stretch your shoulders apart and use the weights to create a stretch on the triceps by bringing down the weights while your elbows are pointing towards your back. As you begin to lift the weight back up, control the weight carefully and deliberately, keeping your shoulders perfectly centered on their axis. Once you reach the top of the movement, focus on contracting and shortening the triceps muscle as hard as you can, giving it an extra squeeze to maximize the contraction. Then, slowly control the weight back down towards your starting position. Complete as many reps as desired or until failure.`,
+      
     },
-    
+    {
+      title: 'Tricep Dips',
+      instructions: `Place your hands shoulder-width apart on a secured bench or stable chair. Slide your butt off the front of the bench with your legs extended out in front of you. Straighten your arms, keeping a little bend in your elbows to keep tension on your triceps and off your elbow joints. Slowly bend your elbows to lower your body toward the floor until your elbows are at about a 90-degree angle. Be sure to keep your back close to the bench. Once you reach the bottom of the movement, press down into the bench to straighten your elbows, returning to the starting position. This completes one rep. Keep your shoulders down as you lower and raise your body. You can bend your legs to modify this exercise.`,
+      videoUrl: 'https://www.youtube.com/embed/0326dy_-CzM',
+    },
+    {
+      title: 'Skull Crushers',
+      instructions: `Lie flat on your back on a bench and hold a dumbbell in each hand above you with your arms extended and palms facing. Keeping your upper arms still, slowly bend your elbows to lower the weights until they are near your ears. Pause, then slowly raise the weights back to the starting position. This completes one rep.`,
+      videoUrl: 'https://www.youtube.com/embed/2yjwXTZQDDI',
+    },
+
     // Add more exercises here
   ];
 
   return (
     <PageContainer>
   <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Arm Exercises</h1>
-  <IntroSection>
-  <div className="intro-section">
-    <h2>Introduction: The Balanced Blueprint Approach</h2>
-    <p>If you're new to working out, don't fret about pushing yourself too hard initially. Your body will need time to adapt to this new, invigorating lifestyle. Overdoing it can lead to unnecessary soreness and hinder your long-term progress.</p>
-    <p>At Balanced Blueprint, we emphasize perfection in exercise—working to continuously improve, adapt, and fine-tune your routine. We believe that your body should function as a unified whole, operating in harmony both physically and mentally.</p>
-    <p>Be mindful of your entire being during each workout. A positive mental state, nurtured by supportive relationships and a sense of community, can boost your stamina and performance. Your emotional well-being is a crucial part of your overall fitness.</p>
-    <h3>Breathing and Form</h3>
-    <p>Conscious breathing can amplify your workouts. Typically, exhale during the challenging, concentric part of the movement and inhale during the easier, eccentric portion. Controlled breathing also allows you to stretch your body, broadening your back and enhancing your V-taper.</p>
-    <h3>Alignment and Posture</h3>
-    <p>Keeping your body in proper alignment is crucial. Focus on maintaining an upright posture, level shoulders, and a balanced neck and girdle. Over time, you can correct any misalignments, often brought on by emotional stress or insecurity, to improve your body's symmetry.</p>
-    <h3>Mindset Matters</h3>
-    <p>Lastly, your mental outlook can make or break your fitness journey. Aimlessness is the enemy; a ship without a destination drifts. By setting concrete goals, you navigate towards success. Recognize your own importance and the impact you can have on others. In doing so, you create an environment for mutual growth and happiness.</p>
-  </div>
-  </IntroSection>
+
   {exercises.map((exercise, index) => (
     <ExerciseContainer key={index}>
       <ExerciseTitle>{exercise.title}</ExerciseTitle>
