@@ -62,6 +62,7 @@ const styles = {
     justifyContent: "center",
     padding: "0 0 10px 0", // Added padding to the bottom
     fontSize: "1.3em",
+    alignItems: "center",
   },
   link: {
     color: 'white',
@@ -75,6 +76,7 @@ const styles = {
   menuItem: {
     marginRight: '5px',
     marginLeft: '5px',
+    fontWeight: 'bolder',
   },
 };
 function DropdownMenu({hoverIndex, setHoverIndex}) {
@@ -207,7 +209,7 @@ function Nav() {
   </div>
   {hoverIndex === 8 && <DropdownMenu hoverIndex={hoverIndex} setHoverIndex={setHoverIndex}/>}
 </li>
-
+<li className="mx-1">
           <button
           className="mx-1"
            style={{
@@ -222,6 +224,7 @@ function Nav() {
           >
            Login
           </button>
+          </li>
           <li className="mx-1">
           <Link
             to="/faq"
