@@ -1,36 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import image from "../assets/frontimg.avif";
 
-const isSmallScreen = window.innerWidth <= 768;
-  
-const styles = {
-  welcome: {
-    fontSize: "3rem",
-    textAlign: "center",
-    margin: "3rem",
-  },
-  container: {
-    display: "flex",
-    flexDirection: isSmallScreen ? "column" : "row",
-    justifyContent: "space-between"
-  },
-  content: {
-    width: "100%",
-    paddingRight: isSmallScreen ? "0px" : "10px"
-  },
-  image: {
-    width: "100%",
-    paddingLeft: isSmallScreen ? "0px" : "10px",
-    objectFit: "cover",
-    borderRadius: "10%",
-    margin: "20px",
-    boxShadow: "0px 5px 15px rgba(0,0,0,0.9)"
-  },
-};
-
 const Home = () => {
+  const [isSmallScreen, setSmallScreen] = useState(window.innerWidth <= 768);
+
+  // Dynamically set isSmallScreen based on window size
+  useEffect(() => {
+    const handleResize = () => setSmallScreen(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const styles = {
+    welcome: {
+      fontSize: "3rem",
+      textAlign: "center",
+      margin: "3rem",
+    },
+    container: {
+      display: "flex",
+      flexDirection: isSmallScreen ? "column" : "row",
+      justifyContent: "space-between",
+      width: isSmallScreen ? "90%" : "100%", // 90% width for small screens
+      margin: isSmallScreen ? "0 auto" : "0", // centering for small screens
+    },
+    content: {
+      width: "100%",
+      paddingRight: isSmallScreen ? "0px" : "10px",
+    },
+    image: {
+      width: "100%",
+      paddingLeft: isSmallScreen ? "0px" : "10px",
+      objectFit: "cover",
+      borderRadius: "10%",
+      margin: "20px",
+      boxShadow: "0px 5px 15px rgba(0,0,0,0.9)",
+    },
+  };
+
   return (
-    <div className="container">
+    <div className="container" style={isSmallScreen ? { width: "90%", margin: "0 auto" } : {}}>
       <h1 style={styles.welcome}>Welcome!!</h1>
       
           <h2>About Balanced Blueprint:</h2>
