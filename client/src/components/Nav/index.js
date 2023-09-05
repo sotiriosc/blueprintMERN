@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthForm from "../AuthForm";
 import Auth from "../../utils/auth";
-import logo from "../../assets/logo.avif";
 import "./style.css";
 
 const styles = {
@@ -109,7 +108,7 @@ function DropdownMenu({hoverIndex, setHoverIndex}) {
 function Nav() {
   const [hoverIndex, setHoverIndex] = useState(null);
   const [showLoginForm, setShowLoginForm] = useState(false);
-
+  const logo = "https://imgur.com/mQmb3SJ.jpg";
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (

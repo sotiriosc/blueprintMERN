@@ -73,7 +73,7 @@ function App() {
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',  // Ensures the container takes up the full height
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundImage: `url('https://imgur.com/RXBycQY.jpg')`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     maxWidth: '100vw',

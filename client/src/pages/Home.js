@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import image from "../assets/frontimg.avif";
+
 
 const Home = () => {
   const [isSmallScreen, setSmallScreen] = useState(window.innerWidth <= 768);
@@ -13,35 +13,46 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const imageUrl = "https://i.imgur.com/cwz26z7.jpg";
+
   const styles = {
-    welcome: {
-      fontSize: "3rem",
-      textAlign: "center",
-      margin: "3rem",
-    },
     container: {
+      fontFamily: 'Courier, monospace', // <-- Updated here
       display: "flex",
       flexDirection: isSmallScreen ? "column" : "row",
       justifyContent: "space-between",
-      width: isSmallScreen ? "90%" : "100%", // 90% width for small screens
-      margin: isSmallScreen ? "0 auto" : "0", // centering for small screens
+      width: isSmallScreen ? "100%" : "80%",
+      margin: "auto",
+      padding: "20px 0",
     },
     content: {
-      width: "100%",
-      paddingRight: isSmallScreen ? "0px" : "10px",
+      flex: 1,
+      paddingRight: isSmallScreen ? "0px" : "20px",
+      fontSize: '1.2rem',
+      lineHeight: '1.6',
+    },
+    imageContainer: {
+      flex: 1,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     image: {
       width: "100%",
-      paddingLeft: isSmallScreen ? "0px" : "10px",
+      maxHeight: "400px",
       objectFit: "cover",
-      borderRadius: "10%",
-      margin: "20px",
+      borderRadius: "10px",
       boxShadow: "0px 5px 15px rgba(0,0,0,0.9)",
     },
+    welcome: {
+      fontSize: '2.5rem',
+      textAlign: 'center',
+      margin: '20px 0'
+    }
   };
 
   return (
-    <div className="container" style={isSmallScreen ? { width: "90%", margin: "0 auto" } : {}}>
+    <div className="container" style={{ maxWidth: '100%', margin: '0 auto', padding: '20px', fontFamily: 'Courier, monospace' }}>
       <h1 style={styles.welcome}>Welcome!!</h1>
       
           <h2>About Balanced Blueprint:</h2>
@@ -61,7 +72,7 @@ const Home = () => {
           </ul>
         </div>
         <div style={styles.imageContainer}>
-    <img src={image} alt="frontimg" className="img-fluid img-responsive" style={styles.image} />
+    <img src={imageUrl} alt="frontimg" className="img-fluid img-responsive" style={styles.image} />
   </div>
 </div>
 <br />
