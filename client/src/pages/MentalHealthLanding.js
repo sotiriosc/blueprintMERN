@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -42,7 +42,58 @@ const IntroText = styled.p`
   margin: 0 1rem;
 `;
 
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;  // Add this line
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: 2px solid black;  // Add a border
+  border-radius: 50%;  // Makes the border rounded
+  font-size: 2.5rem;
+  color: black;
+  cursor: pointer;
+  width: 40px;  // Set a width
+  height: 40px;  // Set a height
+  display: flex;  // Center the "X"
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border-color: red;  // Border becomes red on hover
+    color: red;  // "X" becomes red on hover
+  }
+`;
+
+
 const MentalHealthLandingPage = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
+
+  const closeModal = () => setShowModal(false);
+  
   const title = "Welcome to Our Mental Health Page!!!🧠";
   const introText = "Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.";
   const categories = [
@@ -59,6 +110,15 @@ const MentalHealthLandingPage = () => {
 
   return (
     <div className="container">
+      {showModal && (
+        <Modal>
+          <ModalContent>
+            <CloseButton onClick={closeModal}>&times;</CloseButton>
+            <h2>Under Construction</h2>
+            <p>We are diligently working to complete our guide. Thank you for your patience.</p>
+          </ModalContent>
+        </Modal>
+      )}
       <Title>{title}</Title>
       <IntroText>{introText}</IntroText>
       <Grid>

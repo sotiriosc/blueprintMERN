@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,6 +23,7 @@ const Category = styled(Link)`
   margin: 1rem;
   border-radius: 15px;
   box-shadow: 0 10px 15px rgba(0, 2, 2, 2.5);
+  background-image: ${props => `url(${props.bgImage})`};
 `;
 
 const Grid = styled.div`
@@ -42,9 +43,59 @@ const IntroText = styled.p`
   margin: 0 1rem;
 `;
 
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;  // Add this line
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: 2px solid black;  // Add a border
+  border-radius: 50%;  // Makes the border rounded
+  font-size: 2.5rem;
+  color: black;
+  cursor: pointer;
+  width: 40px;  // Set a width
+  height: 40px;  // Set a height
+  display: flex;  // Center the "X"
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border-color: red;  // Border becomes red on hover
+    color: red;  // "X" becomes red on hover
+  }
+`;
+
+
+
 const ExerciseLandingPage = () => {
-  const title = "Welcome to Our Exercise Page";
-  const introText = "Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.";
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
+
+  const closeModal = () => setShowModal(false);
+  
   const categories = [
     { title: "Work Routine", image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29ya291dHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60", link: "/settingUpWorkout" },
     { title: "Arm Exercises", image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", link: "/armExercise" },
@@ -60,11 +111,28 @@ const ExerciseLandingPage = () => {
 
   return (
     <div className="container">
-      <Title>{title}</Title>
-      <IntroText>{introText}</IntroText>
+      {showModal && (
+        <Modal>
+          <ModalContent>
+            <CloseButton onClick={closeModal}>&times;</CloseButton>
+            <h2>Under Construction</h2>
+            <p>We are diligently working to complete our guide. Thank you for your patience.</p>
+          </ModalContent>
+        </Modal>
+      )}
+
+      <Title>Welcome to Our Exercise Page</Title>
+      <IntroText>
+        Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.
+      </IntroText>
+
       <Grid>
-        {categories.map((category, index) => (
-          <Category to={category.link} key={index} style={{ backgroundImage: `url(${category.image})` }}>
+        {categories.map((category) => (
+          <Category
+            to={category.link}
+            key={category.title}
+            bgImage={category.image}
+          >
             <span className="fs-4">{category.title}</span>
           </Category>
         ))}
