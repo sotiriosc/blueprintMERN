@@ -274,7 +274,7 @@ function Nav() {
                   onMouseEnter={() => setHoverIndex(0)}
                   onMouseLeave={() => setHoverIndex(null)}
                 >
-                  Balanced Blueprint Blog
+                  Balanced Blueprint
                 </Link>
               </h1>
             </header>
