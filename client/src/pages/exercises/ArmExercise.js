@@ -8,22 +8,34 @@ const PageContainer = styled.div`
   align-items: center;
 `;
 
+const ExerciseContainer = styled.div`
+  width: 100%;
+  max-width: 800px; 
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
 const ExerciseTitle = styled.h2`
   font-size: 2rem;
   margin: 1rem 0;
-  text-align: center;
 `;
 
 const Instructions = styled.p`
   font-size: 1.2rem;
   margin: 1rem 0;
-  text-align: center;
 `;
 
 const VideoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  iframe {
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 768px) {
+    iframe {
+      width: 560px;
+      height: 315px;
+    }
+  }
 `;
 
 const VideoPlaceholder = styled.div`
@@ -36,6 +48,8 @@ const VideoPlaceholder = styled.div`
   align-items: center;
   font-size: 1.5rem;
 `;
+
+
 const ArmExercises = () => {
   const exercises = [
     {
@@ -52,10 +66,10 @@ const ArmExercises = () => {
 
   return (
     <PageContainer>
-      <h1 style={{ textAlign: 'center' }}>Best Arm Exercises</h1>
+      <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Arm Exercises</h1>
 
       {exercises.map((exercise, index) => (
-        <div key={index}>
+        <ExerciseContainer key={index}>
           <ExerciseTitle>{exercise.title}</ExerciseTitle>
           <Instructions>{exercise.instructions}</Instructions>
           <VideoWrapper>
@@ -75,7 +89,7 @@ const ArmExercises = () => {
               </VideoPlaceholder>
             )}
           </VideoWrapper>
-        </div>
+        </ExerciseContainer>
       ))}
     </PageContainer>
   );
