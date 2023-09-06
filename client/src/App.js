@@ -37,6 +37,7 @@ import CoreExercise from './pages/exercises/CoreExercise';
 import LegExercise from './pages/exercises/LegExercise';
 import ShoulderExercise from './pages/exercises/ShoulderExercise';
 import NutritionLandingPage from './pages/NutritionLanding';
+import CreatingDietPlan from './pages/nutrition/CreatingDietPlan'
 import StretchingLandingPage from './pages/StretchingLanding';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
 import HealingLandingPage from './pages/HealingLanding';
@@ -47,7 +48,7 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import './App.css';
-import backgroundImage from './assets/blueprint.avif'; 
+
 
 
 const httpLink = createHttpLink({
@@ -135,6 +136,10 @@ function App() {
               <Route
                 path="/nutrition"
                 element={<NutritionLandingPage />}
+              />
+              <Route
+                path="/CreatingDietPlan"
+                element={<CreatingDietPlan />}
               />
               <Route
                 path="/stretching"
