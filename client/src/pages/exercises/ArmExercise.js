@@ -53,16 +53,16 @@ const VideoPlaceholder = styled.div`
 `;
 
 
-const ArmExercises = () => {
+const ArmExercise = () => {
   const exercises = [
     {
       title: 'Double Bicep Curl',
-      instructions: `Stand as straight and firm throughout your body. Ensure your posture is as aligned as possible and your shoulder axis is centered. While stretching your shoulders and pushing your chest out, allow the dumbbell to fully stretch your bicep. Slowly and with control, while holding your position, flex your target muscle as hard as you can, shortening its length to your best ability. Slowly bring down the weight, controlling its position and your posture, until it reaches its initial position, stretching your muscle to its longest length. Repeat to target repetition or until failure.`,
+      instructions: `Stand as straight and firm throughout your body. Ensure your posture is as aligned as possible and your shoulder axis is centered. While stretching your shoulders and pushing your chest out, allow the barbell to fully stretch your biceps. Slowly and with control, while holding your position, flex your target muscle (biceps) as hard as you can, shortening its length to your best ability. Slowly bring down the weight, controlling its position and your posture, until it reaches its initial position, stretching your muscle to its longest length. Repeat to target repetition or until failure.`,
       videoUrl: 'https://www.youtube.com/embed/kwG2ipFRgfo',
     },
     {
       title: 'Hammer Curl',
-      instructions: `Stand as straight and firm throughout your body. Ensure your posture is as aligned as possible and your shoulder axis is centered. While stretching your shoulders and pushing your chest out, allow the dumbbell to fully stretch your bicep. Slowly and with control, while holding your position, flex your target muscle as hard as you can, shortening its length to your best ability. Slowly bring down the weight, controlling its position and your posture, until it reaches its initial position, stretching your muscle to its longest length. Repeat to target repetition or until failure.`,
+      instructions: `Stand with your feet shoulder-width apart and your knees slightly bent. Hold a dumbbell in each hand with your palms facing your sides and your arms straight. Keep your elbows close to your sides and rotate your forearms so that your palms are facing forward. Keeping your upper arms still, bend your elbows and curl the dumbbells as close to your shoulders as you can. Pause, then slowly lower the weights back to the starting position. This completes one rep.`,
       videoUrl: 'https://www.youtube.com/embed/0lZaQyt3b1Q',
     },
     {
@@ -121,4 +121,4 @@ const ArmExercises = () => {
   );
 };
 
-export default ArmExercises;
+export default ArmExercise;

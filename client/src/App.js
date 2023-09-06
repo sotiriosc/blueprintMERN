@@ -33,6 +33,9 @@ import SettingUpWorkout from './pages/SettingUpWorkoutRoutine';
 import ArmExercise from './pages/exercises/ArmExercise'; 
 import BackExercise from './pages/exercises/BackExercise';
 import ChestExercise from './pages/exercises/ChestExercise';
+import CoreExercise from './pages/exercises/CoreExercise';
+import LegExercise from './pages/exercises/LegExercise';
+import ShoulderExercise from './pages/exercises/ShoulderExercise';
 import NutritionLandingPage from './pages/NutritionLanding';
 import StretchingLandingPage from './pages/StretchingLanding';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
@@ -116,6 +119,18 @@ function App() {
               <Route
                 path="/ChestExercise"
                 element={<ChestExercise />}
+              />
+              <Route
+                path="/CoreExercise"
+                element={<CoreExercise />}
+              />
+              <Route
+                path="/LegExercise"
+                element={<LegExercise />}
+              />
+              <Route
+                path="/ShoulderExercise"
+                element={<ShoulderExercise />}
               />
               <Route
                 path="/nutrition"

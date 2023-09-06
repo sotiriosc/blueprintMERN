@@ -53,7 +53,7 @@ const VideoPlaceholder = styled.div`
 `;
 
 
-const ArmExercises = () => {
+const BackExercise = () => {
   const exercises = [
     {
       title: 'Pull Ups',
@@ -121,4 +121,4 @@ const ArmExercises = () => {
   );
 };
 
-export default ArmExercises;
+export default BackExercise;
