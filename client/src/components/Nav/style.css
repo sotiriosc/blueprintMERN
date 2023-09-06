@@ -26,6 +26,7 @@
   text-align: center;
   height: 100px;
   background: #193875;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #bb15a5, 0 0 20px #8f20b1c2, 0 0 25px #aa3cccc2, 0 0 30px #f59b52, 0 0 35px #d6c913;
 }
 
 .ul {

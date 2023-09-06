@@ -43,10 +43,11 @@ const styles = {
   titleNav: {
     fontSize: "2.5em",
     textAlign: "center",
-    margin: 0, 
-    backgroundColor: "#193875", 
-    
+    margin: 0,
+    backgroundColor: "#193875",
+    textShadow: "0 0 5px #fff, 0 0 10px #8f20b1c2, 0 0 15px #8f20b1c2, 0 0 20px #8f20b1c2, 0 0 25px #f59b52, 0 0 30px #f59b52, 0 0 35px #d6c913"
   },
+
   navBar: {
     borderTop: "4px solid #E4AD0B",
     borderBottom: "4px solid #E4AD0B", // Adjusted border size
