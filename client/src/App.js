@@ -31,6 +31,8 @@ import Blog12 from './pages/Blog12';
 import Exercises from './pages/ExerciseLanding';
 import SettingUpWorkout from './pages/SettingUpWorkoutRoutine';
 import ArmExercise from './pages/exercises/ArmExercise'; 
+import BackExercise from './pages/exercises/BackExercise';
+import ChestExercise from './pages/exercises/ChestExercise';
 import NutritionLandingPage from './pages/NutritionLanding';
 import StretchingLandingPage from './pages/StretchingLanding';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
@@ -106,6 +108,14 @@ function App() {
               <Route
                 path="/settingUpWorkout"
                 element={<SettingUpWorkout />}  
+              />
+              <Route
+                path="/backExercise"
+                element={<BackExercise />}
+              />
+              <Route
+                path="/ChestExercise"
+                element={<ChestExercise />}
               />
               <Route
                 path="/nutrition"
