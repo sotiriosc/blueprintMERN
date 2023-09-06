@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const PageContainer = styled.div`
   margin: 20px auto; /* Auto margin for horizontal centering */
-  font-family: Arial, sans-serif;
+  font-family: courier, sans-serif;
   width: 80%; /* Takes up 80% of the page */
   text-align: center; /* Centers text */
 `;
