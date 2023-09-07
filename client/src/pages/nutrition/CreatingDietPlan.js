@@ -9,13 +9,13 @@ const PageContainer = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 1.5em;
+  font-size: 2.5em;
   margin-top: 20px;
   text-align: left; /* Align the titles to the left */
 `;
 
 const Paragraph = styled.p`
-  font-size: 1em;
+  font-size: 1.5em;
   margin-bottom: 20px;
   text-align: left; /* Align the text to the left */
 `;
