@@ -20,7 +20,6 @@ const Paragraph = styled.p`
   text-align: left; /* Align the text to the left */
 `;
 
-
 export default function CreatingDietPlan() {
   return (
     <PageContainer>
@@ -86,5 +85,3 @@ export default function CreatingDietPlan() {
     </PageContainer>
   );
 };
-
-
