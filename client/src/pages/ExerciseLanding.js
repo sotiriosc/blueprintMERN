@@ -38,10 +38,6 @@ const Grid = styled.div`
   }
 `;
 
-const IntroText = styled.p`
-  text-align: center;
-  margin: 0 1rem;
-`;
 
 const Modal = styled.div`
   position: fixed;
