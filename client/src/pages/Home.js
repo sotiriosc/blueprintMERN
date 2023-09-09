@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 
 const Home = () => {
-  const [isSmallScreen, setSmallScreen] = useState(window.innerWidth <= 768);
+  const [isSmallScreen, setSmallScreen] = useState(window.innerWidth <= 900);
 
   // Dynamically set isSmallScreen based on window size
   useEffect(() => {
-    const handleResize = () => setSmallScreen(window.innerWidth <= 768);
+    const handleResize = () => setSmallScreen(window.innerWidth <= 900);
     window.addEventListener("resize", handleResize);
 
     // Cleanup
@@ -17,7 +17,7 @@ const Home = () => {
 
   const styles = {
     container: {
-      fontFamily: 'Courier, monospace', // <-- Updated here
+      fontFamily: 'Courier, monospace', 
       display: "flex",
       flexDirection: isSmallScreen ? "column" : "row",
       justifyContent: "space-between",
