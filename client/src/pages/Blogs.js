@@ -18,6 +18,8 @@ const Blogs = () => {
     { title: 'The Power of Commitment: Turning Small Victories into Great Success', link: '/blog10', content: 'Commitment a promise to yourself and you passions' },
     { title: 'The Power of Words in Achieving a Balanced Lifestyle', link: '/blog11', content: 'Words are real Magic' },
     { title: 'The Power of Posture: Align Your Body, Elevate Your Life', link: '/blog12', content: 'Discover how posture affects your health and how to improve it!' },
+    { title: 'Mental Health and the Power of Positivity: Turn the Tide of Your Thoughts', link: '/blog13', content: 'Never let anything get in your way!!' },
+    
     // Add more blogs here...
     
   ];
