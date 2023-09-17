@@ -70,7 +70,7 @@ const styles = {
 const Blog13 = () => {
   const [formState, setFormState] = useState({ commentText: '' });
 
-  const blogId = '64c53377822059db3f867ffc'; // Replace this with the actual blog ID
+  const blogId = '65064a606f7a3c0fe4793ffd'; // Replace this with the actual blog ID
 
   const { loading, data, refetch } = useQuery(QUERY_BLOG, {
     variables: { _id: blogId },
