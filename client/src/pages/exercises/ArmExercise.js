@@ -58,7 +58,7 @@ const ArmExercise = () => {
     {
       title: 'Double Bicep Curl',
       instructions: `Stand as straight and firm throughout your body. Ensure your posture is as aligned as possible and your shoulder axis is centered. While stretching your shoulders and pushing your chest out, allow the barbell to fully stretch your biceps. Slowly and with control, while holding your position, flex your target muscle (biceps) as hard as you can, shortening its length to your best ability. Slowly bring down the weight, controlling its position and your posture, until it reaches its initial position, stretching your muscle to its longest length. Repeat to target repetition or until failure.`,
-      videoUrl: 'https://youtu.be/n9mpFcG_eNw',
+      videoUrl: 'https://youtu.be/n9mpFcG_eNw?si=xatBKV9fHQHDuK6-',
     },
     {
       title: 'Hammer Curl',
