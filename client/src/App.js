@@ -39,6 +39,7 @@ import LegExercise from './pages/exercises/LegExercise';
 import ShoulderExercise from './pages/exercises/ShoulderExercise';
 import NutritionLandingPage from './pages/NutritionLanding';
 import CreatingDietPlan from './pages/nutrition/CreatingDietPlan'
+import Macronutrients from './pages/nutrition/Macronutrients';
 import StretchingLandingPage from './pages/StretchingLanding';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
 import HealingLandingPage from './pages/HealingLanding';
@@ -141,6 +142,10 @@ function App() {
               <Route
                 path="/CreatingDietPlan"
                 element={<CreatingDietPlan />}
+              />
+              <Route
+              path="/macronutrients"
+              element={<Macronutrients />}
               />
               <Route
                 path="/stretching"
