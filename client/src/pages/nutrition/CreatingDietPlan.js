@@ -11,7 +11,7 @@ const PageContainer = styled.div`
 const SectionTitle = styled.h2`
   font-size: 2.5em;
   margin-top: 20px;
-  text-align: left; /* Align the titles to the left */
+  text-align: center; /* Centers text *
 `;
 
 const Paragraph = styled.p`

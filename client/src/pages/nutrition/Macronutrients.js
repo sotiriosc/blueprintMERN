@@ -9,15 +9,15 @@ const PageContainer = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5em;
+  font-size: 3.5em;
   margin-top: 20px;
-  text-align: left; 
+  text-align: center; 
 `;
 
 const SubTitle = styled.h3`
   font-size: 2em;
   margin-top: 10px;
-  text-align: left; 
+  text-align: center; 
 `;
 
 const Paragraph = styled.p`
@@ -27,12 +27,15 @@ const Paragraph = styled.p`
 `;
 
 const List = styled.ul`
-  list-style-type: circle;
+  list-style-type: none;
   margin-left: 40px;
+  
 `;
 
 const ListItem = styled.li`
   margin: 5px 0;
+  font-size: 1.5em;
+  
 `;
 
 export default function Macronutrients() {
