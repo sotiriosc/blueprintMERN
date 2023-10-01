@@ -58,8 +58,8 @@ export default function Macronutrients() {
         <ListItem>The Three Types of Macronutrients</ListItem>
         <ListItem>Importance of Macronutrients</ListItem>
         <ListItem>Macronutrients and Health</ListItem>
-        <ListItem>Macronutrients for Muscle Building</ListItem>
-        <ListItem>Tips and Tricks</ListItem>
+        <ListItem>Micronutrients for Different Age Groups</ListItem>
+        <ListItem>How to Get Your Micronutrients</ListItem>
         <ListItem>FAQs</ListItem>
         <ListItem>Conclusion</ListItem>
       </List>
