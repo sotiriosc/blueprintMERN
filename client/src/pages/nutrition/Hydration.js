@@ -192,12 +192,18 @@ export default function Hydration() {
         Believe it or not, about 20% of our daily water intake comes from the foods we eat. Certain foods are naturally rich in water content and can contribute to your daily hydration needs. Here are some foods to consider:
       </Paragraph>
       <List>
-        <ListItem>Cucumbers</ListItem>
-        <ListItem>Melons</ListItem>
-        <ListItem>Grapes</ListItem>
-        <ListItem>Oranges</ListItem>
-        <ListItem>Strawberries</ListItem>
-      </List>
+  <ListItem>Cucumbers</ListItem>
+  <ListItem>Melons</ListItem>
+  <ListItem>Grapes</ListItem>
+  <ListItem>Oranges</ListItem>
+  <ListItem>Strawberries</ListItem>
+  <ListItem>Apples</ListItem>
+  <ListItem>Spinach</ListItem>
+  <ListItem>Blueberries</ListItem>
+  <ListItem>Pineapple</ListItem>
+  <ListItem>Tomatoes</ListItem>
+</List>
+
 
       <Paragraph>
         Incorporating these foods into your meals can be a delicious way to boost your hydration levels.

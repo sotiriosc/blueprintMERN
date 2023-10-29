@@ -20,6 +20,12 @@ const Paragraph = styled.p`
   text-align: left; /* Align the text to the left */
 `;
 
+const SubTitle = styled.h3`
+  font-size: 2em;
+  margin-top: 20px;
+  text-align: center; /* Centers text */
+`;
+
 export default function CreatingDietPlan() {
   return (
     <PageContainer>
@@ -44,28 +50,60 @@ export default function CreatingDietPlan() {
         Understanding the basics of nutrition is critical. Know what macronutrients (proteins, fats, carbohydrates) and micronutrients (vitamins, minerals) are and what roles they play in your body. This will empower you to make informed choices.
       </Paragraph>
 
-      <SectionTitle>Step 5: Rediscover Forgotten Healthy Foods</SectionTitle>
-      <Paragraph>
-       As you explore, you may come across foods you haven't thought about in years. Root vegetables like turnips, high-fiber grains like quinoa, or even simple items like spinach can be powerful allies in your quest for better health.
-      </Paragraph>
-
-      <SectionTitle>Step 6: Crafting Your Diet Plan</SectionTitle>
-     
-      <Paragraph>
-      Now that you're armed with information and options, it's time to build your diet plan. Design meals that provide a balanced intake of proteins, healthy fats, and fibers. Create a weekly menu, if that helps, and consider portion sizes based on your personal caloric needs, which can be estimated using various online calculators or with the help of a healthcare provider.
-      </Paragraph>
-     
-      <SectionTitle>Step 7: Food Preparation and Storage</SectionTitle>
-    
-      <Paragraph>
-      Once the shopping is done, consider spending a few hours on meal preparation. Cook in batches, portion out snacks, and make sure everything is stored in a way that keeps it fresh and easy to access. This not only saves you time during the week but also helps you stick to your plan.
-      </Paragraph>
-     
-      <SectionTitle>Step 8: Execution and Consistency</SectionTitle>
       
-      <Paragraph>
-      Consistency is the key to any successful diet plan. Stick to your meal times, and make sure you have planned for contingencies, such as eating out or unexpected cravings.
-      </Paragraph>
+      <SectionTitle>Step 5: Rediscover Forgotten Healthy Foods and Create a Tailored Diet Plan</SectionTitle>
+<Paragraph>
+  Adopting a healthier lifestyle involves more than just eliminating unhealthy choices; it's about incorporating foods that actively support your wellbeing. Whether you discover nutrient-dense foods like root vegetables or high-fiber grains, such as quinoa, it's an opportunity to revitalize your diet and come closer to your health goals.
+</Paragraph>
+
+<SubTitle>A Comprehensive Example: What I Eat</SubTitle>
+<Paragraph>
+  To give you an idea of a balanced diet that focuses on nutrient-dense foods, let's walk through my typical day:
+</Paragraph>
+
+<Paragraph>
+  <strong>Morning:</strong> I begin the day with eggs, oatmeal, and fresh seasonal fruits. Eggs are a superb source of protein, while oatmeal provides the necessary fiber for a great start to the day. The fresh fruits add natural sugars and more fiber, making for a complete morning meal. I often accompany this with freshly squeezed store-bought juice for an extra vitamin kick. I also include nuts like almonds, walnuts, and sunflower seeds, excellent for hormonal balance and long-lasting energy. If that wasn't nutritious enough, I use protein milk in my oatmeal for added protein content.
+</Paragraph>
+
+<Paragraph>
+  <strong>Additional Morning Boost:</strong> To further enrich my meal, I incorporate a tablespoon each of ground flax seeds, black chia seeds, and hemp seeds. These seeds are not only high in omega fatty acids, beneficial for brain and skin health, but also rich in fiber which aids digestion and supports heart and insulin health.
+</Paragraph>
+
+<Paragraph>
+  <strong>Afternoon/Post-Exercise/Work:</strong> After a good day at work or workout, protein is essential for muscle recovery. That's where lean meats like chicken, fish, or beef come into the picture, serving as high-quality protein sources to rebuild those worked muscles. Alongside the lean meat, I typically combine quinoa, beans, and chickpeas for an incredibly nutritious trio. Now, you might be thinking about insulin levels—don't worry. Although this meal has a low glycemic index and won't cause an insulin spike, it's still very much anabolic. It maintains a sustained insulin level that's beneficial not only for muscle building but also for pancreatic health. Yes, we're all about holistic well-being here!
+</Paragraph>
+
+
+
+<Paragraph>
+  <strong>Evening:</strong> In the evening, I aim for a balance of indulgence and health. A favorite is a ham and Swiss sandwich, offering a blend of protein and fats, along with some comfort. Remember, it's not about denying yourself pleasures, but about making educated choices that align with your health goals.
+</Paragraph>
+
+<Paragraph>
+  Being well-informed about the foods you eat and how they contribute to your objectives is crucial. With knowledge comes the power to create a diet that not only satisfies your palate but also propels you toward endless health benefits.
+</Paragraph>
+
+
+<Paragraph>
+  <strong>Step 6: Crafting Your Diet Plan </strong>
+   Now that you're armed with information and options, it's time to build your diet plan. Design meals that provide a balanced intake of proteins, healthy fats, and fibers. Create a weekly menu, if that helps, and consider portion sizes based on your personal caloric needs. To estimate your caloric needs, you can use various online calculators such as <a href="https://www.myfitnesspal.com/" target="_blank" rel="noopener noreferrer">MyFitnessPal</a>, <a href="https://cronometer.com/" target="_blank" rel="noopener noreferrer">Cronometer</a>, or consult with a healthcare provider. 
+</Paragraph>
+
+
+     
+<SectionTitle>Step 7: Food Preparation and Storage</SectionTitle>
+
+<Paragraph>
+  Preparing your meals in advance is about more than just convenience; it's a proactive strategy for success. Spending a few hours after shopping to cook in batches and portion out snacks ensures that everything is stored in a way that keeps it fresh and easy to access. This not only saves you time during the week but also eliminates the all-too-common excuse of being 'too tired to cook.' You're more likely to stick to your diet plan when nutritious meals are ready-to-go. Plus, knowing that your food is already prepared puts psychological pressure against wasting it, aligning with a responsible and sustainable lifestyle.
+</Paragraph>
+
+     
+<SectionTitle>Step 8: Execution and Consistency</SectionTitle>
+
+<Paragraph>
+  The success of any diet plan hinges on consistency and rhythm. Stick to your meal times and make a contingency plan for scenarios like eating out or unexpected cravings. By adhering to a consistent schedule, you align with the natural rhythms of life, which inherently rewards good habits. It's important to remember that reaping the benefits of a healthy diet isn't about making a monumental change overnight, but rather about doing the right things consistently over time. Conversely, negative outcomes are also the result of consistent actions, whether it's neglecting your diet or ignoring signs from your body. By embracing consistency, you set the stage for ongoing success and well-being.
+</Paragraph>
+
       
       <SectionTitle>Step 9: Track and Tweak</SectionTitle>
      
