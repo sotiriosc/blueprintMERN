@@ -260,8 +260,6 @@ export default function Hydration() {
         Got questions about hydration? You're not alone. Here are some of the most commonly asked questions, answered for your convenience.
       </Paragraph>
 
-      <SectionTitle>Frequently Asked Questions</SectionTitle>
-
 <SubTitle>How much water should I drink each day?</SubTitle>
 <Paragraph>
   The amount of water you need can vary based on factors like age, climate, and physical activity. A common recommendation is 8 cups a day, but you may require more or less.
