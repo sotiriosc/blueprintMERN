@@ -42,6 +42,7 @@ import CreatingDietPlan from './pages/nutrition/CreatingDietPlan'
 import Macronutrients from './pages/nutrition/Macronutrients';
 import Micronutrients from './pages/nutrition/Micronutrients';
 import Fruits from './pages/nutrition/Fruits';
+import Hydration from './pages/nutrition/Hydration';
 import StretchingLandingPage from './pages/StretchingLanding';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
 import HealingLandingPage from './pages/HealingLanding';
@@ -156,6 +157,10 @@ function App() {
               <Route
               path="/fruits"
               element={<Fruits />}
+              />
+              <Route
+              path="/hydration"
+              element={<Hydration />}
               />
               <Route
                 path="/stretching"
