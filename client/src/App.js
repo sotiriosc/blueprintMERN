@@ -43,8 +43,9 @@ import Macronutrients from './pages/nutrition/Macronutrients';
 import Micronutrients from './pages/nutrition/Micronutrients';
 import Fruits from './pages/nutrition/Fruits';
 import Hydration from './pages/nutrition/Hydration';
-import StretchingLandingPage from './pages/StretchingLanding';
 import Fiber from './pages/nutrition/Fiber';
+import StretchingLandingPage from './pages/StretchingLanding';
+import StretchingRoutine from './pages/stretches/StretchingRoutine';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
 import HealingLandingPage from './pages/HealingLanding';
 import Shop from './pages/Shop';
@@ -170,6 +171,10 @@ function App() {
               <Route
                 path="/stretching"
                 element={<StretchingLandingPage />}
+              />
+              <Route
+                path="/routine"
+                element={<StretchingRoutine />}
               />
               <Route
                 path="/mentalhealth"
