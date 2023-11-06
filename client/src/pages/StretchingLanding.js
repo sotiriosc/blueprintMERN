@@ -111,7 +111,7 @@ const StretchingLandingPage = () => {
 
   return (
     <div className="container">
-       {showModal && (
+       {/* {showModal && (
         <Modal>
           <ModalContent>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
@@ -119,7 +119,7 @@ const StretchingLandingPage = () => {
             <p>We are diligently working to complete our guide. Thank you for your patience.</p>
           </ModalContent>
         </Modal>
-      )}
+      )} */}
       <Title>{title}</Title>
       <IntroText>{introText}</IntroText>
       <Grid>

@@ -75,6 +75,12 @@ const StretchBenefits = styled.p`
   font-style: italic;
 `;
 
+const StretchCommonMistakes = styled.p`
+    font-size: 1.2em;
+    line-height: 1.4;
+    font-style: italic;
+`;
+
 
 const SocialShareContainer = styled.div`
   display: flex;
@@ -222,6 +228,7 @@ export default function ArmStretches() {
           <StretchName>{stretch.name}</StretchName>
           <StretchDescription>{stretch.description}</StretchDescription>
           <StretchBenefits>Benefits: {stretch.benefits}</StretchBenefits>
+          <StretchCommonMistakes>Common Mistakes: {stretch.commonMistakes}</StretchCommonMistakes>
           
           {/* <StretchImage src={stretch.imageUrl} alt={stretch.name} /> */}
         </StretchContainer>
