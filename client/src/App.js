@@ -46,6 +46,12 @@ import Hydration from './pages/nutrition/Hydration';
 import Fiber from './pages/nutrition/Fiber';
 import StretchingLandingPage from './pages/StretchingLanding';
 import StretchingRoutine from './pages/stretches/StretchingRoutine';
+import ArmStretches from './pages/stretches/ArmStretches';
+import BackStretches from './pages/stretches/BackStretches';
+import ChestStretches from './pages/stretches/ChestStretches';
+import CoreStretches from './pages/stretches/CoreStretches';
+import LegStretches from './pages/stretches/LegStretches';
+import ShoulderStretches from './pages/stretches/ShoulderStretches';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
 import HealingLandingPage from './pages/HealingLanding';
 import Shop from './pages/Shop';
@@ -173,8 +179,32 @@ function App() {
                 element={<StretchingLandingPage />}
               />
               <Route
+                path="/armStretches"
+                element={<ArmStretches />}
+              />
+              <Route
                 path="/routine"
                 element={<StretchingRoutine />}
+              />
+              <Route
+                path="/backStretches"
+                element={<BackStretches />}
+              />
+              <Route
+                path="/chestStretches"
+                element={<ChestStretches />}
+              />
+              <Route
+                path="/coreStretches"
+                element={<CoreStretches />}
+              />
+              <Route
+                path="/legStretches"
+                element={<LegStretches />}
+              />
+              <Route
+                path="/shoulderStretches"
+                element={<ShoulderStretches />}
               />
               <Route
                 path="/mentalhealth"
