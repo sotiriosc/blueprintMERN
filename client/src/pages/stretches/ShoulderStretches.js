@@ -219,6 +219,7 @@ export default function ShoulderStretches() {
           <StretchName>{stretch.name}</StretchName>
           <StretchDescription>{stretch.description}</StretchDescription>
           <StretchBenefits>Benefits: {stretch.benefits}</StretchBenefits>
+          <StretchCommonMistakes>Common Mistakes: {stretch.commonMistakes}</StretchCommonMistakes>
           
           {/* <StretchImage src={stretch.imageUrl} alt={stretch.name} /> */}
         </StretchContainer>
