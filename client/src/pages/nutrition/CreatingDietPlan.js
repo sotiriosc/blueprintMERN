@@ -182,6 +182,9 @@ export default function CreatingDietPlan() {
         <ShareButton onClick={() => window.open(`https://wa.me/?text=${shareMessage}%20${pageUrl}`, '_blank')}>
   Share on WhatsApp
 </ShareButton>
+<ShareButton onClick={() => window.open(`sms:?&body=${encodeURIComponent(shareMessage)}%20${encodeURIComponent(pageUrl)}`, '_blank')}>
+    Share via SMS
+  </ShareButton>
 
         {/* Add more buttons for other social networks */}
       </SocialShareContainer>
