@@ -235,7 +235,7 @@ export default function ArmStretches() {
       ))}
        
 
-        <SocialShareContainer>
+       <SocialShareContainer>
         <ShareButton onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank')}>
           Share on Facebook
         </ShareButton>
@@ -245,8 +245,6 @@ export default function ArmStretches() {
         <ShareButton onClick={() => window.open(`https://wa.me/?text=${shareMessage}%20${pageUrl}`, '_blank')}>
   Share on WhatsApp
 </ShareButton>
-
-        {/* Add more buttons for other social networks */}
       </SocialShareContainer>
       </PageContainer>
     );

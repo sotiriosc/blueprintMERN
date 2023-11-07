@@ -237,9 +237,12 @@ export default function ChestStretches() {
         <ShareButton onClick={() => window.open(`https://twitter.com/intent/tweet?text=${shareMessage}&url=${pageUrl}`, '_blank')}>
           Share on Twitter
         </ShareButton>
-        
-        {/* Add more buttons for other social networks */}
+        <ShareButton onClick={() => window.open(`https://wa.me/?text=${shareMessage}%20${pageUrl}`, '_blank')}>
+  Share on WhatsApp
+</ShareButton>
       </SocialShareContainer>
+        
+       
       </PageContainer>
     );
   }
