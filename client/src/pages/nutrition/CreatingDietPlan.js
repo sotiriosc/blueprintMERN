@@ -26,7 +26,58 @@ const SubTitle = styled.h3`
   text-align: center; /* Centers text */
 `;
 
+const SocialShareContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px; /* This creates space between your buttons */
+`;
+
+const ShareButton = styled.button`
+  background-color: blue
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darkBlue; /* Darken the button a tad on hover */
+  }
+
+  /* Icon font can be used here for specific social media icons */
+  &.facebook {
+    background-color: #3b5998; /* Facebook blue */
+    &:hover {
+      background-color: #344e86;
+    }
+  }
+
+  &.twitter {
+    background-color: #1DA1F2; /* Twitter blue */
+    &:hover {
+      background-color: #1a91da;
+    }
+  }
+
+  &.instagram {
+    background-color: #E1306C; /* Instagram gradient start color */
+    background-image: linear-gradient(to right, #E1306C, #C13584, #833AB4, #5851DB, #405DE6); /* Instagram gradient */
+    color: white;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+`;
+
 export default function CreatingDietPlan() {
+
+  const pageUrl = encodeURIComponent(window.location.href);
+  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+
   return (
     <PageContainer>
       <SectionTitle>The Balanced Blueprint for Creating a Diet Plan</SectionTitle>
@@ -120,6 +171,20 @@ export default function CreatingDietPlan() {
     <Paragraph>
     By following these comprehensive steps, you're not just dieting—you're adopting a more mindful, balanced, and sustainable approach to nutrition. The goal is not just to live but to thrive, achieving the best state of health you can enjoy for the rest of your life.
     </Paragraph>
+
+    <SocialShareContainer>
+        <ShareButton onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank')}>
+          Share on Facebook
+        </ShareButton>
+        <ShareButton onClick={() => window.open(`https://twitter.com/intent/tweet?text=${shareMessage}&url=${pageUrl}`, '_blank')}>
+          Share on Twitter
+        </ShareButton>
+        <ShareButton onClick={() => window.open(`https://wa.me/?text=${shareMessage}%20${pageUrl}`, '_blank')}>
+  Share on WhatsApp
+</ShareButton>
+
+        {/* Add more buttons for other social networks */}
+      </SocialShareContainer>
     </PageContainer>
   );
 };

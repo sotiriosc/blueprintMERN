@@ -39,7 +39,60 @@ const ListItem = styled.li`
   
 `;
 
+
+
+const SocialShareContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px; /* This creates space between your buttons */
+`;
+
+const ShareButton = styled.button`
+  background-color: blue
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darkBlue; /* Darken the button a tad on hover */
+  }
+
+  /* Icon font can be used here for specific social media icons */
+  &.facebook {
+    background-color: #3b5998; /* Facebook blue */
+    &:hover {
+      background-color: #344e86;
+    }
+  }
+
+  &.twitter {
+    background-color: #1DA1F2; /* Twitter blue */
+    &:hover {
+      background-color: #1a91da;
+    }
+  }
+
+  &.instagram {
+    background-color: #E1306C; /* Instagram gradient start color */
+    background-image: linear-gradient(to right, #E1306C, #C13584, #833AB4, #5851DB, #405DE6); /* Instagram gradient */
+    color: white;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+`;
+
 export default function Fiber() {
+
+  const pageUrl = encodeURIComponent(window.location.href);
+  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+
   return (
     <PageContainer>
       <SectionTitle>The Comprehensive Guide to Dietary Fiber</SectionTitle>
@@ -228,6 +281,17 @@ export default function Fiber() {
 <Paragraph>
   Remember, incorporating fiber into your diet is a journey, not a race. It’s about making consistent, mindful choices that contribute to your overall well-being. With every fiber-rich forkful, you're investing in a future of health and vitality. So here’s to making choices that count, to the power of fiber, and to the incredible journey of health that lies ahead. Thank you for joining us on this path to wellness. Let’s continue to make choices that nourish not just our bodies, but also our souls. 💖
 </Paragraph>
+<SocialShareContainer>
+        <ShareButton onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank')}>
+          Share on Facebook
+        </ShareButton>
+        <ShareButton onClick={() => window.open(`https://twitter.com/intent/tweet?text=${shareMessage}&url=${pageUrl}`, '_blank')}>
+          Share on Twitter
+        </ShareButton>
+        <ShareButton onClick={() => window.open(`https://wa.me/?text=${shareMessage}%20${pageUrl}`, '_blank')}>
+  Share on WhatsApp
+</ShareButton>
+      </SocialShareContainer>
 
     </PageContainer>
   );
