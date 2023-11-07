@@ -241,11 +241,12 @@ export default function ShoulderStretches() {
   Share on WhatsApp
 </ShareButton>
 <ShareButton onClick={() => {
-    const message = encodeURIComponent(shareMessage) + " " + encodeURIComponent(pageUrl);
-    window.open(`sms:?body=${message}`, '_blank');
+    const smsBody = encodeURIComponent(shareMessage + pageUrl);
+    window.open(`sms:?body=${smsBody}`, '_blank');
 }}>
   Share via SMS
 </ShareButton>
+
       </SocialShareContainer>
       
       </PageContainer>
