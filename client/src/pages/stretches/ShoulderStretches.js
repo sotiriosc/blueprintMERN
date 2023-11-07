@@ -240,7 +240,10 @@ export default function ShoulderStretches() {
         <ShareButton onClick={() => window.open(`https://wa.me/?text=${shareMessage}%20${pageUrl}`, '_blank')}>
   Share on WhatsApp
 </ShareButton>
-<ShareButton onClick={() => window.open(`sms:?&body=${encodeURIComponent(shareMessage)}%20${encodeURIComponent(pageUrl)}`, '_blank')}>
+<ShareButton onClick={() => {
+    const message = encodeURIComponent(shareMessage + " " + pageUrl);
+    window.open(`sms:?body=${message}`, '_blank');
+  }}>
     Share via SMS
   </ShareButton>
       </SocialShareContainer>

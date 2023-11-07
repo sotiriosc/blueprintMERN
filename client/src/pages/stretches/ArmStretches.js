@@ -91,7 +91,8 @@ const SocialShareContainer = styled.div`
 `;
 
 const ShareButton = styled.button`
-  background-color: blue
+background-color: #E1306C; /* Instagram gradient start color */
+background-image: linear-gradient(to right, #E1306C, #C13584, #833AB4, #5851DB, #405DE6); /* Instagram gradient */
   color: white;
   padding: 10px 20px;
   border: none;
