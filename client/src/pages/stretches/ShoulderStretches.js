@@ -75,6 +75,11 @@ const StretchBenefits = styled.p`
   font-style: italic;
 `;
 
+const StretchCommonMistakes = styled.p`
+    font-size: 1.2em;
+    line-height: 1.4;
+    font-style: italic;
+`;
 
 const SocialShareContainer = styled.div`
   display: flex;
