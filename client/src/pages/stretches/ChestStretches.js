@@ -205,7 +205,7 @@ export default function ChestStretches() {
     );
 
     const pageUrl = encodeURIComponent(window.location.href);
-    const shareMessage = encodeURIComponent("Check out these great lower body stretches for strength and flexibility!");
+    const shareMessage = encodeURIComponent("Check out these great chest stretches for strength and flexibility!");
   
     return (
       <PageContainer>

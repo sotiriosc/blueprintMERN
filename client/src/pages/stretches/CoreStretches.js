@@ -205,7 +205,7 @@ export default function CoreStretches() {
     );
 
     const pageUrl = encodeURIComponent(window.location.href);
-    const shareMessage = encodeURIComponent("Check out these great lower body stretches for strength and flexibility!");
+    const shareMessage = encodeURIComponent("Check out these core stretches for strength and flexibility!");
   
     return (
       <PageContainer>

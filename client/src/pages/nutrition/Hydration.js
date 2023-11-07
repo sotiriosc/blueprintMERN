@@ -89,7 +89,7 @@ export default function Hydration() {
 
   
   const pageUrl = encodeURIComponent(window.location.href);
-  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+  const shareMessage = encodeURIComponent("Quence your thirst! for knowledge on hydration and well-being");
 
   return (
 

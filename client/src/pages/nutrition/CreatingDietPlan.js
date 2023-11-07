@@ -76,7 +76,7 @@ const ShareButton = styled.button`
 export default function CreatingDietPlan() {
 
   const pageUrl = encodeURIComponent(window.location.href);
-  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+  const shareMessage = encodeURIComponent("Check out this info on creating a diet plan!");
 
   return (
     <PageContainer>

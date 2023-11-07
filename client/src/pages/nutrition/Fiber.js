@@ -91,7 +91,7 @@ const ShareButton = styled.button`
 export default function Fiber() {
 
   const pageUrl = encodeURIComponent(window.location.href);
-  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+  const shareMessage = encodeURIComponent("Get your fill on fiber!");
 
   return (
     <PageContainer>

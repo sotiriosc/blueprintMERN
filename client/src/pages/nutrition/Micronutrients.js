@@ -95,7 +95,7 @@ const ShareButton = styled.button`
 export default function Micronutrients() {
 
   const pageUrl = encodeURIComponent(window.location.href);
-  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+  const shareMessage = encodeURIComponent("Discover all the big and small things about micronutrients!");
 
 
   return (

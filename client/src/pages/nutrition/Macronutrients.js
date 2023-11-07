@@ -89,7 +89,7 @@ export default function Macronutrients() {
 
   
   const pageUrl = encodeURIComponent(window.location.href);
-  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+  const shareMessage = encodeURIComponent("Learn how to manage your macronutrients and how to utilize them for health!");
 
   return (
     <PageContainer>

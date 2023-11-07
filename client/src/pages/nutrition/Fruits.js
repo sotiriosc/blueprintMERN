@@ -86,7 +86,7 @@ const ShareButton = styled.button`
 export default function Fruits() {
 
   const pageUrl = encodeURIComponent(window.location.href);
-  const shareMessage = encodeURIComponent("Check out these great arm stretches for strength and flexibility!");
+  const shareMessage = encodeURIComponent("Learn about the health benefits of fruits and vegetables!");
 
   return (
     <PageContainer>
