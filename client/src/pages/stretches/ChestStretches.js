@@ -128,6 +128,20 @@ const ShareButton = styled.button`
   }
 `;
 
+const Button = styled.button`
+  font-size: 1em;
+  padding: 10px 15px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
 // Chest Stretches Page Component
 export default function ChestStretches() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -240,9 +254,7 @@ export default function ChestStretches() {
         <ShareButton onClick={() => window.open(`https://wa.me/?text=${shareMessage}%20${pageUrl}`, '_blank')}>
   Share on WhatsApp
 </ShareButton>
-<ShareButton onClick={() => window.open(`sms:?&body=${encodeURIComponent(shareMessage)}%20${encodeURIComponent(pageUrl)}`, '_blank')}>
-    Share via SMS
-  </ShareButton>
+
       </SocialShareContainer>
         
        

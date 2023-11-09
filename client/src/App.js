@@ -53,6 +53,7 @@ import CoreStretches from './pages/stretches/CoreStretches';
 import LegStretches from './pages/stretches/LegStretches';
 import ShoulderStretches from './pages/stretches/ShoulderStretches';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
+import StressManagement from './pages/mentalHealth/StressManagement';
 import HealingLandingPage from './pages/HealingLanding';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
@@ -209,6 +210,10 @@ function App() {
               <Route
                 path="/mentalhealth"
                 element={<MentalHealthLandingPage />}
+              />
+              <Route
+                path="/stressManagement"
+                element={<StressManagement />}
               />
               <Route
                 path="/healing"

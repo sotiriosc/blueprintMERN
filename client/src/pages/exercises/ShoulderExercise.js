@@ -115,6 +115,7 @@ const ShoulderExercise = () => {
         )}
       </VideoWrapper>
     </ExerciseContainer>
+    
   ))}
 </PageContainer>
 
