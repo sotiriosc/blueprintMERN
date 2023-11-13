@@ -362,10 +362,14 @@ const IntroductionSection = () => {
         );
       };
       
+    
+      
+      
+      
       
     return (
         <PageContainer>
-          
+
         <StressManagementHeader />
         <IntroductionSection />
         <SymptomsSection />
@@ -373,6 +377,7 @@ const IntroductionSection = () => {
         <TechniquesSection />
         <DeepDiveSection />
         <LifestyleAdjustmentsSection />
+       
 
 
        <SocialShareContainer>

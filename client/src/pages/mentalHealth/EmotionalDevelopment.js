@@ -140,7 +140,7 @@ export default function StressManagement() {
       };  
 
     const pageUrl = encodeURIComponent(window.location.href);
-    const shareMessage = encodeURIComponent("Check out this information on stress management!");
+    const shareMessage = encodeURIComponent("Check out this information on Emotional Development!");
 
     // The IntroductionSection component
     
@@ -361,6 +361,31 @@ const ResourcesForLearningSection = () => {
   );
 };
 
+const ConclusionEmotionalDevelopment = () => {
+  return (
+    <ContentSection>
+      <SectionTitle>Embark on Your Journey of Emotional Growth</SectionTitle>
+      <Paragraph>
+        The journey of emotional development is one of profound discovery and transformation. It's about learning to navigate the vast ocean of your emotions, understanding their ebbs and flows, and using this knowledge to steer your life with intention and insight. This path leads to not only personal fulfillment but also to enriched relationships and a more compassionate society.
+      </Paragraph>
+      <Paragraph>
+        You've explored the landscape of emotional intelligence, from understanding your emotions to managing them in constructive ways. You've assessed where you currently stand and armed yourself with strategies for growth. Now, it's time to take these insights and turn them into action.
+      </Paragraph>
+      <Paragraph>
+        Commit to one small change today. Perhaps start a journal, practice mindfulness for a few minutes each day, or engage in a heartfelt conversation with someone close to you. These small steps can lead to significant transformations in your emotional well-being.
+      </Paragraph>
+      <Paragraph>
+        Remember, emotional development is a continuous journey, and you're not expected to walk it alone. Reach out for support, connect with others on similar paths, and share your experiences. Your journey can be a beacon for others, just as their journeys can inspire you.
+      </Paragraph>
+      
+      <Paragraph>
+        As you continue on this path, consider joining our community of like-minded individuals, where you can find support, inspiration, and a place to share your growth. Together, let's build a world where emotional intelligence is not just an ideal, but a lived reality for all.
+      </Paragraph>
+    </ContentSection>
+  );
+};
+
+
 
       
     return (
@@ -373,6 +398,7 @@ const ResourcesForLearningSection = () => {
           <NavigatingDifficultEmotionsSection />
           <BuildingEmotionalConnectionsSection />
           <ResourcesForLearningSection />
+          <ConclusionEmotionalDevelopment />
 
        <SocialShareContainer>
         <ShareButton onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank')}>
