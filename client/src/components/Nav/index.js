@@ -48,8 +48,8 @@ const styles = {
   },
 
   navBar: {
-    borderTop: "4px solid #E4AD0B",
-    borderBottom: "4px solid #E4AD0B", // Adjusted border size
+    
+    
     paddingTop: "10px",
     paddingBottom: "10px",
     width: "100%",
