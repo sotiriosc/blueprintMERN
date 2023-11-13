@@ -145,10 +145,12 @@ export default function StressManagement() {
     // The IntroductionSection component
     
     const StressManagementHeader = () => {
+      const imageSrc = 'https://images.unsplash.com/photo-1604480132736-44c188fe4d20?q=80&w=1980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; // Direct URL to the image
         return (
           <HeaderContainer>
             <SectionTitle>Stress Management: Take Control</SectionTitle>
             <SubTitle>Unlock the door to a calmer, more fulfilling life.</SubTitle>
+            <img src={imageSrc} alt="Mental Health" style={{ width: '50%', height: 'auto' }} />
           </HeaderContainer>
         );
       };
@@ -254,9 +256,11 @@ const IntroductionSection = () => {
       };
       
       const TechniquesSection = () => {
+        const imageSrc = 'https://images.unsplash.com/photo-1581333100576-b73befd79a9b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; // Direct URL to the image
         return (
           <ContentSection>
             <SectionTitle>Mastering Stress with Proven Techniques</SectionTitle>
+            <img src={imageSrc} alt="Mental Health" style={{ width: '30%', height: 'auto' }} />
             <Paragraph>
               Managing stress effectively requires a toolbox of techniques that you can turn to. The key is to find what works best for you and to remember that a combination of strategies is often the most effective. Below, we explore a variety of approaches that empower you to regain control and restore balance.
             </Paragraph>
