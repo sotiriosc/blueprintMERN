@@ -365,6 +365,7 @@ const IntroductionSection = () => {
       
     return (
         <PageContainer>
+          
         <StressManagementHeader />
         <IntroductionSection />
         <SymptomsSection />

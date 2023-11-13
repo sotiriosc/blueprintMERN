@@ -54,6 +54,7 @@ import LegStretches from './pages/stretches/LegStretches';
 import ShoulderStretches from './pages/stretches/ShoulderStretches';
 import MentalHealthLandingPage from './pages/MentalHealthLanding';
 import StressManagement from './pages/mentalHealth/StressManagement';
+import EmotionalDevelopment from './pages/mentalHealth/EmotionalDevelopment';
 import HealingLandingPage from './pages/HealingLanding';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
@@ -214,6 +215,10 @@ function App() {
               <Route
                 path="/stressManagement"
                 element={<StressManagement />}
+              />
+              <Route
+                path="/emotionalDevelopment"
+                element={<EmotionalDevelopment />}
               />
               <Route
                 path="/healing"
