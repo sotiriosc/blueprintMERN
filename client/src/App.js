@@ -57,6 +57,7 @@ import StressManagement from './pages/mentalHealth/StressManagement';
 import LifestylePractices from './pages/mentalHealth/LifestylePractices';
 import EmotionalDevelopment from './pages/mentalHealth/EmotionalDevelopment';
 import MentalHealthEducation from './pages/mentalHealth/MentalHealthEducation';
+import Attitude from './pages/mentalHealth/Attitude';
 import HealingLandingPage from './pages/HealingLanding';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
@@ -229,6 +230,10 @@ function App() {
               <Route
                 path="/mentalHealthEducation"
                 element={<MentalHealthEducation />}
+              />
+              <Route  
+                path="/attitude"
+                element={<Attitude />}
               />
               <Route
                 path="/healing"

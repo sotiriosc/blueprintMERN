@@ -157,7 +157,7 @@ const MentalHealthHeader = () => {
             
             <SectionTitle>Understanding Mental Health</SectionTitle>
             <SubTitle>Empower Your Mind with Knowledge and Awareness</SubTitle>
-            <img src={imageSrc} alt="Mental Health" style={{ width: '30%', height: 'auto' }} />
+            <img src={imageSrc} alt="Mental Health" style={{ width: '50%', height: 'auto' }} />
         </HeaderContainer>
     );
 };

@@ -86,13 +86,13 @@ const CloseButton = styled.button`
 
 
 const MentalHealthLandingPage = () => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    setShowModal(true);
-  }, []);
+  // useEffect(() => {
+  //   setShowModal(true);
+  // }, []);
 
-  const closeModal = () => setShowModal(false);
+  // const closeModal = () => setShowModal(false);
   
   const title = "Welcome to Our Mental Health Page!!!🧠";
   const introText = "Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.";
@@ -110,7 +110,7 @@ const MentalHealthLandingPage = () => {
 
   return (
     <div className="container">
-      {showModal && (
+      {/* {showModal && (
         <Modal>
           <ModalContent>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
@@ -118,7 +118,7 @@ const MentalHealthLandingPage = () => {
             <p>We are diligently working to complete our guide. Thank you for your patience.</p>
           </ModalContent>
         </Modal>
-      )}
+      )} */}
       <Title>{title}</Title>
       <IntroText>{introText}</IntroText>
       <Grid>
