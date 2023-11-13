@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
-
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -141,7 +141,7 @@ export default function StressManagement() {
       };  
 
     const pageUrl = encodeURIComponent(window.location.href);
-    const shareMessage = encodeURIComponent("Check out this information on Emotional Development!");
+    const shareMessage = encodeURIComponent("Check out this information on Mental health education!");
 
     // The IntroductionSection component
     
@@ -415,6 +415,13 @@ const MentalHealthHeader = () => {
 
       
     return (
+        <>
+      <Helmet>
+        <title>Understanding Mental Health - YourAppName</title>
+        <meta name="description" content="Learn about mental health disorders, awareness, and self-care strategies." />
+        <meta name="keywords" content="mental health, mental well-being, self-care, mental health awareness, mental health support" />
+        {/* Other meta tags */}
+      </Helmet>
         <PageContainer>
           <MentalHealthHeader />
             <UnderstandingMentalHealthDisordersSection />
@@ -438,6 +445,7 @@ const MentalHealthHeader = () => {
 </ShareButton>
       </SocialShareContainer>
       </PageContainer>
+        </>
     );
   }
 
