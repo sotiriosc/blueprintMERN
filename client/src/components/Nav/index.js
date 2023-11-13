@@ -45,7 +45,6 @@ const styles = {
     textAlign: "center",
     margin: 0,
     backgroundColor: "#193875",
-    textShadow: "0 0 5px #fff, 0 0 10px #8f20b1c2, 0 0 15px #8f20b1c2, 0 0 20px #8f20b1c2, 0 0 25px #f59b52, 0 0 30px #f59b52, 0 0 35px #d6c913"
   },
 
   navBar: {
@@ -55,7 +54,7 @@ const styles = {
     paddingBottom: "10px",
     width: "100%",
     backgroundColor: "#193875",
-    border: "4px solid #E4AD0B", // Added yellow border
+  
   },
   ul: {
     display: "flex",
@@ -70,8 +69,8 @@ const styles = {
     padding: "5px 5px", // Added padding around the links
   },
   linkHover: {
-    color: '#dd44f1',
-    textDecoration: 'underline', // Added underline on hover
+    color: '#E4AD0B',
+    
   },
   menuItem: {
     marginRight: '5px',
