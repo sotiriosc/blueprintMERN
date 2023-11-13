@@ -211,7 +211,7 @@ function App() {
                 element={<ShoulderStretches />}
               />
               <Route
-                path="/mentalhealth"
+                path="/mentalHealth"
                 element={<MentalHealthLandingPage />}
               />
               <Route
