@@ -59,6 +59,7 @@ import EmotionalDevelopment from './pages/mentalHealth/EmotionalDevelopment';
 import MentalHealthEducation from './pages/mentalHealth/MentalHealthEducation';
 import Attitude from './pages/mentalHealth/Attitude';
 import HealingLandingPage from './pages/HealingLanding';
+import Healing from './pages/healing/healing';
 import Shop from './pages/Shop';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -238,6 +239,10 @@ function App() {
               <Route
                 path="/healing"
                 element={<HealingLandingPage />}
+              />
+              <Route
+                path="/healingInjuries"
+                element={<Healing />}
               />
               <Route 
                 path="/login" 

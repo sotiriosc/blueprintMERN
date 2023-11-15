@@ -12,7 +12,8 @@ const Category = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;  // explicit height
+  height: 400px;  // explicit height
+  width: 400px;
   background-size: cover;
   background-position: center;
   color: white;
@@ -42,62 +43,62 @@ const IntroText = styled.p`
   margin: 0 1rem;
 `;
 
-const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// const Modal = styled.div`
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.7);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-const ModalContent = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  position: relative;  // Add this line
-`;
+// const ModalContent = styled.div`
+//   background-color: white;
+//   padding: 20px;
+//   border-radius: 10px;
+//   text-align: center;
+//   position: relative;  // Add this line
+// `;
 
-const CloseButton = styled.button`
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: 2px solid black;  // Add a border
-  border-radius: 50%;  // Makes the border rounded
-  font-size: 2.5rem;
-  color: black;
-  cursor: pointer;
-  width: 40px;  // Set a width
-  height: 40px;  // Set a height
-  display: flex;  // Center the "X"
-  align-items: center;
-  justify-content: center;
+// const CloseButton = styled.button`
+//   position: absolute;
+//   top: 15px;
+//   right: 15px;
+//   background: none;
+//   border: 2px solid black;  // Add a border
+//   border-radius: 50%;  // Makes the border rounded
+//   font-size: 2.5rem;
+//   color: black;
+//   cursor: pointer;
+//   width: 40px;  // Set a width
+//   height: 40px;  // Set a height
+//   display: flex;  // Center the "X"
+//   align-items: center;
+//   justify-content: center;
 
-  &:hover {
-    border-color: red;  // Border becomes red on hover
-    color: red;  // "X" becomes red on hover
-  }
-`;
+//   &:hover {
+//     border-color: red;  // Border becomes red on hover
+//     color: red;  // "X" becomes red on hover
+//   }
+// `;
 
 const HealingLandingPage = () => {
 
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    setShowModal(true);
-  }, []);
+  // useEffect(() => {
+  //   setShowModal(true);
+  // }, []);
 
-  const closeModal = () => setShowModal(false);
+  // const closeModal = () => setShowModal(false);
   
   const title = "Welcome to Our Healing Page!!! ❤️‍🩹";
   const introText = "Here we offer the insights we have gained over many years of experience in the fitness industry. Our passion has cultivated a wealth of knowledge that we are excited to share with you.";
   const categories = [
-    { title: "Coming Soon", image: "https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", link: "/healing" },
+    { title: "Heal Injuries", image: "https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg", link: "/healingInjuries" },
     
 
     // Add more categores here
@@ -105,15 +106,15 @@ const HealingLandingPage = () => {
 
   return (
     <div className="container">
-       {showModal && (
-        <Modal>
-          <ModalContent>
-            <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <h2>Under Construction</h2>
-            <p>We are diligently working to complete our guide. Thank you for your patience.</p>
-          </ModalContent>
-        </Modal>
-      )}
+          {/* {showModal && (
+    //     <Modal>
+    //       <ModalContent>
+    //         <CloseButton onClick={closeModal}>&times;</CloseButton>
+    //         <h2>Under Construction</h2>
+    //         <p>We are diligently working to complete our guide. Thank you for your patience.</p>
+    //       </ModalContent>
+    //     </Modal>
+    //   )} */}
       <Title>{title}</Title>
       <IntroText>{introText}</IntroText>
       <Grid>

@@ -122,7 +122,7 @@ const Button = styled.button`
 `;
 
 const HeaderContainer = styled.div`
-  background: url('/path-to-your-header-image.jpg') no-repeat center center; // Add your header image path
+  background: url('') no-repeat center center; // Add your header image path
   background-size: cover;
   padding: 100px 0; // Adjust the padding to suit your design
 `;
@@ -417,7 +417,7 @@ const MentalHealthHeader = () => {
     return (
         <>
       <Helmet>
-        <title>Understanding Mental Health - YourAppName</title>
+        <title>Understanding Mental Health - Balanced Blueprint</title>
         <meta name="description" content="Learn about mental health disorders, awareness, and self-care strategies." />
         <meta name="keywords" content="mental health, mental well-being, self-care, mental health awareness, mental health support" />
         {/* Other meta tags */}
