@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 

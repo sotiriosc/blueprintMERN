@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -222,6 +223,24 @@ export default function ShoulderStretches() {
     const shareMessage = encodeURIComponent("Check out these great shoulder stretches for strength and flexibility!");
   
     return (
+      <>
+      <Helmet>
+  <title>Effective Shoulder Stretches | Enhance Flexibility & Strength</title>
+  <meta name="description" content="Discover the best shoulder stretches to increase flexibility, alleviate tension, and build strength. Perfect for all fitness levels." />
+  <meta name="keywords" content="Shoulder Stretches, Flexibility, Shoulder Strength, Injury Prevention, Stretching Exercises" />
+  <meta property="og:title" content="Effective Shoulder Stretches | Enhance Flexibility & Strength" />
+  <meta property="og:description" content="Explore our guide to effective shoulder stretches. Learn techniques to improve your shoulder flexibility and strength, suitable for all fitness enthusiasts." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={window.location.href} />
+  <meta property="og:image" content="URL_to_a_relevant_image" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Effective Shoulder Stretches | Enhance Flexibility & Strength" />
+  <meta property="twitter:description" content="Master shoulder stretches for enhanced flexibility, strength, and well-being. Click to explore our comprehensive guide." />
+  <meta property="twitter:image" content="URL_to_a_relevant_image" />
+  <link rel="canonical" href={window.location.href} />
+</Helmet>
+
+      
       <PageContainer>
         <SectionTitle>Shoulder Stretches for Strength and Flexibility</SectionTitle>
         
@@ -264,5 +283,6 @@ export default function ShoulderStretches() {
       </SocialShareContainer>
       
       </PageContainer>
+      </>
     );
   }

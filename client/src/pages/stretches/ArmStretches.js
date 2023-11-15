@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -227,6 +228,21 @@ export default function ArmStretches() {
     
   
     return (
+      <>
+      import { Helmet } from 'react-helmet';
+
+...
+
+<Helmet>
+  <meta charSet="utf-8" />
+  <title>Effective Arm Stretches for Improved Strength and Flexibility</title>
+  <meta name="description" content="Explore a comprehensive guide to arm stretches that enhance strength, flexibility, and reduce the risk of injury. Ideal for athletes, fitness enthusiasts, and anyone looking to improve their arm health." />
+  <meta name="keywords" content="Arm Stretches, Strength, Flexibility, Muscle Health, Injury Prevention, Fitness, Exercise" />
+  <meta name="Sotirios Chortoginnos" content="Balanced Blueprint" />
+  <link rel="canonical" href="www.balancedblueprint.ca/arm-stretches" />
+</Helmet>
+
+      
       <PageContainer>
         <SectionTitle>Arm Stretches for Strength and Flexibility</SectionTitle>
         
@@ -263,6 +279,7 @@ export default function ArmStretches() {
 
       </SocialShareContainer>
       </PageContainer>
+      </>
     );
   }
 
