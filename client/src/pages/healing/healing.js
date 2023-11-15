@@ -23,13 +23,13 @@ const SubTitle = styled.h3`
 
 const Paragraph = styled.p`
   font-size: 1.5em;
-  margin-bottom: 20px;
+  margin: 15px;
   text-align: left; 
 `;
 
 const List = styled.ul`
   list-style-type: none;
-  margin: 20px;
+  margin: 15px;
   text-align: left;
  
 `;
@@ -55,7 +55,7 @@ const SearchInput = styled.input`
 
 const InjuryContainer = styled.div`
   border: 1px solid #ddd;
-  padding: 20px;
+  padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
   background-color: #f9f9f9;
