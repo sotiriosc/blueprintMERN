@@ -29,10 +29,9 @@ const Paragraph = styled.p`
 
 const List = styled.ul`
   list-style-type: none;
-  margin-left: 40px;
+  margin: 20px;
   text-align: left;
-  margin-bottom: 40px;  
-  margin-top: 40px;
+ 
 `;
 
 const ListItem = styled.li`
