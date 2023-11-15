@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -363,7 +364,7 @@ export default function Healing() {
             ]
           },
           {
-            title: "Achilles Tendinitis",
+            title: "Achilles Tendinitis (Heel)",
             symptoms: "Pain and stiffness along the Achilles tendon and back of the heel, especially noticeable in the morning or after periods of inactivity.",
             stretches: [
               {
@@ -387,7 +388,7 @@ export default function Healing() {
             ]
           },
           {
-            title: "Plantar Fasciitis",
+            title: "Plantar Fasciitis (Bottom of Foot heel region)",
             symptoms: "Sharp pain in the bottom of the foot near the heel. Pain is often worse in the morning or after standing for long periods.",
             stretches: [
               {
@@ -415,7 +416,7 @@ export default function Healing() {
             ]
           },
           {
-            title: "Rotator Cuff Tendinitis",
+            title: "Rotator Cuff Tendinitis (Shoulder)",
             symptoms: "A dull ache deep in the shoulder, often worsening with certain movements or when lying on the affected side.",
             stretches: [
               {
@@ -576,7 +577,7 @@ export default function Healing() {
             ]
           },
           {
-            title: "Bursitis (Mild)",
+            title: "Bursitis (Mild Shoulder/Elbow/Hip/Knee)",
             symptoms: "Joint pain and swelling, typically in the shoulder, elbow, or hip. The area may be red and feel warm to the touch.",
             stretches: [
               {
@@ -768,7 +769,7 @@ export default function Healing() {
                 ]
               },
               {
-                title: "Sciatica (Mild)",
+                title: "Sciatica (Mild Back Pain)",
                 symptoms: "Pain that radiates along the sciatic nerve, from the lower back through the hips and buttocks, and down each leg. Numbness or tingling can also occur.",
                 stretches: [
                   {
@@ -800,7 +801,7 @@ export default function Healing() {
                 ]
               },
               {
-                title: "Patellofemoral Pain Syndrome",
+                title: "Patellofemoral Pain Syndrome (Knee)",
                 symptoms: "Pain around the kneecap, especially when sitting with bent knees, squatting, jumping, or using stairs. May feel a clicking or grinding sensation in the knee.",
                 stretches: [
                   {
@@ -927,6 +928,170 @@ export default function Healing() {
                   }
                 ]
               },
+              {
+                title: "De Quervain's Tenosynovitis (Thumb)",
+                symptoms: "Pain and swelling near the base of the thumb. Pain may occur when making a fist, grasping objects, or turning the wrist.",
+                stretches: [
+                  {
+                    name: "Thumb Stretch",
+                    description: "Extend your arm with your palm facing up. Gently pull your thumb back towards your body with your other hand. Hold for 15-30 seconds, then switch hands."
+                  },
+                  {
+                    name: "Wrist Flexor Stretch",
+                    description: "Extend your arm in front with your palm down. Gently pull your fingers back towards your body with the other hand. Hold for 30 seconds, then switch arms."
+                  },
+                  {
+                    name: "Wrist Extensor Stretch",
+                    description: "Extend your arm with your palm facing up. Gently press down on your fingers with the other hand. Hold for 30 seconds, then switch arms."
+                  }
+                ],
+                exercises: [
+                  {
+                    name: "Thumb Opposition",
+                    description: "Touch the tip of your thumb to each fingertip of the same hand in turn. Repeat this several times."
+                  },
+                  {
+                    name: "Grip Strengthening",
+                    description: "Use a soft stress ball or hand gripper. Squeeze and hold for a few seconds, then release. Repeat 10-15 times with each hand."
+                  },
+                  {
+                    name: "Wrist Curls",
+                    description: "Hold a light weight with your palm facing up. Bend your wrist upwards, then lower it. Do 10-15 repetitions with each hand."
+                  }
+                ]
+              },
+              {
+                title: "Lateral Epicondylitis (Elbow)",
+                symptoms: "Pain and tenderness on the outer side of the elbow, often aggravated by gripping or lifting. The pain might radiate into the forearm.",
+                stretches: [
+                  {
+                    name: "Wrist Extensor Stretch",
+                    description: "Extend your arm in front of you with your palm down. Gently bend your wrist down using the other hand, stretching the outer forearm. Hold for 15-30 seconds, then switch arms."
+                  },
+                  {
+                    name: "Wrist Flexor Stretch",
+                    description: "Extend your arm in front of you with your palm facing up. Gently pull your fingers towards you with the other hand, stretching the inner forearm. Hold for 15-30 seconds, then switch arms."
+                  },
+                  {
+                    name: "Elbow Extension Stretch",
+                    description: "Raise your arm overhead and use your other hand to gently press the elbow back. Hold for 30 seconds, then switch arms."
+                  }
+                ],
+                exercises: [
+                  {
+                    name: "Wrist Flexor Strengthening",
+                    description: "Hold a light weight with your palm up. Bend your wrist upwards, then lower it. Do 10-15 repetitions with each hand."
+                  },
+                  {
+                    name: "Wrist Extensor Strengthening",
+                    description: "Hold a light weight with your palm down. Lift your hand upwards, bending at the wrist, then lower it. Do 10-15 repetitions with each hand."
+                  },
+                  {
+                    name: "Grip Strengthening Exercises",
+                    description: "Use a soft stress ball or similar object. Squeeze the ball in your hand, hold for a few seconds, then release. Repeat 10-15 times with each hand."
+                  }
+                ]
+              },
+              {
+                title: "Turf Toe (Mild)",
+                symptoms: "Pain, swelling, and limited joint movement in the big toe. The pain worsens when walking or when pushing off the toe.",
+                stretches: [
+                  {
+                    name: "Big Toe Stretch",
+                    description: "Sit with your leg crossed over your knee. Gently pull the big toe towards you and hold for 15-30 seconds."
+                  },
+                  {
+                    name: "Toe Flexor Stretch",
+                    description: "Sit with your feet flat on the floor. Lift your heels, keeping your toes on the ground. Hold for a few seconds, then lower your heels."
+                  },
+                  {
+                    name: "Toe Extensor Stretch",
+                    description: "Sit with your feet flat on the ground. Lift your toes while keeping your heels on the ground. Hold for a few seconds, then lower your toes."
+                  }
+                ],
+                exercises: [
+                  {
+                    name: "Toe Curls",
+                    description: "Sit with a towel laid out in front of your feet. Use your toes to scrunch the towel towards you. Repeat several times."
+                  },
+                  {
+                    name: "Marble Pickup",
+                    description: "Place a few marbles on the ground. Use your toes to pick them up and move them into a bowl."
+                  },
+                  {
+                    name: "Toe Presses",
+                    description: "Stand barefoot and press your toes into the ground, then release. Repeat 10-15 times."
+                  }
+                ]
+              },
+              {
+                title: "Knee Bursitis (Mild)",
+                symptoms: "Swelling, warmth, and pain just above the knee joint, especially when bending the knee or kneeling. The affected area may be tender to the touch.",
+                stretches: [
+                  {
+                    name: "Quadriceps Stretch",
+                    description: "Stand and hold your ankle, pulling your foot towards your buttocks. Keep your knees together and hold the stretch for 30 seconds. Repeat with the other leg."
+                  },
+                  {
+                    name: "Hamstring Stretch",
+                    description: "Sit on the ground with one leg extended and the other bent. Lean forward gently, reaching towards your toes. Hold for 30 seconds, then switch legs."
+                  },
+                  {
+                    name: "Calf Stretch",
+                    description: "Stand facing a wall with one foot behind you, heel down. Lean forward, feeling a stretch in your calf. Hold for 30 seconds, then switch legs."
+                  }
+                ],
+                exercises: [
+                  {
+                    name: "Straight Leg Raises",
+                    description: "Lie on your back with one leg straight and the other bent. Raise the straight leg up slowly. Repeat 10-15 times, then switch legs."
+                  },
+                  {
+                    name: "Partial Squats",
+                    description: "Stand with your feet shoulder-width apart. Lower into a squat without going too deep. Keep your back straight and knees over your feet. Do 10-15 repetitions."
+                  },
+                  {
+                    name: "Step-Ups",
+                    description: "Stand in front of a step. Step up with one foot, then the other, and step down in the same order. Do 10-15 repetitions per leg."
+                  }
+                ]
+              },
+              {
+                title: "Minor Shoulder Strain",
+                symptoms: "Pain and tenderness in the shoulder, especially when moving the arm overhead or behind the back.",
+                stretches: [
+                  {
+                    name: "Pendulum Stretch",
+                    description: "Lean over slightly and let your affected arm hang down. Swing the arm gently in small circles. Do this for a minute or two to relieve tension."
+                  },
+                  {
+                    name: "Cross-Body Stretch",
+                    description: "Bring one arm across your chest and use the other hand to apply gentle pressure to the upper arm, enhancing the stretch. Hold for 15-30 seconds, then switch arms."
+                  },
+                  {
+                    name: "Doorway Stretch",
+                    description: "Stand in a doorway with your arms on the door frame, elbows at a 90-degree angle. Lean forward to stretch the front of your shoulder. Hold for 15-30 seconds."
+                  }
+                ],
+                exercises: [
+                  {
+                    name: "Shoulder Blade Squeezes",
+                    description: "Sit or stand with your arms at your sides. Squeeze your shoulder blades together and hold for a few seconds. Repeat 10-15 times."
+                  },
+                  {
+                    name: "Arm Slides",
+                    description: "Stand with your back against a wall, arms by your sides. Slide your arms upwards, keeping them against the wall, then back down. Repeat 10-15 times."
+                  },
+                  {
+                    name: "Rotator Cuff Strengthening",
+                    description: "Hold a light weight or resistance band. Keep your elbow at your side and rotate your arm outward, then return to the start position. Do 10-15 repetitions."
+                  }
+                ]
+              },
+              
+              
+              
+              
               
               
               
@@ -952,19 +1117,30 @@ export default function Healing() {
     const shareMessage = encodeURIComponent("Check out this information on healing injuries!");
   
     return (
-      <PageContainer>
-        <SectionTitle>Below is a compilation of injuries, symptoms and general advice on how to heal them, however we strongly advise seeking medical advice for serious injuries</SectionTitle>
-        
-        <SearchBarContainer>
-          <SearchInput 
-            type="text" 
-            placeholder="Search injuries..." 
-            onChange={handleSearchChange} 
-            value={searchTerm}
-          />
-        </SearchBarContainer>
-        
-        {filteredInjuries.map((injury, index) => (
+      <>
+        <Helmet>
+          <title>Injury Recovery Guide - Heal and Strengthen</title>
+          <meta name="description" content="Explore effective stretches and exercises to aid in the recovery of common injuries. Find tailored routines for specific injuries." />
+          <meta name="keywords" content="injury recovery, stretches, exercises, physical therapy, healing" />
+        </Helmet>
+
+        <PageContainer>
+          <SectionTitle>Heal and Strengthen: Your Injury Recovery Guide</SectionTitle>
+          
+          <Paragraph>
+            Welcome to our comprehensive injury recovery guide. Here, you can explore a variety of stretches and exercises specifically designed to aid in the healing of common injuries. Use the search bar below to find targeted routines for different injuries, from minor strains to specific conditions like sciatica or tennis elbow.
+          </Paragraph>
+
+          <SearchBarContainer>
+            <SearchInput 
+              type="text" 
+              placeholder="Search injuries..." 
+              onChange={handleSearchChange} 
+              value={searchTerm}
+            />
+          </SearchBarContainer>
+          
+          {filteredInjuries.map((injury, index) => (
           <InjuryContainer key={index}>
             <InjuryTitle>{injury.title}</InjuryTitle>
             <InjurySymptons>{injury.symptoms}</InjurySymptons>
@@ -1003,5 +1179,6 @@ export default function Healing() {
 
       </SocialShareContainer>
       </PageContainer>
+        </>
     );
   }
