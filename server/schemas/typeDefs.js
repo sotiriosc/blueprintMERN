@@ -9,7 +9,17 @@ const typeDefs = gql`
         password: String
         orders: [Order]
         comments: [Comment]
+        searches: [Search]
     }
+
+    type Search {
+        query: String
+        createdAt: String
+      }
+    
+      type ChatGptResponse {
+        reply: String
+      }
 
     type Comment {
         _id: ID
@@ -76,6 +86,10 @@ const typeDefs = gql`
         message: String
       }
 
+      type ChatGptResponse {
+        reply: String
+      }
+
     type Mutation {
         addComment(commentText: String!, firstName: String!, userId: ID!, blogId: ID!): Comment
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
@@ -84,6 +98,7 @@ const typeDefs = gql`
         updateProduct(_id: ID!, quantity: Int!): Product
         login(email: String!, password: String!): Auth
         submitContactForm(name: String!, email: String!, message: String!): Contact!
+        sendChatGptQuery(prompt: String!): ChatGptResponse
     }
 `;
 

@@ -2,11 +2,14 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
+const chatGpt = require('./utils/chatGpt')
 require('dotenv').config();
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const fs = require('fs');
 const cors = require('cors');
+const User = require('./models/User');
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -49,6 +52,28 @@ app.get('*', function(req, res) {
     }
   })
 })
+
+app.post('/chat-gpt', authMiddleware, async (req, res) => {
+  if (!req.user) {
+    return res.status(403).send('You must be logged in to use this feature');
+  }
+
+  const userPrompt = req.body.prompt;
+  
+  try {
+    const chatResponse = await chatGpt(userPrompt);
+    
+    // Save the search to the user's document
+    await User.findByIdAndUpdate(req.user._id, {
+      $push: { searches: { query: userPrompt } }
+    });
+
+    res.json({ reply: chatResponse });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Error processing your request');
+  }
+});
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

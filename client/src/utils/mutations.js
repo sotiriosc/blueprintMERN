@@ -70,3 +70,11 @@ export const SUBMIT_CONTACT_FORM = gql`
     }
   }
 `;
+
+export const SEND_CHAT_GPT_QUERY = gql`
+  mutation SendChatGptQuery($prompt: String!) {
+    sendChatGptQuery(prompt: $prompt) {
+      reply
+    }
+  }
+`;

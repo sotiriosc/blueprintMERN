@@ -59,8 +59,9 @@ import EmotionalDevelopment from './pages/mentalHealth/EmotionalDevelopment';
 import MentalHealthEducation from './pages/mentalHealth/MentalHealthEducation';
 import Attitude from './pages/mentalHealth/Attitude';
 import HealingLandingPage from './pages/HealingLanding';
-import Healing from './pages/healing/healing';
+import Healing from './pages/healing/healing.js';
 import Shop from './pages/Shop';
+import ChatGptPage from './pages/exercises/ChatGptPage.js';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import { StoreProvider } from './utils/GlobalState';
@@ -243,6 +244,10 @@ function App() {
               <Route
                 path="/healingInjuries"
                 element={<Healing />}
+              />
+              <Route
+                path= "/aiTrainer"
+                element={<ChatGptPage />}
               />
               <Route 
                 path="/login" 

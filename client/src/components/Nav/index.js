@@ -85,6 +85,9 @@ function DropdownMenu({hoverIndex, setHoverIndex}) {
       onMouseEnter={() => setHoverIndex(8)}
       onMouseLeave={() => setHoverIndex(null)}
     >
+      <Link to="/aiTrainer" className="dropdown-item">
+        AI Fitness Trainer
+      </Link>
       <Link to="/exercises" className="dropdown-item">
         Exercises
       </Link>

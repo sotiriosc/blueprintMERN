@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Category, Order, Comment, Blog, Contact} = require('../models');
-
+const chatGpt = require('../utils/chatGpt');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -126,6 +126,48 @@ const resolvers = {
     
           throw new AuthenticationError('Not logged in');
         },
+
+        sendChatGptQuery: async (_, { prompt }, context) => {
+          if (!context.user) {
+            throw new Error('You must be logged in to use this feature');
+          }
+        
+          const user = await User.findById(context.user._id);
+        
+          // Check if the lastApiCallDate is today
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+        
+          if (!user.lastApiCallDate || user.lastApiCallDate < today) {
+            // Reset count if the last call was before today
+            user.apiCallCount = 0;
+            user.lastApiCallDate = today;
+          }
+        
+          // Check if the user has exceeded the limit
+          if (user.apiCallCount >= 3) {
+            throw new Error('API call limit reached. Please wait until tomorrow.');
+          }
+        
+          try {
+            const chatResponse = await chatGpt(prompt);
+        
+            // Update the user's API call count and last call date
+            user.apiCallCount += 1;
+            await user.save();
+        
+            // Save the search and return the response
+            await User.findByIdAndUpdate(context.user._id, {
+              $push: { searches: { query: prompt } }
+            });
+        
+            return { reply: chatResponse };
+          } catch (error) {
+            console.error('Error:', error);
+            throw new Error('Error processing your request');
+          }
+        },
+
         updateUser: async (parent, args, context) => {
           if (context.user) {
             return await User.findByIdAndUpdate(context.user._id, args, { new: true });
@@ -192,6 +234,9 @@ const resolvers = {
       }
       
     },
-};    
+
+    
+  };
+
 module.exports = resolvers;
     
