@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -107,7 +108,14 @@ export default function Hydration() {
   const shareMessage = encodeURIComponent("Quence your thirst! for knowledge on hydration and well-being");
 
   return (
+    <>
+    <Helmet>
+  <title>Understanding the Importance of Hydration for Health and Wellness</title>
+  <meta name="description" content="Explore the vital role of hydration in health and wellness. Learn about the science of hydration, its impact on bodybuilding, healthy eating, mental health, and more." />
+  <meta name="keywords" content="hydration, health benefits, bodybuilding, healthy eating, mental health, water intake, staying hydrated, signs of dehydration, hydrating foods" />
+</Helmet>
 
+    
     <PageContainer>
 
       {/* Header */}
@@ -398,7 +406,7 @@ export default function Hydration() {
 
 
     </PageContainer>
-
+    </>
 
   );
 }

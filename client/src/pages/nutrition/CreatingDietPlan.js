@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; /* Auto margin for horizontal centering */
@@ -94,6 +95,14 @@ export default function CreatingDietPlan() {
   const shareMessage = encodeURIComponent("Check out this info on creating a diet plan!");
 
   return (
+    <>
+    <Helmet>
+  <title>Creating a Balanced Diet Plan - Your Guide to Better Nutrition</title>
+  <meta name="description" content="Learn the key steps to creating a balanced and sustainable diet plan. Explore comprehensive guidance on nutrition, goal setting, meal preparation, and more for a healthier lifestyle." />
+  <meta name="keywords" content="diet plan, healthy eating, nutrition guide, meal preparation, balanced diet, sustainable eating, nutritional goals, food tracking, diet consistency" />
+</Helmet>
+
+
     <PageContainer>
       <SectionTitle>The Balanced Blueprint for Creating a Diet Plan</SectionTitle>
 
@@ -202,5 +211,6 @@ export default function CreatingDietPlan() {
         {/* Add more buttons for other social networks */}
       </SocialShareContainer>
     </PageContainer>
+    </>
   );
 };

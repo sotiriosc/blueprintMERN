@@ -230,6 +230,16 @@ export default function BackStretches() {
     const shareMessage = encodeURIComponent("Check out these great lower body stretches for strength and flexibility!");
   
     return (
+      <>
+      <Helmet>
+  <meta charSet="utf-8" />
+  <title>Back Stretches for Strength and Flexibility</title>
+  <meta name="description" content="Explore a variety of back stretches to improve strength, flexibility, and posture. Ideal for people of all fitness levels seeking to reduce back pain and enhance spinal health." />
+  <meta name="keywords" content="Back Stretches, Flexibility, Strength, Spinal Health, Posture Improvement, Pain Relief" />
+  <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
+  <link rel="canonical" href="www.balancedblueprint.ca/back-stretches" />
+</Helmet>
+      
       <PageContainer>
         <SectionTitle>Back Stretches for Strength and Flexibility</SectionTitle>
         
@@ -265,5 +275,6 @@ export default function BackStretches() {
 
       </SocialShareContainer>
       </PageContainer>
+      </>
     );
   }

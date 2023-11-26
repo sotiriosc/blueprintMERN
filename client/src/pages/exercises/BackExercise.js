@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   padding: 2rem;
@@ -90,6 +91,13 @@ const BackExercise = () => {
   ];
 
   return (
+    <>
+      <Helmet>
+        <title>Effective Back Workouts - Strengthen Your Back Muscles</title>
+        <meta name="description" content="Explore the best back exercises for a strong and toned back. Our guide includes detailed instructions and video demonstrations for optimal back training." />
+        <meta name="keywords" content="back exercises, back workouts, pull ups, row machine, lat pulldown, deadlifts, strength training, muscle toning, fitness, gym exercises" />
+      </Helmet>
+
     <PageContainer>
   <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Arm Exercises</h1>
 
@@ -117,7 +125,8 @@ const BackExercise = () => {
     </ExerciseContainer>
   ))}
 </PageContainer>
-
+            
+      </>
   );
 };
 

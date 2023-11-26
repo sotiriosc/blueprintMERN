@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -104,6 +105,14 @@ export default function Fruits() {
   const shareMessage = encodeURIComponent("Learn about the health benefits of fruits and vegetables!");
 
   return (
+    <>
+    <Helmet>
+  <title>Nutritional Symphony of Fruits - Unleashing the Power of Nature's Bounty</title>
+  <meta name="description" content="Delve into the world of fruits and discover their health benefits. Learn about seasonal varieties, how to pick the right fruits, and much more for a nutritious diet." />
+  <meta name="keywords" content="fruits, nutritional benefits, healthy eating, seasonal fruits, fruit varieties, diet, health, fresh produce, choosing fruits, fruit benefits" />
+</Helmet>
+
+    
     <PageContainer>
       {/* Header */}
       <SectionTitle>The Nutritional Symphony of Fruits</SectionTitle>
@@ -267,5 +276,6 @@ export default function Fruits() {
 
 
     </PageContainer>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -253,6 +254,21 @@ export default function LegStretches() {
     const shareMessage = encodeURIComponent("Check out these great lower body stretches for strength and flexibility!");
   
     return (
+      <>
+      import { Helmet } from 'react-helmet';
+
+...
+
+<Helmet>
+  <meta charSet="utf-8" />
+  <title>Leg and Lower Body Stretches for Strength and Flexibility</title>
+  <meta name="description" content="Explore a variety of leg and lower body stretches designed to enhance strength, flexibility, and overall mobility. Ideal for athletes and anyone seeking to improve lower body health." />
+  <meta name="keywords" content="Leg Stretches, Lower Body Flexibility, Strength Training, Mobility Improvement, Fitness, Exercise" />
+  <meta name="author" content="Balanced Blueprint" />
+  <link rel="canonical" href="www.balancedblueprint.ca/leg-stretches" />
+</Helmet>
+
+      
       <PageContainer>
         <SectionTitle>Leg and lower body Stretches for Strength and Flexibility</SectionTitle>
         
@@ -288,5 +304,6 @@ export default function LegStretches() {
 
       </SocialShareContainer>
       </PageContainer>
+      </>
     );
   }

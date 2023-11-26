@@ -232,11 +232,11 @@ export default function ShoulderStretches() {
   <meta property="og:description" content="Explore our guide to effective shoulder stretches. Learn techniques to improve your shoulder flexibility and strength, suitable for all fitness enthusiasts." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={window.location.href} />
-  <meta property="og:image" content="URL_to_a_relevant_image" />
-  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://images.pexels.com/photos/209969/pexels-photo-209969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+  <meta property="twitter:card" content="https://images.pexels.com/photos/209969/pexels-photo-209969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
   <meta property="twitter:title" content="Effective Shoulder Stretches | Enhance Flexibility & Strength" />
   <meta property="twitter:description" content="Master shoulder stretches for enhanced flexibility, strength, and well-being. Click to explore our comprehensive guide." />
-  <meta property="twitter:image" content="URL_to_a_relevant_image" />
+  <meta property="twitter:image" content="https://images.pexels.com/photos/209969/pexels-photo-209969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
   <link rel="canonical" href={window.location.href} />
 </Helmet>
 

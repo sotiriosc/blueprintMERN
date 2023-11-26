@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 // Your existing CSS
 const PageContainer = styled.div`
@@ -114,6 +115,14 @@ export default function Micronutrients() {
 
 
   return (
+    <>
+    <Helmet>
+  <title>Understanding Micronutrients - The Small Components with a Big Impact on Your Health</title>
+  <meta name="description" content="Explore the world of micronutrients, their roles in our body, and how to incorporate them effectively for optimal health and well-being." />
+  <meta name="keywords" content="micronutrients, health, vitamins, minerals, trace elements, nutrition, dietary planning, healthy eating" />
+</Helmet>
+
+
     <PageContainer>
 
       {/* Header */}
@@ -328,5 +337,6 @@ export default function Micronutrients() {
       </SocialShareContainer>
 
     </PageContainer>
+    </>
   );
 }

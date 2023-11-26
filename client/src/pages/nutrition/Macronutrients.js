@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -108,6 +109,14 @@ export default function Macronutrients() {
   const shareMessage = encodeURIComponent("Learn how to manage your macronutrients and how to utilize them for health!");
 
   return (
+    <>
+    <Helmet>
+  <title>Understanding Macronutrients - Your Guide to Balanced Nutrition</title>
+  <meta name="description" content="Learn about macronutrients, their roles in nutrition and health, and how to utilize them for muscle-building and overall well-being." />
+  <meta name="keywords" content="macronutrients, balanced nutrition, health, muscle building, protein, carbohydrates, fats, diet planning, nutritional needs" />
+</Helmet>
+
+    
     <PageContainer>
 
       {/* Header */}
@@ -298,5 +307,6 @@ If you notice any of these signs, consider revisiting your macro ratios or consu
       </SocialShareContainer>
 
     </PageContainer>
+    </>
   );
 }

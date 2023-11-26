@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   padding: 2rem;
@@ -90,6 +91,12 @@ const ArmExercise = () => {
   ];
 
   return (
+    <>
+      <Helmet>
+        <title>Best Arm Exercises - Strengthen and Tone Your Arms</title>
+        <meta name="description" content="Discover effective arm exercises to build strength and tone your muscles. Featuring step-by-step guides and video demonstrations for optimal workout routines." />
+        <meta name="keywords" content="arm exercises, muscle building, strength training, bicep curls, tricep extensions, workout routines, fitness" />
+      </Helmet>
     <PageContainer>
   <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Arm Exercises</h1>
 
@@ -117,7 +124,7 @@ const ArmExercise = () => {
     </ExerciseContainer>
   ))}
 </PageContainer>
-
+</>
   );
 };
 

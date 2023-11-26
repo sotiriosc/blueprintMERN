@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   padding: 2rem;
@@ -90,6 +91,12 @@ const ChestExercise = () => {
   ];
 
   return (
+    <>
+      <Helmet>
+        <title>Ultimate Chest Workouts - Build a Stronger Chest</title>
+        <meta name="description" content="Discover the best chest exercises for a robust and muscular chest. Featuring step-by-step guides and video demonstrations for effective workouts." />
+        <meta name="keywords" content="chest exercises, chest workouts, push ups, bench press, muscle building, strength training, fitness, gym exercises" />
+      </Helmet>
     <PageContainer>
   <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Chest Exercises</h1>
 
@@ -117,7 +124,8 @@ const ChestExercise = () => {
     </ExerciseContainer>
   ))}
 </PageContainer>
-
+            
+      </>
   );
 };
 

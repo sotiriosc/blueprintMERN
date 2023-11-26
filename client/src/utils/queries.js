@@ -94,3 +94,11 @@ export const QUERY_BLOG = gql`
     }
   }
 `;
+
+export const SEND_CHAT_GPT_QUERY = gql`
+  mutation sendChatGptQuery($prompt: String!) {
+    sendChatGptQuery(prompt: $prompt) {
+      reply
+    }
+  }
+`;

@@ -1,0 +1,64 @@
+.chat-gpt-page {
+    text-align: center;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .chat-form {
+    margin-top: 20px;
+  }
+  
+  .input-prompt {
+    width: 80%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submit-button:hover {
+    background-color: darkblue;
+  }
+  
+  .status-message {
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  
+  .loading {
+    color: orange;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  .response-container {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .response-content {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-y: auto;
+    max-height: 300px;
+  }
+  

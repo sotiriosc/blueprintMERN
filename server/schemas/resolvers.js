@@ -163,9 +163,19 @@ const resolvers = {
         
             return { reply: chatResponse };
           } catch (error) {
-            console.error('Error:', error);
-            throw new Error('Error processing your request');
+            if (error.response) {
+              // Log the full error response from the ChatGPT API
+              console.error('ChatGPT API Error:', error.response.data);
+            } else {
+              // Log other types of errors
+              console.error('Error:', error.message);
+            }
+            throw error;
           }
+          
+          
+          
+          
         },
 
         updateUser: async (parent, args, context) => {

@@ -1,5 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const expressPlayground = require('graphql-playground-middleware-express').default;
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const chatGpt = require('./utils/chatGpt')
@@ -18,6 +19,13 @@ const server = new ApolloServer({
   resolvers,
   context: authMiddleware,
 });
+
+
+
+
+
+// Set up GraphQL Playground route
+app.get('/graphql', expressPlayground({ endpoint: '/graphql' }));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

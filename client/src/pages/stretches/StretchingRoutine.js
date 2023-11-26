@@ -1,6 +1,7 @@
 // Imports and dependencies
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 // Additional imports like visual aids, icons, or external resources.
 
 // Styled components and any CSS-in-JS if needed
@@ -113,6 +114,24 @@ export default function StretchingRoutine() {
 
 
   return (
+    <>
+    <Helmet>
+  <title>Stretching Routine Guide | Improve Flexibility & Well-being</title>
+  <meta name="description" content="Master the art of stretching for enhanced flexibility, injury prevention, and stress relief. Discover various stretching techniques, benefits, and personalized routines." />
+  <meta name="keywords" content="Stretching, Flexibility, Exercise Routine, Health, Wellness, Injury Prevention, Stress Relief" />
+  <meta property="og:title" content="Stretching Routine Guide | Improve Flexibility & Well-being" />
+  <meta property="og:description" content="Explore the comprehensive guide to stretching for better flexibility, mental clarity, and physical health. Learn effective techniques and daily routines." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={window.location.href} />
+  <meta property="og:image" content="https://images.pexels.com/photos/2424257/pexels-photo-2424257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+  <meta property="twitter:card" content="https://images.pexels.com/photos/2424257/pexels-photo-2424257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+  <meta property="twitter:title" content="Stretching Routine Guide | Improve Flexibility & Well-being" />
+  <meta property="twitter:description" content="Your ultimate guide to effective stretching routines for better flexibility, injury prevention, and overall well-being. Click to learn more!" />
+  <meta property="twitter:image" content="https://images.pexels.com/photos/2424257/pexels-photo-2424257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+  <link rel="canonical" href={window.location.href} />
+</Helmet>
+
+    
     
       <PageContainer>
       <SectionTitle>Welcome to Your Stretching Routine Guide</SectionTitle>
@@ -461,6 +480,6 @@ export default function StretchingRoutine() {
       </SocialShareContainer>
 
     </PageContainer>
-    
+    </>
   );
 }

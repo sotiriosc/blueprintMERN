@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -223,6 +224,16 @@ export default function CoreStretches() {
     const shareMessage = encodeURIComponent("Check out these core stretches for strength and flexibility!");
   
     return (
+      <>
+      <Helmet>
+  <meta charSet="utf-8" />
+  <title>Core Stretches for Strength and Flexibility</title>
+  <meta name="description" content="Explore effective core stretches to enhance core strength and flexibility. Ideal for improving posture, reducing back pain, and enhancing overall fitness." />
+  <meta name="keywords" content="Core Stretches, Strength, Flexibility, Posture Improvement, Fitness, Back Pain Relief" />
+  <meta name="author" content="Balanced Blueprint" />
+  <link rel="canonical" href="www.balancedblueprint.ca/core-stretches" />
+</Helmet>
+      
       <PageContainer>
         <SectionTitle>Core Stretches for Strength and Flexibility</SectionTitle>
         
@@ -258,5 +269,6 @@ export default function CoreStretches() {
 
       </SocialShareContainer>
       </PageContainer>
+      </>
     );
   }

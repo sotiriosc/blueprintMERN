@@ -1118,10 +1118,27 @@ export default function Healing() {
     return (
       <>
         <Helmet>
-          <title>Injury Recovery Guide - Heal and Strengthen</title>
-          <meta name="description" content="Explore effective stretches and exercises to aid in the recovery of common injuries. Find tailored routines for specific injuries." />
-          <meta name="keywords" content="injury recovery, stretches, exercises, physical therapy, healing" />
-        </Helmet>
+  <title>Injury Recovery Guide - Heal and Strengthen</title>
+  <meta name="description" content="Explore effective stretches and exercises to aid in the recovery of common injuries. Find tailored routines for specific injuries." />
+  <meta name="keywords" content="injury recovery, stretches, exercises, physical therapy, healing" />
+
+  {/* Open Graph / Facebook */}
+  <meta property="og:title" content="Injury Recovery Guide - Heal and Strengthen" />
+  <meta property="og:description" content="Expert advice on stretches and exercises for injury recovery. Discover tailored routines for effective healing and strengthening." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={window.location.href} />
+  <meta property="og:image" content="https://images.pexels.com/photos/4506108/pexels-photo-4506108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" /> {/* Replace with your image URL */}
+
+  {/* Twitter */}
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Injury Recovery Guide - Heal and Strengthen" />
+  <meta property="twitter:description" content="Your guide to injury recovery through stretches and exercises. Custom routines for a faster and safer healing process." />
+  <meta property="twitter:image" content="https://images.pexels.com/photos/4506108/pexels-photo-4506108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" /> {/* Replace with your image URL */}
+
+  {/* Canonical URL */}
+  <link rel="canonical" href={window.location.href} />
+</Helmet>
+
 
         <PageContainer>
           <SectionTitle>Heal and Strengthen: Your Injury Recovery Guide</SectionTitle>

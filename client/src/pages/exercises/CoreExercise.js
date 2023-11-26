@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   padding: 2rem;
@@ -85,6 +86,13 @@ const CoreExercise = () => {
   ];
 
   return (
+    <>
+    <Helmet>
+  <title>Ultimate Core Workouts - Strengthen Your Core Muscles</title>
+  <meta name="description" content="Discover effective core exercises for a strong and toned midsection. Featuring step-by-step instructions and video demonstrations for optimal core training." />
+  <meta name="keywords" content="core exercises, abdominal workouts, core strengthening, fitness, workout routines, gym exercises, Russian twists, bicycle crunches, leg raises, mountain climbers, hanging leg raises" />
+</Helmet>
+
     <PageContainer>
   <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Core Exercises</h1>
 
@@ -112,7 +120,7 @@ const CoreExercise = () => {
     </ExerciseContainer>
   ))}
 </PageContainer>
-
+</>
   );
 };
 

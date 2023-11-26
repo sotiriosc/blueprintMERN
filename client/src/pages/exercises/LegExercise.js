@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   padding: 2rem;
@@ -89,6 +90,14 @@ const LegExercise = () => {
   ];
 
   return (
+    <>
+    <Helmet>
+  <title>Essential Leg Workouts - Build and Tone Your Legs</title>
+  <meta name="description" content="Explore a range of leg exercises to strengthen and tone your lower body. Detailed instructions and video guides for squats, leg presses, lunges, and more." />
+  <meta name="keywords" content="leg exercises, leg workouts, squats, leg press, lunges, calf raises, hamstring curls, pistol squat, strength training, fitness, gym exercises" />
+</Helmet>
+
+    
     <PageContainer>
   <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Leg Exercises</h1>
 
@@ -116,7 +125,7 @@ const LegExercise = () => {
     </ExerciseContainer>
   ))}
 </PageContainer>
-
+</>
   );
 };
 

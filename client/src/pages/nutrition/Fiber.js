@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -109,6 +110,14 @@ export default function Fiber() {
   const shareMessage = encodeURIComponent("Get your fill on fiber!");
 
   return (
+    <>
+    <Helmet>
+  <title>Dietary Fiber Guide - Understanding and Maximizing Benefits</title>
+  <meta name="description" content="Unlock the secrets of dietary fiber for better health. Learn about different types of fiber, their benefits, and how to effectively incorporate them into your diet." />
+  <meta name="keywords" content="dietary fiber, fiber benefits, healthy diet, nutrition, digestive health, weight management, heart health, high-fiber foods, fiber-rich diet" />
+</Helmet>
+
+
     <PageContainer>
       <SectionTitle>The Comprehensive Guide to Dietary Fiber</SectionTitle>
       
@@ -310,5 +319,6 @@ export default function Fiber() {
       </SocialShareContainer>
 
     </PageContainer>
+    </>
   );
 }

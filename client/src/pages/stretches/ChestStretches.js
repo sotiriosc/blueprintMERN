@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   margin: 20px auto; 
@@ -222,6 +223,21 @@ export default function ChestStretches() {
     const shareMessage = encodeURIComponent("Check out these great chest stretches for strength and flexibility!");
   
     return (
+      <>
+      import { Helmet } from 'react-helmet';
+
+...
+
+<Helmet>
+  <meta charSet="utf-8" />
+  <title>Chest Stretches for Strength and Flexibility</title>
+  <meta name="description" content="Discover effective chest stretches to enhance strength, flexibility, and posture. Ideal for athletes, fitness enthusiasts, and anyone looking to improve chest muscle health." />
+  <meta name="keywords" content="Chest Stretches, Strength, Flexibility, Muscle Health, Posture Improvement, Fitness" />
+  <meta name="Sotirios Chortogiannos" content="Balanced Blueprint" />
+  <link rel="canonical" href="www.balancedblueprint.ca/chest-stretches" />
+</Helmet>
+
+      
       <PageContainer>
         <SectionTitle>Chest Stretches for Strength and Flexibility</SectionTitle>
         
@@ -259,5 +275,6 @@ export default function ChestStretches() {
         
        
       </PageContainer>
+      </>
     );
   }

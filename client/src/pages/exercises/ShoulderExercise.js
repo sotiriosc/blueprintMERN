@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
   padding: 2rem;
@@ -90,6 +91,14 @@ const ShoulderExercise = () => {
   ];
 
   return (
+    <>
+    <Helmet>
+  <title>Complete Shoulder Workouts - Enhance Your Shoulder Strength</title>
+  <meta name="description" content="Discover a variety of shoulder exercises to build strength and improve mobility. Featuring detailed instructions and upcoming video guides for effective shoulder workouts." />
+  <meta name="keywords" content="shoulder exercises, shoulder workouts, shoulder press, lateral raises, deltoid exercises, strength training, fitness, gym exercises, rotator cuff" />
+</Helmet>
+
+    
     <PageContainer>
   <h1 style={{ textAlign: 'center', maxWidth: '95%' }}>Best Shoulder Exercises</h1>
 
@@ -118,7 +127,7 @@ const ShoulderExercise = () => {
     
   ))}
 </PageContainer>
-
+</>
   );
 };
 

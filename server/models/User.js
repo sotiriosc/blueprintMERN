@@ -26,6 +26,22 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
+  searches: [
+    {
+      query: String,
+      createdAt: {
+          type: Date,
+          default: Date.now
+      }
+    }
+  ],
+  apiCallCount: { 
+    type: Number, 
+    default: 0 
+  },
+  lastApiCallDate: { 
+    type: Date 
+  },
   orders: [Order.schema],
   comments: [Comment.schema]
 });
