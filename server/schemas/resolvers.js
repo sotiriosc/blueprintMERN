@@ -1,6 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order, Comment, Blog, Contact} = require('../models');
-const Search = require('../models/Search'); // Import the Search model
+const { User, Product, Category, Order, Comment, Blog, Contact, Search} = require('../models');
 const chatGpt = require('../utils/chatGpt');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -22,9 +21,34 @@ const resolvers = {
             $regex: name
           };
         }
+        
   
         return await Product.find(params).populate('category');
       },
+      userResponses: async (_, args, context) => {
+        // Check if the user is logged in
+        if (!context.user) {
+          throw new Error('You must be logged in to view responses');
+        }
+      
+        // Fetch and return responses associated with the logged-in user
+        try {
+          const userSearches = await Search.find({ userId: context.user._id });
+          return userSearches.map(search => {
+            return {
+              id: search._id.toString(), // Map MongoDB '_id' to GraphQL 'id'
+              query: search.query,
+              response: search.response,
+              createdAt: search.createdAt.toISOString(),
+            };
+          });
+        } catch (err) {
+          console.error(err);
+          throw new Error('Error fetching user responses');
+        }
+      },
+      
+      
       product: async (parent, { _id }) => {
         return await Product.findById(_id).populate('category');
       },
@@ -79,7 +103,8 @@ const resolvers = {
             quantity: 1
           });
         }
-  
+        
+        
         const session = await stripe.checkout.sessions.create({
           payment_method_types: ['card'],
           line_items,
@@ -129,18 +154,20 @@ const resolvers = {
         },
 
         sendChatGptQuery: async (_, { prompt }, context) => {
+          // Check if the user is logged in
           if (!context.user) {
             throw new Error('You must be logged in to use this feature');
           }
         
+          // Find the user in the database using the ID from the context
           const user = await User.findById(context.user._id);
-        
-
+          if (!user) {
+            throw new Error('User not found');
+          }
         
           // Check if the lastApiCallDate is today
           const today = new Date();
           today.setHours(0, 0, 0, 0);
-        
           if (!user.lastApiCallDate || user.lastApiCallDate < today) {
             // Reset count if the last call was before today
             user.apiCallCount = 0;
@@ -155,35 +182,26 @@ const resolvers = {
           try {
             const chatResponse = await chatGpt(prompt);
         
-            // Create a new Search document
-            console.log("Prompt:", prompt);
-            const search = new Search({ query: prompt });
-            await search.save();
-
-        
-            // Update the user's API call count, last call date, and add the search ID
-            await User.findByIdAndUpdate(context.user._id, {
-              $push: { searches: search._id }, // Corrected to search._id
-              $inc: { apiCallCount: 1 },
-              lastApiCallDate: new Date()
+            // Create a new Search document with the user's ID
+            const search = new Search({
+              query: prompt,
+              response: chatResponse,
+              userId: user._id // Include the user ID
             });
+            await search.save();
+        
+            // Update the user's API call count and last call date
+            user.apiCallCount += 1;
+            user.lastApiCallDate = new Date();
+            await user.save();
         
             return { reply: chatResponse };
           } catch (error) {
-            if (error.response) {
-              // Log the full error response from the ChatGPT API
-              console.error('ChatGPT API Error:', error.response.data);
-            } else {
-              // Log other types of errors
-              console.error('Error:', error.message);
-            }
-            throw error;
+            console.error('Error:', error.message);
+            throw new Error('Error processing ChatGPT query');
           }
-          
-          
-          
-          
         },
+        
 
         updateUser: async (parent, args, context) => {
           if (context.user) {
@@ -214,6 +232,37 @@ const resolvers = {
     
           return { token, user };
         },
+
+          deleteUserResponse: async (_, { responseId }, context) => {
+          if (!context.user) {
+            throw new Error('Not authenticated');
+          }
+        
+          const user = await User.findById(context.user._id);
+          if (!user) {
+            throw new Error('User not found');
+          }
+        
+          // Assuming 'Search' is the model where responses are stored
+          const response = await Search.findById(responseId);
+          if (!response) {
+            throw new Error('Response not found');
+          }
+        
+          // Additional check if the response belongs to the user
+          if (response.userId.toString() !== context.user._id.toString()) {
+            throw new Error('User not found or user has no responses');
+          }
+        
+          // Proceed with deletion
+          await Search.findByIdAndDelete(responseId);
+        
+          // Return a success message or similar
+          return 'Response deleted successfully';
+        }
+        
+        ,
+
         addComment: async (parent, { firstName, commentText, blogId, userId }, context, info) => {
           // create a new comment
           const comment = new Comment({

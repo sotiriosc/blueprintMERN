@@ -14,6 +14,7 @@ const typeDefs = gql`
 
     type Search {
         query: String
+        response: String
         createdAt: String
       }
     
@@ -69,7 +70,14 @@ const typeDefs = gql`
         order(_id: ID!): Order
         checkout(products: [ID]!): Checkout
         blog(_id: ID!): Blog  
+        userResponses: [Response]
         
+    }
+
+    type Response {
+      id: ID!
+      query: String!
+      response: String!
     }
 
     type Blog {
@@ -99,6 +107,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         submitContactForm(name: String!, email: String!, message: String!): Contact!
         sendChatGptQuery(prompt: String!): ChatGptResponse
+        deleteUserResponse(responseId: ID!): String
     }
 `;
 

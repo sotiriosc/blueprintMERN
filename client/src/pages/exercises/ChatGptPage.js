@@ -1,48 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { SEND_CHAT_GPT_QUERY } from '../../utils/mutations';
+import { SEND_CHAT_GPT_QUERY, DELETE_USER_RESPONSE  } from '../../utils/mutations';
+import { FETCH_USER_RESPONSES} from '../../utils/queries';
+import { Search } from 'semantic-ui-react';
+
 
 function ChatGptPage() {
   const [prompt, setPrompt] = useState('');
-  const [responses, setResponses] = useState([]); // Store an array of responses
+  const [responses, setResponses] = useState([]);
+  const { data, loading: loadingResponses, refetch } = useQuery(FETCH_USER_RESPONSES);
+  const [deleteResponse] = useMutation(DELETE_USER_RESPONSE, {
+    onCompleted: () => refetch(),
+  });
   const [sendQuery, { loading, error }] = useMutation(SEND_CHAT_GPT_QUERY);
 
   useEffect(() => {
-    // Load stored responses from local storage when the component mounts
-    const storedResponses = localStorage.getItem('chatGptResponses');
-    if (storedResponses) {
-      setResponses(JSON.parse(storedResponses));
+    if (data && data.userResponses) {
+      console.log("User Responses:", data.userResponses); // For debugging
+      setResponses(data.userResponses);
     }
-  }, []);
+  }, [data]);
+  
 
   const handleInputChange = (event) => {
     setPrompt(event.target.value);
   };
 
-  const handleDismiss = (index) => {
-    // Remove the response from the array
-    const updatedResponses = responses.filter((_, i) => i !== index);
-    setResponses(updatedResponses);
-
-    // Update local storage
-    localStorage.setItem('chatGptResponses', JSON.stringify(updatedResponses));
+  const handleDismiss = async (responseId) => {
+    console.log('Dismissing response with ID:', responseId); // For debugging
+    await deleteResponse({ variables: { responseId } });
   };
+  
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await sendQuery({ variables: { prompt } });
       if (data) {
-        const newResponses = [...responses, data.sendChatGptQuery.reply];
+        const newResponse = {
+          id: data.sendChatGptQuery.id, // Assuming the backend returns an ID
+          query: prompt,
+          response: data.sendChatGptQuery.reply
+        };
+        const newResponses = [...responses, newResponse];
         setResponses(newResponses);
-        localStorage.setItem('chatGptResponses', JSON.stringify(newResponses));
       }
     } catch (err) {
       console.error(err);
     }
   };
+  
 
   // Define your styles here
   const styles = {
@@ -212,27 +222,32 @@ const Button = styled.button`
       <h1>Your Personal AI Trainer</h1>
       <p>Ask me a fitness question! You can even let me know whats in your fridge and request advice on a healthy meal to make with what ever you got.</p>
       <form onSubmit={handleSubmit} style={styles.chatForm}>
-        <textarea
-          style={styles.inputPrompt}
-          placeholder="Enter your prompt"
-          value={prompt}
-          onChange={handleInputChange}
-        />
-        <button type="submit" style={styles.submitButton}>Send</button>
-      </form>
+  <textarea
+    style={styles.inputPrompt}
+    placeholder="Enter your prompt"
+    value={prompt}
+    onChange={handleInputChange}
+  />
+  {/* Submit button */}
+  <button type="submit" style={styles.submitButton}>
+    Send
+  </button>
+</form>
       {loading && <p style={styles.statusMessage}>Sending...</p>}
       {error && <p style={{...styles.statusMessage, ...styles.error}}>Error: {error.message}</p>}
       
       {/* Display all responses */}
-      {responses.map((response, index) => (
-        <div key={index} style={styles.responseContainer}>
-          <p>Response:</p>
-          <div style={styles.responseContent}>{response}</div>
-          <button onClick={() => handleDismiss(index)} style={styles.dismissButton}>
-            Dismiss
-          </button>
-        </div>
-      ))}
+      {responses.map((response) => (
+  <div key={response.id} style={styles.responseContainer}> {/* Ensure response.id is unique */}
+    <p>{response.query}</p>
+    <div style={styles.responseContent}>{response.response}</div>
+    <button onClick={() => handleDismiss(response.id)}>
+      Dismiss
+    </button>
+  </div>
+))}
+
+
     
     <SocialShareContainer>
     <ShareButton onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank')}>

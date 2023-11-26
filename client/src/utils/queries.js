@@ -95,10 +95,12 @@ export const QUERY_BLOG = gql`
   }
 `;
 
-export const SEND_CHAT_GPT_QUERY = gql`
-  mutation sendChatGptQuery($prompt: String!) {
-    sendChatGptQuery(prompt: $prompt) {
-      reply
+export const FETCH_USER_RESPONSES = gql`
+  query fetchUserResponses {
+    userResponses {
+      id
+      query
+      response
     }
   }
 `;

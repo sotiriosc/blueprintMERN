@@ -78,3 +78,10 @@ export const SEND_CHAT_GPT_QUERY = gql`
     }
   }
 `;
+
+export const DELETE_USER_RESPONSE = gql`
+  mutation deleteUserResponse($responseId: ID!) {
+    deleteUserResponse(responseId: $responseId)
+  }
+`;
+
