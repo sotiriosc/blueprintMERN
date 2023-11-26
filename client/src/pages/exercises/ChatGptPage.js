@@ -21,6 +21,15 @@ function ChatGptPage() {
     setPrompt(event.target.value);
   };
 
+  const handleDismiss = (index) => {
+    // Remove the response from the array
+    const updatedResponses = responses.filter((_, i) => i !== index);
+    setResponses(updatedResponses);
+
+    // Update local storage
+    localStorage.setItem('chatGptResponses', JSON.stringify(updatedResponses));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -219,6 +228,9 @@ const Button = styled.button`
         <div key={index} style={styles.responseContainer}>
           <p>Response:</p>
           <div style={styles.responseContent}>{response}</div>
+          <button onClick={() => handleDismiss(index)} style={styles.dismissButton}>
+            Dismiss
+          </button>
         </div>
       ))}
     
