@@ -216,8 +216,11 @@ const resolvers = {
           return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
         },
         login: async (parent, { email, password }) => {
+          // Convert email to lowercase for comparison
+          email = email.toLowerCase();
+        
           const user = await User.findOne({ email });
-    
+        
           if (!user) {
             throw new AuthenticationError('Incorrect credentials');
           }

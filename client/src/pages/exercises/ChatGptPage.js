@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
@@ -33,7 +33,9 @@ function ChatGptPage() {
     await deleteResponse({ variables: { responseId } });
   };
   
-  
+  const promptRef = useRef(null);
+
+  const loadingGifUrl = "https://media.tenor.com/c1Q1VD-Aq18AAAAC/muppetwiki-muppet-wiki.gif";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,11 +49,14 @@ function ChatGptPage() {
         };
         const newResponses = [...responses, newResponse];
         setResponses(newResponses);
+        setPrompt('');
+        promptRef.current.focus();
       }
     } catch (err) {
       console.error(err);
     }
   };
+  
   
 
   // Define your styles here
@@ -222,18 +227,40 @@ const Button = styled.button`
       <h1>Your Personal AI Trainer</h1>
       <p>Ask me a fitness question! You can even let me know whats in your fridge and request advice on a healthy meal to make with what ever you got.</p>
       <form onSubmit={handleSubmit} style={styles.chatForm}>
-  <textarea
-    style={styles.inputPrompt}
-    placeholder="Enter your prompt"
-    value={prompt}
-    onChange={handleInputChange}
-  />
+      <textarea
+  ref={promptRef}
+  style={styles.inputPrompt}
+  placeholder="Enter your prompt"
+  value={prompt}
+  onChange={handleInputChange}
+/>
   {/* Submit button */}
   <button type="submit" style={styles.submitButton}>
     Send
   </button>
 </form>
-      {loading && <p style={styles.statusMessage}>Sending...</p>}
+{loading && (
+  <div style={{
+    display: 'flex',
+    flexDirection: 'column', // Stack items vertically
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw', // 100% of the viewport width
+    height: '100vh', // 100% of the viewport height
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black background
+    zIndex: 1000 // Ensure it's above other content
+  }}>
+    <img src={loadingGifUrl} alt="Loading..." style={{ width: '300px', height: '300px' }} />
+    <p style={{ color: 'white', fontSize: '24px', marginTop: '20px' }}>
+      Just a moment as we work out your answer!
+    </p>
+  </div>
+)}
+
+
       {error && <p style={{...styles.statusMessage, ...styles.error}}>Error: {error.message}</p>}
       
       {/* Display all responses */}
