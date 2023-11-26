@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Order = require('./Order');
 const Comment = require('./Comment');
+const Search = require('./Search'); // Import the Search model
+
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
   firstName: {
@@ -28,38 +29,22 @@ const userSchema = new Schema({
   },
   searches: [
     {
-      query: String,
-      createdAt: {
-          type: Date,
-          default: Date.now
-      }
+      type: Schema.Types.ObjectId,
+      ref: 'Search'
     }
   ],
-  apiCallCount: { 
-    type: Number, 
-    default: 0 
+  apiCallCount: { // API call count field
+    type: Number,
+    default: 0
   },
-  lastApiCallDate: { 
-    type: Date 
+  lastApiCallDate: { // Last API call date field
+    type: Date
   },
   orders: [Order.schema],
   comments: [Comment.schema]
 });
 
-// set up pre-save middleware to create password
-userSchema.pre('save', async function(next) {
-  if (this.isNew || this.isModified('password')) {
-    const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
-  }
-
-  next();
-});
-
-// compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function(password) {
-  return await bcrypt.compare(password, this.password);
-};
+// Middleware and methods ...
 
 const User = mongoose.model('User', userSchema);
 

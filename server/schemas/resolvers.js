@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Product, Category, Order, Comment, Blog, Contact} = require('../models');
+const Search = require('../models/Search'); // Import the Search model
 const chatGpt = require('../utils/chatGpt');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -134,6 +135,8 @@ const resolvers = {
         
           const user = await User.findById(context.user._id);
         
+
+        
           // Check if the lastApiCallDate is today
           const today = new Date();
           today.setHours(0, 0, 0, 0);
@@ -152,13 +155,17 @@ const resolvers = {
           try {
             const chatResponse = await chatGpt(prompt);
         
-            // Update the user's API call count and last call date
-            user.apiCallCount += 1;
-            await user.save();
+            // Create a new Search document
+            console.log("Prompt:", prompt);
+            const search = new Search({ query: prompt });
+            await search.save();
+
         
-            // Save the search and return the response
+            // Update the user's API call count, last call date, and add the search ID
             await User.findByIdAndUpdate(context.user._id, {
-              $push: { searches: { query: prompt } }
+              $push: { searches: search._id }, // Corrected to search._id
+              $inc: { apiCallCount: 1 },
+              lastApiCallDate: new Date()
             });
         
             return { reply: chatResponse };
