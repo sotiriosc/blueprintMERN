@@ -73,7 +73,7 @@ const chatGpt = async (prompt) => {
             max_tokens: 4097
         }, {
             headers: {
-                'Authorization': `Bearer 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` // Accessing API key from environment variable
+                'Authorization': `Bearer ${process.env.CHAT_GPT_KEY}` // Accessing API key from environment variable
             }
         });
 
