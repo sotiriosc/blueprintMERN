@@ -51,7 +51,7 @@ function ChatGptPage() {
       justifyContent: 'center', // Center vertically
       gap: '10px',
       marginBottom: '20px',
-      width: '50%', // Set the width of the form
+      width: '80%', // Set the width of the form
       marginLeft: 'auto', // These two lines center the form horizontally
       marginRight: 'auto',
     },
@@ -177,7 +177,7 @@ const Button = styled.button`
   <title>Chat with AI Trainer - Personalized Fitness and Nutrition Advice</title>
   <meta name="description" content="Engage with an AI personal trainer for customized fitness guidance and healthy meal planning. Get expert advice tailored to your needs, anytime." />
   <meta name="keywords" content="AI Trainer, Personal Trainer, Fitness Advice, Nutrition Guide, Healthy Eating, Workout Tips, Meal Planning, Fitness Questions" />
-  <meta name="author" content="alanced Blueprint" />
+  <meta name="author" content="Balanced Blueprint AI Trainer" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="http://www.balancedblueprint.ca/aiTrainer" />
 
