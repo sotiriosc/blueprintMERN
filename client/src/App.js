@@ -29,6 +29,7 @@ import Blog10 from './pages/Blog10';
 import Blog11 from './pages/Blog11';
 import Blog12 from './pages/Blog12';
 import Blog13 from './pages/Blog13';
+import Blog14 from './pages/Blog14';
 import Exercises from './pages/ExerciseLanding';
 import SettingUpWorkout from './pages/SettingUpWorkoutRoutine';
 import ArmExercise from './pages/exercises/ArmExercise'; 
@@ -312,6 +313,10 @@ function App() {
               <Route
                 path="/blog13"
                 element={<Blog13 />}
+              />
+              <Route
+                path="/blog14"
+                element={<Blog14 />}
               />
               <Route 
                 path="/success" 
