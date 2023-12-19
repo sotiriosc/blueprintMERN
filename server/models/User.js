@@ -36,6 +36,10 @@ const userSchema = new Schema({
       ref: 'Search'
     }
   ],
+  stripeCustomerId: { // Stripe customer ID field
+    type: String,
+    default: null,
+  },
   apiCallCount: { // API call count field
     type: Number,
     default: 0
