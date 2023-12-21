@@ -10,17 +10,15 @@ const typeDefs = gql`
         orders: [Order]
         comments: [Comment]
         searches: [Search]
+        stripeCustomerId: String
+        isSubscribed: Boolean
     }
 
     type Search {
         query: String
         response: String
         createdAt: String
-      }
-    
-      type ChatGptResponse {
-        reply: String
-      }
+    }
 
     type Comment {
         _id: ID
@@ -29,8 +27,7 @@ const typeDefs = gql`
         firstName: String
         userId: ID
         blogId: ID
-      }
-      
+    }
 
     type Order {
         _id: ID
@@ -60,7 +57,28 @@ const typeDefs = gql`
 
     type Checkout {
         session: ID
-    }   
+    }
+
+    type Blog {
+        _id: ID
+        title: String
+        filePath: String
+        comments: [Comment]
+    }
+
+    type Contact {
+        _id: ID
+        name: String
+        email: String
+        message: String
+    }
+
+    type SubscriptionInfo {
+        status: String
+        nextBillingDate: String
+        planName: String
+        amount: Float
+    }
 
     type Query {
         categories: [Category]
@@ -69,33 +87,23 @@ const typeDefs = gql`
         user: User
         order(_id: ID!): Order
         checkout(products: [ID]!): Checkout
-        blog(_id: ID!): Blog  
+        blog(_id: ID!): Blog
         userResponses: [Response]
-        
+        userProfile: User
     }
 
     type Response {
-      id: ID!
-      query: String!
-      response: String!
+        id: ID!
+        query: String!
+        response: String!
     }
 
-    type Blog {
-        _id: ID
-        title: String
-        filePath: String
-        comments: [Comment]
-      }
-
-     type Contact {
-        _id: ID
-        name: String
-        email: String
-        message: String
-      }
-
-      type ChatGptResponse {
+    type ChatGptResponse {
         reply: String
+      }
+
+      type ChangePasswordResponse {
+        message: String
       }
 
     type Mutation {
@@ -108,6 +116,9 @@ const typeDefs = gql`
         submitContactForm(name: String!, email: String!, message: String!): Contact!
         sendChatGptQuery(prompt: String!): ChatGptResponse
         deleteUserResponse(responseId: ID!): String
+        createSubscription(customerId: ID!, priceId: String!): User
+        updateSubscriptionStatus(userId: ID!, isSubscribed: Boolean!): User
+        fetchUserProfile: User
     }
 `;
 

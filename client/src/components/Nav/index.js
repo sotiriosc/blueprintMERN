@@ -103,6 +103,9 @@ function DropdownMenu({hoverIndex, setHoverIndex}) {
       <Link to="/healing" className="dropdown-item">
         Healing
       </Link>
+      <Link to="/myProfile" className="dropdown-item">
+        My Profile
+      </Link>
     </div>
   );
 }

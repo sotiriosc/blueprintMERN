@@ -28,14 +28,20 @@ class AuthService {
   }
 
   login(idToken) {
+    console.log(idToken); // Print the token to the console
+  
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
   
-    // Decode the token to get the user's profile and save it to localStorage
-    const profile = decode(idToken);
-    localStorage.setItem('profile', JSON.stringify(profile));
+    try {
+      // Decode the token to get the user's profile and save it to localStorage
+      const profile = decode(idToken);
+      localStorage.setItem('profile', JSON.stringify(profile));
   
-    window.location.assign('/');
+      window.location.assign('/');
+    } catch (err) {
+      console.error('Error decoding token:', err);
+    }
   }
 
   getProfile() {

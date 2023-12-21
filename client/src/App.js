@@ -68,6 +68,7 @@ import Footer from './components/Footer';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
+import MyProfile from './pages/MyProfile.js';
 import './App.css';
 
 
@@ -249,6 +250,10 @@ function App() {
               <Route
                 path= "/aiTrainer"
                 element={<ChatGptPage />}
+              />
+              <Route
+              path= "/myProfile"
+              element={<MyProfile />}
               />
               <Route 
                 path="/login" 

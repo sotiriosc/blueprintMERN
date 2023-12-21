@@ -104,3 +104,14 @@ export const FETCH_USER_RESPONSES = gql`
     }
   }
 `;
+
+export const QUERY_USER_PROFILE = gql`
+  query getUserProfile {
+    userProfile {
+      firstName
+      lastName
+      email
+      isSubscribed
+    }
+  }
+`;

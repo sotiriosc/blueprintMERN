@@ -58,8 +58,6 @@ function ChatGptPage() {
   };
   
   
-
-  // Define your styles here
   const styles = {
     chatPage: {
       fontFamily: 'Arial, sans-serif',

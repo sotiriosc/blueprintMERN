@@ -6,7 +6,9 @@ const Search = require('./Search'); // Import the Search model
 const SALT_WORK_FACTOR = 10; // You can adjust the salt work factor as needed
 const { Schema } = mongoose;
 
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+// Define the user schema
 
 
 const userSchema = new Schema({
@@ -23,7 +25,15 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    trim: true,
+    lowercase: true, // Converts email to lowercase
+    validate: {
+      validator: function(email) {
+        return emailRegex.test(email);
+      },
+      message: props => `${props.value} is not a valid email address!`
+    }
   },
   password: {
     type: String,
@@ -46,6 +56,10 @@ const userSchema = new Schema({
   },
   lastApiCallDate: { // Last API call date field
     type: Date
+  },
+  isSubscribed: {
+    type: Boolean,
+    default: false,
   },
   orders: [Order.schema],
   comments: [Comment.schema]

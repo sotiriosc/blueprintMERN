@@ -2,9 +2,13 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const expressPlayground = require('graphql-playground-middleware-express').default;
 const path = require('path');
-const { authMiddleware } = require('./utils/auth');
+const { authMiddleware, getUserFromToken } = require('./utils/auth');
 const chatGpt = require('./utils/chatGpt')
 require('dotenv').config();
+// Import and configure Stripe
+const Stripe = require('stripe');
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+// Import the Apollo Server and the GraphQL schema
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const fs = require('fs');
@@ -17,8 +21,27 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  context: async ({ req }) => {
+    // Get the token from the headers
+    const token = req.headers.authorization || '';
+
+    // If the token is empty, return minimal context
+    if (!token) {
+      return { user: null };
+    }
+
+    // Try to retrieve a user with the token
+    try {
+      const user = await getUserFromToken(token);
+      return { user };
+    } catch (error) {
+      // If there's an error (like an expired token), log it and return minimal context
+      console.error('Error in token processing:', error.message);
+      return { user: null };
+    }
+  },
 });
+
 
 
 
@@ -80,6 +103,36 @@ app.post('/chat-gpt', authMiddleware, async (req, res) => {
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Error processing your request');
+  }
+});
+
+// Endpoint to create a new Stripe customer
+app.post('/create-customer', async (req, res) => {
+  try {
+    const customer = await stripe.customers.create({
+      email: req.body.email, // Customer's email, e.g., from your application's signup form
+    });
+    await User.findOneAndUpdate({ email: req.body.email }, { stripeCustomerId: customer.id });
+    res.json({ customerId: customer.id });
+  } catch (error) {
+    console.error('Error creating Stripe customer:', error);
+    res.status(400).send('Error creating customer');
+  }
+});
+
+// Endpoint to create a subscription
+app.post('/create-subscription', async (req, res) => {
+  try {
+    const { customerId } = req.body; // ID of the existing customer in Stripe
+    const subscription = await stripe.subscriptions.create({
+      customer: customerId,
+      items: [{ price: 'price_1OOtI3By17P1QCFTPVjXwSZ7' }],
+      expand: ['latest_invoice.payment_intent'],
+    });
+    res.json(subscription);
+  } catch (error) {
+    console.error('Error creating subscription:', error);
+    res.status(400).send('Error creating subscription');
   }
 });
 
