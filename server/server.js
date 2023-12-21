@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const expressPlayground = require('graphql-playground-middleware-express').default;
 const path = require('path');
 const { authMiddleware, getUserFromToken } = require('./utils/auth');
 const chatGpt = require('./utils/chatGpt')
-require('dotenv').config();
 // Import and configure Stripe
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -22,8 +22,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async ({ req }) => {
-    // Get the token from the headers
     const token = req.headers.authorization || '';
+    console.log('Token in Apollo Server context:', token);
+
 
     // If the token is empty, return minimal context
     if (!token) {
