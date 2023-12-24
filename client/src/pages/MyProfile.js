@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { fetchUserProfile } from '../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 // import { Button } from '@material-ui/core';
 
 const stripePromise = loadStripe('pk_test_51NFRHWBy17P1QCFTHMBKTdPb3voTwpxZ7N5d6PNs65YXZuAY7vi3jmQbNCj4Yo7ENCrVDIVHCoCDa59SoaKl2bcS00ASsBfLiL');
@@ -54,8 +54,8 @@ async function handleSubscriptionPurchase() {
   const { error } = await stripe.redirectToCheckout({
     lineItems: [{ price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', quantity: 1 }],
     mode: 'subscription',
-    successUrl: 'https://your-website.com/success',
-    cancelUrl: 'https://your-website.com/cancel',
+    successUrl: 'http://localhost:3000/myProfile',
+    cancelUrl: 'http://localhost:3000/myProfile',
   });
 
   if (error) {
