@@ -128,10 +128,30 @@ const resolvers = {
         }));
       
         return blogObj;
-      }
-      
-      
+      },
+
+      fetchUserProfile: async (_, args, context) => {
+        console.log("Context user:", context.user);
+        if (!context.user) {
+          throw new AuthenticationError('Not authenticated');
+        }
+        try {
+          const user = await User.findById(context.user._id).select('-password');
+          console.log("Fetched user:", user);
+          if (!user) {
+            console.error("No user found with the given ID.");
+            return null;
+          }
+          console.log("Returning user:", user);
+          return user;
+        } catch (err) {
+          console.error(err);
+          throw new Error('Error fetching user profile');
+        }
+      },
     },
+      
+
 
     Mutation: {
         addUser: async (parent, args) => {
@@ -195,13 +215,6 @@ const resolvers = {
             }
             await Search.findByIdAndDelete(responseId);
             return 'Response deleted successfully';
-        },
-
-        fetchUserProfile: async (_, args, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('Not authenticated');
-            }
-            return await User.findById(context.user._id).select('-password');
         },
 
         createSubscription: async (_, { customerId, priceId }, context) => {

@@ -90,6 +90,7 @@ const typeDefs = gql`
         blog(_id: ID!): Blog
         userResponses: [Response]
         userProfile: User
+        fetchUserProfile: User
     }
 
     type Response {
@@ -118,7 +119,6 @@ const typeDefs = gql`
         deleteUserResponse(responseId: ID!): String
         createSubscription(customerId: ID!, priceId: String!): User
         updateSubscriptionStatus(userId: ID!, isSubscribed: Boolean!): User
-        fetchUserProfile: User
     }
 `;
 

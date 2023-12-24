@@ -53,6 +53,7 @@ export const QUERY_USER = gql`
     user {
       firstName
       lastName
+      email
       orders {
         _id
         purchaseDate
@@ -105,9 +106,10 @@ export const FETCH_USER_RESPONSES = gql`
   }
 `;
 
-export const QUERY_USER_PROFILE = gql`
-  query getUserProfile {
-    userProfile {
+
+export const fetchUserProfile = gql`
+  query fetchUserProfile {
+    fetchUserProfile {
       firstName
       lastName
       email

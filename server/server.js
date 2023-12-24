@@ -23,8 +23,15 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async ({ req }) => {
-    const token = req.headers.authorization || '';
-    console.log('Token in Apollo Server context:', token);
+    let token = req.headers.authorization || '';
+    // console.log('Token in Apollo Server context:', token);
+
+    // Remove 'Bearer ' prefix if present
+    if (token.startsWith('Bearer ')) {
+      token = token.slice(7, token.length).trim();
+    }
+    
+    // console.log('Processed Server token:', token);
 
     // If the token is empty, return minimal context
     if (!token) {
@@ -42,6 +49,7 @@ const server = new ApolloServer({
     }
   },
 });
+
 
 
 
