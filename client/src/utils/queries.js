@@ -110,10 +110,12 @@ export const FETCH_USER_RESPONSES = gql`
 export const fetchUserProfile = gql`
   query fetchUserProfile {
     fetchUserProfile {
+      _id
       firstName
       lastName
       email
       isSubscribed
+      stripeCustomerId
     }
   }
 `;

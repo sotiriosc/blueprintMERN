@@ -85,3 +85,20 @@ export const DELETE_USER_RESPONSE = gql`
   }
 `;
 
+export const UPDATE_USER_STRIPE_ID = gql`
+  mutation updateUserStripeId($userId: ID!, $stripeCustomerId: String!) {
+    updateUserStripeId(userId: $userId, stripeCustomerId: $stripeCustomerId) {
+      _id
+      stripeCustomerId
+    }
+  }
+`;
+
+export const UPDATE_USER_SUBSCRIPTION = gql`
+mutation UpdateUserSubscription($userId: ID!, $isSubscribed: Boolean!) {
+  updateUserSubscription(userId: $userId, isSubscribed: $isSubscribed) {
+    _id
+    isSubscribed
+  }
+}
+`;

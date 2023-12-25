@@ -117,8 +117,8 @@ const typeDefs = gql`
         submitContactForm(name: String!, email: String!, message: String!): Contact!
         sendChatGptQuery(prompt: String!): ChatGptResponse
         deleteUserResponse(responseId: ID!): String
-        createSubscription(customerId: ID!, priceId: String!): User
-        updateSubscriptionStatus(userId: ID!, isSubscribed: Boolean!): User
+        updateUserStripeId(userId: ID!, stripeCustomerId: String!): User
+        updateUserSubscription(userId: ID!, isSubscribed: Boolean!): User
     }
 `;
 

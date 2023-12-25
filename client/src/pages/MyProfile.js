@@ -1,66 +1,160 @@
-import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { fetchUserProfile } from '../utils/queries';
+import { UPDATE_USER_SUBSCRIPTION, UPDATE_USER_STRIPE_ID } from '../utils/mutations';
 import { loadStripe } from '@stripe/stripe-js';
-
-// import { Button } from '@material-ui/core';
 
 const stripePromise = loadStripe('pk_test_51NFRHWBy17P1QCFTHMBKTdPb3voTwpxZ7N5d6PNs65YXZuAY7vi3jmQbNCj4Yo7ENCrVDIVHCoCDa59SoaKl2bcS00ASsBfLiL');
 
 const MyProfile = () => {
-  const { loading, data } = useQuery(fetchUserProfile);
+  const { loading, data, refetch } = useQuery(fetchUserProfile);
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     if (data) {
-      console.log("MyProfile data",data);
-      setUserData(data.fetchUserProfile); // Changed from data.userProfile
+      setUserData(data.fetchUserProfile);
+      console.log("Fetched user data:", data);
     }
   }, [data]);
+  
+  const [updateUserSubscription, { loading: updating, error }] = useMutation(UPDATE_USER_SUBSCRIPTION);
+  const [updateUserStripeId] = useMutation(UPDATE_USER_STRIPE_ID);
+  const [hasUpdated, setHasUpdated] = useState(false);
 
-  if (loading) {
+ 
+
+  const handleSubscriptionUpdate = async () => {
+    if (data?.fetchUserProfile) {
+      try {
+        const response = await updateUserSubscription({
+          variables: { userId: data.fetchUserProfile._id, isSubscribed: !data.fetchUserProfile.isSubscribed },
+        });
+        console.log('Subscription status updated:', response.data.updateUserSubscription);
+        refetch();
+      } catch (error) {
+        console.error('Error updating subscription:', error);
+      }
+    }
+  };
+
+  const handleStripeCustomerIdUpdate = async (stripeCustomerId) => {
+    if (data?.fetchUserProfile) {
+      try {
+        await updateUserStripeId({
+          variables: { userId: data.fetchUserProfile._id, stripeCustomerId },
+        });
+        refetch();
+      } catch (error) {
+        console.error('Error updating Stripe customer ID:', error);
+      }
+    }
+  };
+  
+  const getStripeCustomerId = () => {
+    // Implement the logic to retrieve the customer ID from Stripe's response
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const stripeCustomerId = urlParams.get('customer');
+    console.log("Stripe customer ID:", stripeCustomerId);
+
+    return "stripe-customer-id";
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const checkoutSuccess = urlParams.get('checkout');
+    const stripeCustomerId = urlParams.get('customer_id'); // Assuming Stripe redirects back with a customer_id parameter
+  
+    if (checkoutSuccess === 'success' && !hasUpdated) {
+      handleSubscriptionUpdate();
+      if (stripeCustomerId) {
+        handleStripeCustomerIdUpdate(stripeCustomerId);
+      }
+      setHasUpdated(true);
+    }
+  }, [handleSubscriptionUpdate, handleStripeCustomerIdUpdate, hasUpdated]);
+  
+  
+
+  const handleCheckout = async () => {
+    const token = localStorage.getItem('id_token'); // Retrieve the stored token
+  
+    if (!token) {
+      console.error('No authentication token found');
+      return;
+    }
+    console.log('Button clicked, starting checkout...'); // 
+    try {
+      // Send a request to your server to create the Checkout session
+      console.log('Sending request to create checkout session...'); // Step 2
+    
+      const response = await fetch('http://localhost:3001/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          userId: userData._id // Pass the user ID to your server
+        })
+      });
+  
+      if (!response.ok) {
+        const responseText = await response.text();
+        console.error('Server response:', responseText);
+        throw new Error('Error creating checkout session');
+      }
+  
+      const session = await response.json();
+      if (session && session.id) {
+          console.log('Received session from server, redirecting to checkout...');
+          const stripe = await stripePromise;
+          const { error } = await stripe.redirectToCheckout({
+              sessionId: session.id
+          });
+          if (error) {
+              console.error('Error redirecting to checkout:', error);
+          }
+      } else {
+          console.error('No session ID received from server');
+      }
+    } catch (err) {
+      console.error('Error during checkout:', err);
+    }
+  };
+  
+      
+
+  if (loading || updating) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error! {error.message}</div>;
   }
 
   if (!userData) {
     return <div>No user data found</div>;
   }
 
-  // Render user profile information
   return (
     <div style={{ margin: '20px' }}>
       <h1>My Profile</h1>
       <p>Name: {userData.firstName} {userData.lastName}</p>
       <p>Email: {userData.email}</p>
       <p>Subscription Status: {userData.isSubscribed ? 'Subscribed' : 'Not Subscribed'}</p>
-      {/* Add more user-specific information as needed */}
    
       <h2>Subscription Details</h2>
       <p>Price: $9.99 per month</p>
       <p>Benefits: Access to AI Personal Trainer for fitness guidance, exercise tips, diet advice, and more.</p>
-      <button onClick={handleSubscriptionPurchase}>
-  Purchase Subscription
-</button>
-      {/* Add a button or link to manage the subscription */}
+      
+      <button onClick={handleCheckout}>
+        {userData.isSubscribed ? 'Unsubscribe' : 'Purchase Subscription'}
+      </button>
     </div>
   );
 };
 
-// ... other code
-
-async function handleSubscriptionPurchase() {
-  const stripe = await stripePromise;
-
-  const { error } = await stripe.redirectToCheckout({
-    lineItems: [{ price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', quantity: 1 }],
-    mode: 'subscription',
-    successUrl: 'http://localhost:3000/myProfile',
-    cancelUrl: 'http://localhost:3000/myProfile',
-  });
-
-  if (error) {
-    console.error('Error redirecting to checkout:', error);
-  }
-}
-
 export default MyProfile;
+
+

@@ -1,0 +1,90 @@
+/ import React, { useEffect, useState, useCallback } from 'react';
+// import { useQuery, useMutation } from '@apollo/client';
+// import { fetchUserProfile } from '../utils/queries';
+// import { UPDATE_USER_SUBSCRIPTION, UPDATE_USER_STRIPE_ID } from '../utils/mutations';
+// import { loadStripe } from '@stripe/stripe-js';
+
+// const stripePromise = loadStripe('pk_test_51NFRHWBy17P1QCFTHMBKTdPb3voTwpxZ7N5d6PNs65YXZuAY7vi3jmQbNCj4Yo7ENCrVDIVHCoCDa59SoaKl2bcS00ASsBfLiL');
+
+// const MyProfile = () => {
+//   const { loading, data, refetch } = useQuery(fetchUserProfile);
+//   const [updateUserSubscription] = useMutation(UPDATE_USER_SUBSCRIPTION);
+//   const [updateUserStripeId] = useMutation(UPDATE_USER_STRIPE_ID);
+//   const [hasUpdated, setHasUpdated] = useState(false);
+
+//   useEffect(() => {
+//     if (data) {
+//       console.log("Fetched user data:", data);
+//     }
+//   }, [data]);
+
+//   const handleSubscriptionUpdate = useCallback(async () => {
+//     if (data?.fetchUserProfile) {
+//       try {
+//         const response = await updateUserSubscription ({
+//           variables: { userId: data.fetchUserProfile._id, isSubscribed: !data.fetchUserProfile.isSubscribed,  },
+//         });
+//         console.log('Subscription status updated:', response.data.updateUserSubscription);
+//         refetch();
+//       } catch (error) {
+//         console.error('Error updating subscription:', error);
+//       }
+//     }
+//   }, [data, updateUserSubscription, refetch]);
+
+//   const hanldeCustomerUpdate = useCallback(async (stripeCustomerId) => {
+//     if (data?.fetchUserProfile) {
+//       try {
+//         const response = await updateUserStripeId({
+//           variables: { userId: data.fetchUserProfile._id, stripeCustomerId },
+//         });
+//         console.log('Stripe customer ID updated:', response.data.updateUserStripeId);
+//         refetch();
+//       } catch (error) {
+//         console.error('Error updating Stripe customer ID:', error);
+//       }
+//     }
+//   }, [data, updateUserStripeId, refetch]);
+
+//   useEffect(() => {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     if (urlParams.get('checkout') === 'success' && !hasUpdated) {
+//       handleSubscriptionUpdate();
+//       setHasUpdated(true);
+//     }
+//   }, [handleSubscriptionUpdate, hasUpdated]);
+
+//   const handleCheckout = async () => {
+//     const stripe = await stripePromise;
+//     const { error } = await stripe.redirectToCheckout({
+//       lineItems: [{ price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', quantity: 1 }],
+//       mode: 'subscription',
+//       successUrl: window.location.origin + '/myProfile?checkout=success',
+//       cancelUrl: window.location.origin + '/myProfile',
+//     });
+    
+
+//     if (error) {
+//       console.error('Stripe checkout error:', error);
+//     }
+//   };
+
+//   if (loading) return <div>Loading...</div>;
+//   if (!data?.fetchUserProfile) return <div>No user data found</div>;
+
+//   const { firstName, lastName, email, isSubscribed } = data.fetchUserProfile;
+//   return (
+//     <div style={{ margin: '20px' }}>
+//       <h1>My Profile</h1>
+//       <p>Name: {firstName} {lastName}</p>
+//       <p>Email: {email}</p>
+//       <p>Subscription Status: {isSubscribed ? 'Subscribed' : 'Not Subscribed'}</p>
+//       {/* Other UI elements */}
+//       <button onClick={handleCheckout}>
+//         {isSubscribed ? 'Unsubscribe' : 'Purchase Subscription'}
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default MyProfile;

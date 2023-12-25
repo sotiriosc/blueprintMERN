@@ -3,6 +3,7 @@ const { User, Product, Category, Order, Comment, Blog, Contact, Search} = requir
 const chatGpt = require('../utils/chatGpt');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const jwt = require('jsonwebtoken')
 
 const resolvers = {
     Query: {
@@ -217,21 +218,21 @@ const resolvers = {
             return 'Response deleted successfully';
         },
 
-        createSubscription: async (_, { customerId, priceId }, context) => {
-            if (!context.user) {
-                throw new AuthenticationError('You must be logged in to create a subscription');
-            }
-            const subscription = await stripe.subscriptions.create({
-              customer: customerId,
-              items: [{ price: priceId }]
-            });
-            const updatedUser = await User.findByIdAndUpdate(
-              context.user._id,
-              { isSubscribed: true },
-              { new: true }
-            );
-            return updatedUser;
-        },
+        // createSubscription: async (_, { customerId, priceId }, context) => {
+        //     if (!context.user) {
+        //         throw new AuthenticationError('You must be logged in to create a subscription');
+        //     }
+        //     const subscription = await stripe.subscriptions.create({
+        //       customer: customerId,
+        //       items: [{ price: priceId }]
+        //     });
+        //     const updatedUser = await User.findByIdAndUpdate(
+        //       context.user._id,
+        //       { isSubscribed: true },
+        //       { new: true }
+        //     );
+        //     return updatedUser;
+        // },
 
         addComment: async (parent, { firstName, commentText, blogId, userId }, context) => {
             const comment = new Comment({
@@ -252,6 +253,42 @@ const resolvers = {
             await contact.save();
             return contact;
         },
+
+        updateUserStripeId: async (parent, { userId, stripeCustomerId }, context) => {
+          const user = await User.findById(userId);
+          if (!user) {
+            throw new Error('User not found');
+          }
+        
+          user.stripeCustomerId = stripeCustomerId;
+          await user.save();
+        
+          return user;
+        },
+
+        updateUserSubscription: async (parent, { userId, isSubscribed }, context) => {
+          const user = await User.findById(userId);
+          if (!user) {
+            throw new Error('User not found');
+          }
+        
+          user.isSubscribed = isSubscribed;
+          await user.save();
+        
+          // Generate new token
+          const updatedToken = jwt.sign(
+            { data: user },
+            process.env.JWT_SECRET, // Make sure to use your secret key
+            { expiresIn: '1h' }    // Set appropriate token expiry
+          );
+        
+          // Optionally log the new token
+          console.log('New JWT Token:', updatedToken);
+          console.log ('Updated user data:', user)
+        
+          return { user, token: updatedToken };
+        },
+        
 
         // ... (Any other mutations you might have)
     },

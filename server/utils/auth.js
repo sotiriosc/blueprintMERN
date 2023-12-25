@@ -10,33 +10,28 @@ module.exports = {
  
   
 
-  authMiddleware: function ({ req }) {
-    console.log("Token received (getUserFromToken):", token);
-    let token = req.body.token || req.query.token || req.headers.authorization;
+  // authMiddleware: function ({ req }) {
+  //   let token = req.body.token || req.query.token || req.headers.authorization;
   
-    if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
-    }
-    
-    console.log('Received token in authMiddleware:', token);
-    
-    if (!token) {
-      return req;
-    }
+  //   if (req.headers.authorization) {
+  //     token = token.split(' ').pop().trim();
+  //   }
+  //   if (!token) {
+  //     return req;
+  //   }
   
-    try {
-      // Combine the token verification and expiration check in one step
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      console.log('Decoded token (Middleware):', data);
-      req.user = data;
-    } catch (error) {
-      console.error('JWT Error:', error.name);
-      console.error('JWT Error Details:', error.message);
-      console.log('Invalid token');
-    }
+  //   try {
+  //     // Combine the token verification and expiration check in one step
+  //     const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      
+  //     req.user = data;
+  //   } catch (error) {
+  //     console.error('Invalid token.');
+  //     console.log(error);
+  //   }
   
-    return req;
-  },
+  //   return req;
+  // },
   
   // getUserFromToken: async function (token) {
   //   console.log("Token received (getUserFromToken):", token);
@@ -60,14 +55,14 @@ module.exports = {
   
   signToken: function ({ firstName, email, _id, isSubscribed }) {
     const payload = { firstName, email, _id, isSubscribed };
-    console.log("JWT Payload:", payload);
+    
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
 },
 
 
 getUserFromToken: async (token) => {
   if (!token) {
-    console.log("No token provided.");
+    
     return null;
   }
 
@@ -77,9 +72,7 @@ getUserFromToken: async (token) => {
 
   try {
     const decoded = jwt.verify(token, secret);
-    console.log("Decoded token (getUserFromToken):", decoded);
-    console.log("User ID from token:", decoded.data._id);
-
+    
     // Ensure that decoded token has the necessary data
     if (!decoded || !decoded.data || !decoded.data._id) {
       console.error("Invalid token structure.");
