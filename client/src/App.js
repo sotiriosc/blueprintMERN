@@ -74,13 +74,13 @@ import './App.css';
 
 
 
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 const httpLink = createHttpLink({
   uri: process.env.NODE_ENV === 'production' 
     ? 'https://balancedblueprintblog-087c8e263340.herokuapp.com/graphql'
     : 'http://localhost:3001/graphql',
 });
-
-
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');

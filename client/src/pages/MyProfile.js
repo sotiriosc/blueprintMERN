@@ -3,12 +3,20 @@ import { useQuery, useMutation } from '@apollo/client';
 import { fetchUserProfile } from '../utils/queries';
 import { UPDATE_USER_SUBSCRIPTION, UPDATE_USER_STRIPE_ID } from '../utils/mutations';
 import { loadStripe } from '@stripe/stripe-js';
+import { useLocation } from 'react-router-dom';
 
 const stripePromise = loadStripe('pk_test_51NFRHWBy17P1QCFTHMBKTdPb3voTwpxZ7N5d6PNs65YXZuAY7vi3jmQbNCj4Yo7ENCrVDIVHCoCDa59SoaKl2bcS00ASsBfLiL');
 
+
+
 const MyProfile = () => {
-  const { loading, data, refetch } = useQuery(fetchUserProfile);
+  const { loading, data, refetch } = useQuery(fetchUserProfile, {
+    fetchPolicy: 'network-only'
+  });
+  console.log('useQuery data:', data); // Log the data returned by useQuery
+  
   const [userData, setUserData] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     if (data) {
@@ -16,7 +24,7 @@ const MyProfile = () => {
       console.log("Fetched user data:", data);
     }
   }, [data]);
-  
+
   const [updateUserSubscription, { loading: updating, error }] = useMutation(UPDATE_USER_SUBSCRIPTION);
   const [updateUserStripeId] = useMutation(UPDATE_USER_STRIPE_ID);
   const [hasUpdated, setHasUpdated] = useState(false);
@@ -95,7 +103,7 @@ const MyProfile = () => {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          userId: userData._id // Pass the user ID to your server
+          userId: userData._id
         })
       });
   
@@ -136,6 +144,13 @@ const MyProfile = () => {
   if (!userData) {
     return <div>No user data found</div>;
   }
+
+  const queryParams = new URLSearchParams(location.search);
+  const sessionId = queryParams.get('session_id');
+
+  console.log(sessionId); // Logs the session_id
+
+
 
   return (
     <div style={{ margin: '20px' }}>

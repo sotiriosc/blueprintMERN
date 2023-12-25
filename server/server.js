@@ -20,6 +20,8 @@ const User = require('./models/User');
 const mongoose = require('mongoose');
 
 
+
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
@@ -53,90 +55,13 @@ const server = new ApolloServer({
   },
 });
 
+app.get('/graphql', expressPlayground({ endpoint: '/graphql' }));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(authMiddleware);
-
-// Set up GraphQL Playground route
-app.get('/graphql', expressPlayground({ endpoint: '/graphql' }));
-
-const webhookSecret = "whsec_7ae56179c3bf7a7a627c9753f9c365abfc39348d6badd6c760581f9498c1ffd2"; // Your actual webhook secret
-
-app.post('/webhook', bodyParser.raw({type: 'application/json'}), async (request, response) => {
-  const sig = request.headers['stripe-signature'];
-  let event;
-
-  try {
-      event = stripe.webhooks.constructEvent(request.body, sig, webhookSecret);
-
-      // Handle the checkout.session.completed event
-      if (event.type === 'checkout.session.completed') {
-        const session = event.data.object;
-
-        // Here you can handle the checkout session completion
-        // For example, update user's subscription status in your database
-        console.log(`Handling checkout.session.completed for session ID: ${session.id}`);
-        const user_id = session.client_reference_id;
-
-        try {
-          // Update user's subscription status in your database
-          const updatedUser = await User.findByIdAndUpdate(user_id, {
-            isSubscribed: true,
-            stripeCustomerId: session.customer
-          }, { new: true });
-
-          console.log('User subscription updated:', updatedUser);
-        } catch (err) {
-          console.error('Error updating user subscription:', err);
-        }
-      }
-
-      // ... handle other event types as necessary
-
-    } catch (err) {
-        console.error(`Webhook Error: ${err.message}`);
-        return response.status(400).send(`Webhook Error: ${err.message}`);
-    }
-
-    // Confirmation response to Stripe
-    response.json({received: true});
-});
-
-
-app.post('/webhook', bodyParser.raw({type: 'application/json'}), async (request, response) => {
-  const sig = request.headers['stripe-signature'];
-
-  try {
-    const event = stripe.webhooks.constructEvent(request.body, sig, webhookSecret);
-
-    if (event.type === 'checkout.session.completed') {
-      const session = event.data.object;
-      const user_id = session.client_reference_id;
-
-      console.log(`Webhook received for user ID: ${user_id}`);
-
-      try {
-        const updatedUser = await User.findByIdAndUpdate(
-          mongoose.Types.ObjectId(user_id), // Convert user_id to ObjectId before querying
-          { isSubscribed: true, stripeCustomerId: session.customer },
-          { new: true }
-        );
-
-        console.log('User updated:', updatedUser);
-      } catch (err) {
-        console.error('Error updating user in database:', err);
-      }
-    }
-
-    response.json({ received: true });
-  } catch (err) {
-    console.error('Error in handling webhook:', err);
-    response.status(400).send(`Webhook Error: ${err.message}`);
-  }
-});
-
 
 
 
@@ -147,17 +72,71 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-
 app.use(helmet({
   contentSecurityPolicy: false,
 }));
 
-
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  console.log(`Received request for ${req.method} ${req.url}`);
+  next();
+});
+
+
+
+// const webhookSecret = "whsec_7ae56179c3bf7a7a627c9753f9c365abfc39348d6badd6c760581f9498c1ffd2"; // Your actual webhook secret
+const endpointSecret = "whsec_7ae56179c3bf7a7a627c9753f9c365abfc39348d6badd6c760581f9498c1ffd2";
+
+app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
+  const event = request.body;
+
+  // Handle the event
+  switch (event.type) {
+    case 'payment_intent.succeeded':
+      const paymentIntent = event.data.object;
+
+      // Assuming the customer id is stored in the metadata of the payment intent
+      const customerId = paymentIntent.metadata.customerId;
+
+      // Find the user with the given customer id and update their fields
+      await User.findOneAndUpdate(
+        { stripeCustomerId: customerId },
+        {
+          isSubscribed: true,
+          stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
+        }
+      );
+
+      break;
+    // ... handle other event types
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+
+  // Return a response to acknowledge receipt of the event
+  response.json({received: true});
+});
+
+
+
+
+const startApolloServer = async () => {
+  await server.start();
+  server.applyMiddleware({ app });
+
+  
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  // });
+  
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    })
+  })
+  };
 
 app.get('/sw.js', (req, res) => {
   // Check if the service worker file exists in the correct path
@@ -169,35 +148,6 @@ app.get('/sw.js', (req, res) => {
   }
 });
 
-app.post('/create-checkout-session', authMiddleware, async (req, res) => {
-  try {
-    console.log('Creating checkout session');
-    console.log("users info", req.user);
-    if (!req.user) {
-      return res.status(403).send('You must be logged in to use this feature');
-    }
-    const user = req.user; // Get the user from the request
-    console.log("Setting client_reference_id to:", user._id.toString());
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [{
-        price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: 'http://localhost:3001/myProfile?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:3001/cancel',
-      client_reference_id: user._id.toString(),
-    });
-    console.log("here it is2", session);
-    res.json({ id: session.id });
-  } catch (err) {
-    console.error('Error creating checkout session:', err);
-    res.status(500).json({ error: err.message });
-}
-});
-
-
 // Endpoint to handle Stripe checkout session completion
 app.get('/checkout-session', async (req, res) => {
   const sessionId = req.query.session_id;
@@ -206,7 +156,21 @@ app.get('/checkout-session', async (req, res) => {
   }
 
   try {
-      const session = await stripe.checkout.sessions.retrieve(sessionId);
+    // const success_url = process.env.NODE_ENV === 'production' 
+    // ? 'https://your-production-url/myProfile?session_id={CHECKOUT_SESSION_ID}' 
+    // : 'http://localhost:3001/myProfile?session_id={CHECKOUT_SESSION_ID}';
+  
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [{
+      price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
+      quantity: 1,
+    }],
+    mode: 'subscription',
+    success_url: 'http://localhost:3001/myProfile',
+    cancel_url: 'http://localhost:3001/cancel',
+    client_reference_id: user._id.toString(),
+  });
       const user = await User.findOne({ email: session.customer_email });
       if (user) {
           user.isSubscribed = true;
@@ -221,8 +185,6 @@ app.get('/checkout-session', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
-
-
 
 app.post('/chat-gpt', authMiddleware, async (req, res) => {
   if (!req.user) {
@@ -248,18 +210,32 @@ app.post('/chat-gpt', authMiddleware, async (req, res) => {
 
 
 
-// Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async () => {
-  await server.start();
-  server.applyMiddleware({ app });
-  
-  db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    })
-  })
-  };
+  app.post('/create-checkout-session', authMiddleware, async (req, res) => {
+    try {
+      // console.log('Creating checkout session');
+      // console.log("users info", req.user);
+      if (!req.user) {
+        return res.status(403).send('You must be logged in to use this feature');
+      }
+      const user = req.user; // Get the user from the request
+      
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+          price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
+          quantity: 1,
+        }],
+        mode: 'subscription',
+        success_url: 'http://localhost:3001/myProfile?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url: 'http://localhost:3001/cancel',
+        client_reference_id: user._id.toString(),
+      });
+      res.json({ id: session.id });
+    } catch (err) {
+      console.error('Error creating checkout session:', err);
+      res.status(500).json({ error: err.message });
+  }
+  });
 
 // Endpoint to create a new Stripe customer
 app.post('/create-customer', async (req, res) => {
@@ -274,10 +250,6 @@ app.post('/create-customer', async (req, res) => {
     res.status(400).send('Error creating customer');
   }
 });
-
-
-
-
 
 // Endpoint to create a subscription
 app.post('/create-subscription', async (req, res) => {
@@ -295,8 +267,8 @@ app.post('/create-subscription', async (req, res) => {
   }
 });
 
+app.use(express.static(path.join(__dirname, '../client/build')));
 
-// This would go after all your other routes
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/build/index.html'), function(err) {
     if (err) {
@@ -308,8 +280,6 @@ app.get('*', function(req, res) {
 
 // Endpoint to update a subscription
 
-
-  
 // Call the async function to start the server
 startApolloServer();
 

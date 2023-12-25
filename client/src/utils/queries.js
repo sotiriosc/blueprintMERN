@@ -54,6 +54,8 @@ export const QUERY_USER = gql`
       firstName
       lastName
       email
+      isSubscribed
+      stripeCustomerId
       orders {
         _id
         purchaseDate
