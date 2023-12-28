@@ -149,42 +149,37 @@ app.get('/sw.js', (req, res) => {
 });
 
 // Endpoint to handle Stripe checkout session completion
+
+
 app.get('/checkout-session', async (req, res) => {
   const sessionId = req.query.session_id;
+  
   if (!sessionId) {
-      return res.status(400).send('Session ID is required');
+    return res.status(400).send('Session ID is required');
   }
 
   try {
-    // const success_url = process.env.NODE_ENV === 'production' 
-    // ? 'https://your-production-url/myProfile?session_id={CHECKOUT_SESSION_ID}' 
-    // : 'http://localhost:3001/myProfile?session_id={CHECKOUT_SESSION_ID}';
-  
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [{
-      price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
-      quantity: 1,
-    }],
-    mode: 'subscription',
-    success_url: 'http://localhost:3001/myProfile',
-    cancel_url: 'http://localhost:3001/cancel',
-    client_reference_id: user._id.toString(),
-  });
-      const user = await User.findOne({ email: session.customer_email });
-      if (user) {
-          user.isSubscribed = true;
-          user.stripeCustomerId = session.customer;
-          await user.save();
-          res.json({ isSubscribed: user.isSubscribed, stripeCustomerId: user.stripeCustomerId });
-      } else {
-          res.status(404).send('User not found');
-      }
+    // Fetch the session details from Stripe using the provided session ID
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    if (!session) {
+      return res.status(404).send('Session not found');
+    }
+
+    // Optionally, find the user associated with this session and update as needed
+    // const user = await User.findOne({ stripeCustomerId: session.customer });
+    // if (user) {
+    //   // Update user data as needed
+    // }
+
+    // Return the session details to the client
+    res.json(session);
   } catch (error) {
-      console.error('Error handling checkout session:', error);
-      res.status(500).send('Internal Server Error');
+    console.error('Error retrieving checkout session:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
+
 
 app.post('/chat-gpt', authMiddleware, async (req, res) => {
   if (!req.user) {
@@ -210,32 +205,7 @@ app.post('/chat-gpt', authMiddleware, async (req, res) => {
 
 
 
-  app.post('/create-checkout-session', authMiddleware, async (req, res) => {
-    try {
-      // console.log('Creating checkout session');
-      // console.log("users info", req.user);
-      if (!req.user) {
-        return res.status(403).send('You must be logged in to use this feature');
-      }
-      const user = req.user; // Get the user from the request
-      
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items: [{
-          price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
-          quantity: 1,
-        }],
-        mode: 'subscription',
-        success_url: 'http://localhost:3001/myProfile?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'http://localhost:3001/cancel',
-        client_reference_id: user._id.toString(),
-      });
-      res.json({ id: session.id });
-    } catch (err) {
-      console.error('Error creating checkout session:', err);
-      res.status(500).json({ error: err.message });
-  }
-  });
+  
 
 // Endpoint to create a new Stripe customer
 app.post('/create-customer', async (req, res) => {
@@ -250,6 +220,35 @@ app.post('/create-customer', async (req, res) => {
     res.status(400).send('Error creating customer');
   }
 });
+
+
+app.post('/create-checkout-session', authMiddleware, async (req, res) => {
+  try {
+    // console.log('Creating checkout session');
+    // console.log("users info", req.user);
+    if (!req.user) {
+      return res.status(403).send('You must be logged in to use this feature');
+    }
+    const user = req.user; // Get the user from the request
+    
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [{
+        price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: 'http://localhost:3001/myProfile?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:3001/myProfile',
+      client_reference_id: user._id.toString(),
+    });
+    res.json({ id: session.id });
+  } catch (err) {
+    console.error('Error creating checkout session:', err);
+    res.status(500).json({ error: err.message });
+}
+});
+
 
 // Endpoint to create a subscription
 app.post('/create-subscription', async (req, res) => {
@@ -282,4 +281,3 @@ app.get('*', function(req, res) {
 
 // Call the async function to start the server
 startApolloServer();
-
