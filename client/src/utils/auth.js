@@ -5,13 +5,13 @@ class AuthService {
   // Please help degug the issue with Error decoding token: invalid token
   getToken() {
     const token = localStorage.getItem('id_token');
-    console.log('Token retrieved from localStorage:', token);
+    // console.log('Token retrieved from localStorage:', token);
     return localStorage.getItem('id_token');
   }
 
   // Saves user token to localStorage and redirects to the home page
   login(idToken) {
-    console.log('Token received during login:', idToken); // Log the token for debugging
+    // console.log('Token received during login:', idToken); // Log the token for debugging
     localStorage.setItem('id_token', idToken);
 
     // Attempt to decode the token and save the user's profile to localStorage
