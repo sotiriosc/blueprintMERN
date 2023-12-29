@@ -79,17 +79,18 @@ app.use(helmet({
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-  console.log(`Received request for ${req.method} ${req.url}`);
+  // console.log(`Received request for ${req.method} ${req.url}`);
   next();
 });
 
 
 
-// const webhookSecret = "whsec_7ae56179c3bf7a7a627c9753f9c365abfc39348d6badd6c760581f9498c1ffd2"; // Your actual webhook secret
-const endpointSecret = "whsec_7ae56179c3bf7a7a627c9753f9c365abfc39348d6badd6c760581f9498c1ffd2";
+// Stripe Webhook endpoint
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
   const event = request.body;
+  let stripeCustomerId;
 
   // Handle the event
   switch (event.type) {
@@ -109,14 +110,65 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       );
 
       break;
-    // ... handle other event types
+      
+      case 'customer.subscription.created':
+      const subscriptionCreated = event.data.object;
+      stripeCustomerId = subscriptionCreated.customer;
+      await User.findOneAndUpdate(
+        { stripeCustomerId: stripeCustomerId },
+        { isSubscribed: true },
+        { new: true }
+      );
+      break;
+
+    case 'customer.subscription.updated':
+      const updatedSubscription = event.data.object;
+      stripeCustomerId = updatedSubscription.customer;
+      const isCurrentlySubscribed = updatedSubscription.status === 'active' || updatedSubscription.status === 'trialing';
+      await User.findOneAndUpdate(
+        { stripeCustomerId: stripeCustomerId },
+        { isSubscribed: isCurrentlySubscribed },
+        { new: true }
+      );
+      break;
+
+    case 'customer.subscription.deleted':
+      const deletedSubscription = event.data.object;
+      stripeCustomerId = deletedSubscription.customer;
+      await User.findOneAndUpdate(
+        { stripeCustomerId: stripeCustomerId },
+        { isSubscribed: false },
+        { new: true }
+      );
+      break;
+
+    case 'invoice.payment_succeeded':
+      const successfulInvoice = event.data.object;
+      stripeCustomerId = successfulInvoice.customer;
+      await User.findOneAndUpdate(
+        { stripeCustomerId: stripeCustomerId },
+        { isSubscribed: true },
+        { new: true }
+      );
+      break;
+
+    case 'invoice.payment_failed':
+      const failedInvoice = event.data.object;
+      stripeCustomerId = failedInvoice.customer;
+      await User.findOneAndUpdate(
+        { stripeCustomerId: stripeCustomerId },
+        { isSubscribed: false },
+        { new: true }
+      );
+      break;
+
     default:
-      console.log(`Unhandled event type ${event.type}`);
+      // console.log(`Unhandled event type ${event.type}`);
   }
 
-  // Return a response to acknowledge receipt of the event
   response.json({received: true});
 });
+  
 
 
 
@@ -132,8 +184,8 @@ const startApolloServer = async () => {
   
   db.once('open', () => {
     app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+      // console.log(`API server running on port ${PORT}!`);
+      // console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
   })
   };
@@ -275,6 +327,43 @@ app.get('*', function(req, res) {
     }
   })
 })
+
+// Server-side (Node.js with Express)
+app.post('/cancel-subscription', authMiddleware, async (req, res) => {
+  if (!req.user) {
+    return res.status(403).send('You must be logged in to cancel a subscription');
+  }
+
+  try {
+    const user = req.user;
+
+    // Retrieve the user's current subscription from Stripe
+    const subscriptions = await stripe.subscriptions.list({
+      customer: user.stripeCustomerId,
+      status: 'active',
+      limit: 1,
+    });
+
+    if (subscriptions.data.length === 0) {
+      return res.status(404).send('Active subscription not found');
+    }
+
+    // Cancel the subscription
+    await stripe.subscriptions.del(subscriptions.data[0].id);
+
+    // Update the user's record in your database
+    // Set stripeCustomerId to null
+    await User.findByIdAndUpdate(user._id, { isSubscribed: false, stripeCustomerId: null });
+
+    res.json({ message: 'Subscription canceled successfully' });
+  } catch (error) {
+    console.error('Error canceling subscription:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
 
 
 // Endpoint to update a subscription

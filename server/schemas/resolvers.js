@@ -132,18 +132,18 @@ const resolvers = {
       },
 
       fetchUserProfile: async (_, args, context) => {
-        console.log("Context user:", context.user);
+        // console.log("Context user:", context.user);
         if (!context.user) {
           throw new AuthenticationError('Not authenticated');
         }
         try {
           const user = await User.findById(context.user._id).select('-password');
-          console.log("Fetched user:", user);
+          // console.log("Fetched user:", user);
           if (!user) {
             console.error("No user found with the given ID.");
             return null;
           }
-          console.log("Returning user:", user);
+          // console.log("Returning user:", user);
           return user;
         } catch (err) {
           console.error(err);
@@ -283,8 +283,8 @@ const resolvers = {
           );
         
           // Optionally log the new token
-          console.log('New JWT Token:', updatedToken);
-          console.log ('Updated user data:', user)
+          // console.log('New JWT Token:', updatedToken);
+          // console.log ('Updated user data:', user)
         
           return { user, token: updatedToken };
         },
