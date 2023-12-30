@@ -171,10 +171,34 @@ const resolvers = {
         },
 
         sendChatGptQuery: async (_, { prompt }, context) => {
-            if (!context.user) {
-                throw new Error('You must be logged in to use this feature');
+          if (!context.user) {
+            throw new Error('You must be logged in to use this feature');
+          }
+        
+          const user = await User.findById(context.user._id);
+        
+          // Bypass the API call limit for subscribed users
+          if (!user.isSubscribed) {
+            const currentYear = new Date().getFullYear();
+            const lastCallYear = user.lastApiCallDate ? new Date(user.lastApiCallDate).getFullYear() : null;
+        
+            if (lastCallYear && lastCallYear < currentYear) {
+              // Reset count if it's a new year
+              user.apiCallCount = 0;
             }
-            const chatResponse = await chatGpt(prompt);
+        
+            if (user.apiCallCount >= 3) {
+              throw new Error('API call limit reached for the year');
+            }
+        
+            
+          }
+        
+          // Proceed with the API call
+          const chatResponse = await chatGpt(prompt);
+            user.apiCallCount += 1;
+            user.lastApiCallDate = new Date();
+            await user.save();
             const search = new Search({
               query: prompt,
               response: chatResponse,

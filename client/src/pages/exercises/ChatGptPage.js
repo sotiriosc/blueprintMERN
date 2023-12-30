@@ -18,7 +18,7 @@ function ChatGptPage() {
 
   useEffect(() => {
     if (data && data.userResponses) {
-      console.log("User Responses:", data.userResponses); // For debugging
+      // console.log("User Responses:", data.userResponses); // For debugging
       setResponses(data.userResponses);
     }
   }, [data]);
@@ -29,7 +29,7 @@ function ChatGptPage() {
   };
 
   const handleDismiss = async (responseId) => {
-    console.log('Dismissing response with ID:', responseId); // For debugging
+    // console.log('Dismissing response with ID:', responseId); // For debugging
     await deleteResponse({ variables: { responseId } });
   };
   
@@ -40,22 +40,33 @@ function ChatGptPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await sendQuery({ variables: { prompt } });
+      const { data } = await sendQuery({
+        variables: { prompt },
+        update: (cache, { data: { sendChatGptQuery } }) => {
+          // Update Apollo cache if needed
+          // Example: cache.modify()...
+        }
+      });
+  
       if (data) {
         const newResponse = {
-          id: data.sendChatGptQuery.id, // Assuming the backend returns an ID
+          id: data.sendChatGptQuery.id,
           query: prompt,
           response: data.sendChatGptQuery.reply
         };
-        const newResponses = [...responses, newResponse];
-        setResponses(newResponses);
+        setResponses(prevResponses => [...prevResponses, newResponse]);
         setPrompt('');
         promptRef.current.focus();
       }
+  
+      // Optionally, refetch relevant queries to synchronize with the database
+      refetch(); // This assumes 'refetch' is available from useQuery
     } catch (err) {
       console.error(err);
+      // Handle error (e.g., rollback optimistic update, show error message)
     }
   };
+  
   
   
   const styles = {
@@ -224,6 +235,7 @@ const Button = styled.button`
 
       <h1>Your Personal AI Trainer</h1>
       <p>Ask me a fitness question! You can even let me know whats in your fridge and request advice on a healthy meal to make with what ever you got.</p>
+      <p>All users receive 3 free trial questions per year, if you would like to subscribe to the feature, please visit "My Profile" page.</p>
       <form onSubmit={handleSubmit} style={styles.chatForm}>
       <textarea
   ref={promptRef}

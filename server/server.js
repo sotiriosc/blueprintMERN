@@ -286,12 +286,12 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
-        price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
+        price: 'price_1OSStVBy17P1QCFTHI2hRnB4', 
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: 'http://localhost:3001/myProfile?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:3001/myProfile',
+      success_url: 'https://www.balancedblueprint.ca//myProfile?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://www.balancedblueprint.ca//myProfile',
       client_reference_id: user._id.toString(),
     });
     res.json({ id: session.id });
@@ -308,7 +308,7 @@ app.post('/create-subscription', async (req, res) => {
     const { customerId } = req.body; // ID of the existing customer in Stripe
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
-      items: [{ price: 'price_1OOtI3By17P1QCFTPVjXwSZ7' }],
+      items: [{ price: 'price_1OSStVBy17P1QCFTHI2hRnB4' }],
       expand: ['latest_invoice.payment_intent'],
     });
     res.json(subscription);
