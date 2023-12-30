@@ -87,6 +87,7 @@ app.use((req, res, next) => {
 
 // Stripe Webhook endpoint
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+console.log("endpointSecret", endpointSecret);
 
 app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
   const event = request.body;
@@ -95,6 +96,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
   // Handle the event
   switch (event.type) {
     case 'payment_intent.succeeded':
+      console.log('Handling payment_intent.succeeded:', event.data);
       const paymentIntent = event.data.object;
 
       // Assuming the customer id is stored in the metadata of the payment intent
@@ -276,8 +278,8 @@ app.post('/create-customer', async (req, res) => {
 
 app.post('/create-checkout-session', authMiddleware, async (req, res) => {
   try {
-    // console.log('Creating checkout session');
-    // console.log("users info", req.user);
+    console.log('Creating checkout session');
+    console.log("users info", req.user);
     if (!req.user) {
       return res.status(403).send('You must be logged in to use this feature');
     }
