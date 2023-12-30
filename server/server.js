@@ -108,9 +108,11 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
         {
           isSubscribed: true,
           stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
+          
         }
+        
       );
-
+       console.log("User updated", User)
       break;
       
       case 'customer.subscription.created':
@@ -292,8 +294,8 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: 'https://www.balancedblueprint.ca/myProfile?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://www.balancedblueprint.ca/myProfile',
+      success_url: 'https://balancedblueprintblog-087c8e263340.herokuapp.com/myProfile?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://balancedblueprintblog-087c8e263340.herokuapp.com/myProfile',
       client_reference_id: user._id.toString(),
     });
     res.json({ id: session.id });
