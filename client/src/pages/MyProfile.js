@@ -83,7 +83,7 @@ const MyProfile = () => {
     
   
     try {
-      const response = await fetch('http://localhost:3001/cancel-subscription', {
+      const response = await fetch('https://www.balancedblueprint.ca//cancel-subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
