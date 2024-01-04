@@ -125,8 +125,7 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 //       break;
 app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
   const event = request.body;
-//   let stripeCustomerId;
-let userId; // Declare userId at the beginning of the switch block
+
   
   console.log("Received event:", event);
   console.log("Event type:", event.type);
@@ -137,6 +136,7 @@ let userId; // Declare userId at the beginning of the switch block
 
   try {
     // Handle the event
+    let userId; // Declare userId at the beginning of the switch block
      switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
@@ -231,6 +231,7 @@ let userId; // Declare userId at the beginning of the switch block
     }
     break;
       
+   
 
     case 'invoice.payment_failed':
       const failedInvoice = event.data.object;
