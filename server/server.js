@@ -86,17 +86,27 @@ app.use((req, res, next) => {
 
 
 // Stripe Webhook endpoint
+
+
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 
 app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
+  
   const event = request.body;
   let stripeCustomerId;
+  
+  console.log("Received event:", event);
+  console.log("Event type:", event.type);
+
+
 
   // Handle the event
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
+      console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
+    
 
       // Assuming the customer id is stored in the metadata of the payment intent
       const customerId = paymentIntent.metadata.customerId;
@@ -169,7 +179,8 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
   response.json({received: true});
 });
-  
+
+
 
 
 
@@ -220,10 +231,13 @@ app.get('/checkout-session', async (req, res) => {
     }
 
     // Optionally, find the user associated with this session and update as needed
+
+
     // const user = await User.findOne({ stripeCustomerId: session.customer });
     // if (user) {
     //   // Update user data as needed
     // }
+
 
     // Return the session details to the client
     res.json(session);

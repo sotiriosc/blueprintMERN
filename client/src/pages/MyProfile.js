@@ -26,6 +26,31 @@ const MyProfile = () => {
 
   const [stripeBillingUrl, setStripeBillingUrl] = useState('https://billing.stripe.com/p/login/aEU5nO9L92b669a144');
 
+  const handleCheckout = async () => {
+    const stripe = await stripePromise;
+    try {
+      const sessionResponse = await fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // If you need to send additional data, include it here
+      });
+      const session = await sessionResponse.json();
+  
+      // Redirect to Stripe Checkout
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+  
+      if (error) {
+        console.error('Stripe checkout error:', error);
+      }
+    } catch (error) {
+      console.error('Error during checkout:', error);
+    }
+  };
+  
+  
+
   const handleSubscriptionUpdate = useCallback(async () => {
     if (data?.fetchUserProfile) {
       try {
@@ -59,21 +84,7 @@ const MyProfile = () => {
     window.location.href = stripeBillingUrl; // Redirects user to the Stripe billing portal
   };
 
-  const handleCheckout = async () => {
-    const stripe = await stripePromise;
-    const { error } = await stripe.redirectToCheckout({
-      lineItems: [{ price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', quantity: 1 }],
-      mode: 'subscription',
-      successUrl: window.location.origin + '/myProfile?checkout=success',
-      cancelUrl: window.location.origin + '/myProfile',
-    });
-    
-
-    if (error) {
-      console.error('Stripe checkout error:', error);
-      // console.log(`Handling checkout for user: ${data?.fetchUserProfile?._id}`);
-    }
-  };
+  
 
 
   const handleUnsubscribe = async () => {
