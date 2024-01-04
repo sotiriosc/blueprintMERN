@@ -106,7 +106,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
       console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
-    
+      console.error("Error handling payment_intent.succeeded:", error);
 
       // Assuming the customer id is stored in the metadata of the payment intent
       const customerId = paymentIntent.metadata.customerId;
@@ -118,8 +118,10 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
           isSubscribed: true,
           stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
         }
+        
       );
 
+      
       break;
       
       case 'customer.subscription.created':
@@ -175,9 +177,12 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
     default:
       console.log(`Unhandled event type ${event.type}`);
+      console.log('error in webhook', error);
   }
 
+  
   response.json({received: true});
+  
 });
 
 
