@@ -171,12 +171,12 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
         try {
           // Find the user by _id and update
           await User.findOneAndUpdate(
-            { _id: mongoose.Types.ObjectId(userId) }, // Convert the string _id to a MongoDB ObjectId
+            { _id: new mongoose.Types.ObjectId(userId) },
             { 
               isSubscribed: true,
-              stripeCustomerId: stripeCustomerId // Update the stripeCustomerId
+              stripeCustomerId: stripeCustomerId
             },
-            { new: true } // Return the updated document
+            { new: true }
           );
         } catch (error) {
           console.error('Error updating user on customer.subscription.created:', error);
