@@ -130,8 +130,9 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
   console.log("Webhook received:", JSON.stringify(request.body, null, 2));
 
   try {
-    let stripeCustomerId;
+    
     let userId; // Declare userId here for broader scope
+    let stripeCustomerId;
 
     switch (event.type) {
       case 'payment_intent.succeeded':
@@ -152,7 +153,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       
         case 'customer.subscription.created':
           const subscription = event.data.object;
-          const stripeCustomerId = subscription.customer;
+          stripeCustomerId = event.data.object.customer;
   
           // Use stripeCustomerId to find the user and update isSubscribed
           await User.findOneAndUpdate(
@@ -181,16 +182,16 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
         }
         break;
 
-    case 'customer.subscription.deleted':
-      const deletedSubscription = event.data.object;
-      stripeCustomerId = deletedSubscription.customer;
-      await User.findOneAndUpdate(
-        { stripeCustomerId: stripeCustomerId },
-        { isSubscribed: false },
-        { new: true }
-      );
-      break;
-
+        case 'customer.subscription.deleted':
+          const deletedSubscription = event.data.object;
+          stripeCustomerId = event.data.object.customer;
+  
+          await User.findOneAndUpdate(
+            { stripeCustomerId: stripeCustomerId },
+            { isSubscribed: false },
+            { new: true }
+          );
+          break;
       
 
       case 'invoice.payment_succeeded':
