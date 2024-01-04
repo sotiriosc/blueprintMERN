@@ -137,45 +137,43 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
   try {
     // Handle the event
     let userId; // Declare userId at the beginning of the switch block
+    let stripeCustomerId
      switch (event.type) {
-    case 'payment_intent.succeeded':
-      const paymentIntent = event.data.object;
-      console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
-      console.error("Error handling payment_intent.succeeded:", error);
-
-      // Assuming the customer id is stored in the metadata of the payment intent
-      const customerId = paymentIntent.metadata.customerId;
-
-      // Find the user with the given customer id and update their fields
-      await User.findOneAndUpdate(
-        { stripeCustomerId: customerId },
-        {
-          isSubscribed: true,
-          stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
-        }
-        
-      );
-
+      case 'payment_intent.succeeded':
+        const paymentIntent = event.data.object;
+        console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
       
-      break;
-      // Add other cases...
-
-    
-    
-      case 'customer.subscription.created':
-        const subscriptionCreated = event.data.object;
-        const stripeCustomerId = subscriptionCreated.customer;
-    
         // Extract the user's _id from the metadata
-        const userId = subscriptionCreated.metadata.userId; // Adjust according to your actual metadata key
-    
+        const userId = paymentIntent.metadata.userId; 
+      
         try {
           // Find the user by _id and update
           await User.findOneAndUpdate(
             { _id: new mongoose.Types.ObjectId(userId) },
+            {
+              isSubscribed: true,
+              stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
+            },
+            { new: true }
+          );
+        } catch (error) {
+          console.error('Error handling payment_intent.succeeded:', error);
+        }
+        break;
+      
+
+      
+      break;
+      case 'customer.subscription.created':
+        const subscriptionCreated = event.data.object;
+        userId = subscriptionCreated.metadata.userId; // Extract the user's _id from the metadata
+
+        try {
+          await User.findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(userId) },
             { 
               isSubscribed: true,
-              stripeCustomerId: stripeCustomerId
+              stripeCustomerId: subscriptionCreated.customer // Update the stripeCustomerId
             },
             { new: true }
           );
@@ -213,23 +211,20 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
       
 
-  case 'invoice.payment_succeeded':
-    const successfulInvoice = event.data.object;
-    
-    // Extract the user's _id from the metadata
-    userId = successfulInvoice.metadata.userId; // Assign value to userId
-  
-    try {
-      // Find the user by _id and update
-      await User.findOneAndUpdate(
-        { _id: new mongoose.Types.ObjectId(userId) },
-        { isSubscribed: true },
-        { new: true }
-      );
-    } catch (error) {
-      console.error('Error updating user on invoice.payment_succeeded:', error);
-    }
-    break;
+      case 'invoice.payment_succeeded':
+        const successfulInvoice = event.data.object;
+        userId = successfulInvoice.metadata.userId; // Extract the user's _id from the metadata
+
+        try {
+          await User.findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(userId) },
+            { isSubscribed: true },
+            { new: true }
+          );
+        } catch (error) {
+          console.error('Error updating user on invoice.payment_succeeded:', error);
+        }
+        break;
       
    
 
@@ -367,11 +362,13 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
   try {
     console.log('Creating checkout session');
     console.log("users info", req.user);
+
     if (!req.user) {
       return res.status(403).send('You must be logged in to use this feature');
     }
+
     const user = req.user; // Get the user from the request
-    
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
@@ -381,15 +378,16 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
       mode: 'subscription',
       success_url: 'https://www.balancedblueprint.ca/myProfile?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://www.balancedblueprint.ca/myProfile',
-      metadata: { userId: user._id.toString() }, // Add user's _id to metadata
-      client_reference_id: user._id.toString(),
+      metadata: { userId: user._id.toString() } // Add user's _id to metadata
     });
+
     res.json({ id: session.id });
   } catch (err) {
     console.error('Error creating checkout session:', err);
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 
