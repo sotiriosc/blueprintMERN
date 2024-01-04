@@ -84,6 +84,38 @@ app.use((req, res, next) => {
 });
 
 
+app.post('/create-checkout-session', authMiddleware, async (req, res) => {
+  try {
+    console.log('Creating checkout session');
+    console.log("users info", req.user);
+
+    if (!req.user) {
+      return res.status(403).send('You must be logged in to use this feature');
+    }
+
+    const user = req.user; // Get the user from the request
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [{
+        price: 'price_1OSrqRBy17P1QCFTS2ZDLrTf', 
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: 'https://www.balancedblueprint.ca/myProfile?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://www.balancedblueprint.ca/myProfile',
+      metadata: { userId: user._id.toString() } // Add user's _id to metadata
+    });
+
+    res.json({ id: session.id });
+  } catch (err) {
+    console.log('User Id', user._id.toString());
+    console.error('Error creating checkout session:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 // Stripe Webhook endpoint
 
@@ -365,36 +397,6 @@ app.post('/create-customer', async (req, res) => {
   }
 });
 
-
-app.post('/create-checkout-session', authMiddleware, async (req, res) => {
-  try {
-    console.log('Creating checkout session');
-    console.log("users info", req.user);
-
-    if (!req.user) {
-      return res.status(403).send('You must be logged in to use this feature');
-    }
-
-    const user = req.user; // Get the user from the request
-
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [{
-        price: 'price_1OSrqRBy17P1QCFTS2ZDLrTf', 
-        quantity: 1,
-      }],
-      mode: 'subscription',
-      success_url: 'https://www.balancedblueprint.ca/myProfile?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://www.balancedblueprint.ca/myProfile',
-      metadata: { userId: user._id.toString() } // Add user's _id to metadata
-    });
-
-    res.json({ id: session.id });
-  } catch (err) {
-    console.error('Error creating checkout session:', err);
-    res.status(500).json({ error: err.message });
-  }
-});
 
 
 
