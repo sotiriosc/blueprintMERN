@@ -162,39 +162,43 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
     
     
       case 'customer.subscription.created':
-  const subscriptionCreated = event.data.object;
-  const stripeCustomerId = subscriptionCreated.customer;
-
-  // Extract the user's _id from the metadata
-  const userId = subscriptionCreated.metadata.userId; // Adjust according to your actual metadata key
-
-  try {
-    // Find the user by _id and update
-    await User.findOneAndUpdate(
-      { _id: mongoose.Types.ObjectId(userId) }, // Convert the string _id to a MongoDB ObjectId
-      { 
-        isSubscribed: true,
-        stripeCustomerId: stripeCustomerId // Update the stripeCustomerId
-      },
-      { new: true } // Return the updated document
-    );
-  } catch (error) {
-    console.error('Error updating user on customer.subscription.created:', error);
-  }
-  break;
-
-
-
+        const subscriptionCreated = event.data.object;
+        const stripeCustomerId = subscriptionCreated.customer;
+    
+        // Extract the user's _id from the metadata
+        const userId = subscriptionCreated.metadata.userId; // Adjust according to your actual metadata key
+    
+        try {
+          // Find the user by _id and update
+          await User.findOneAndUpdate(
+            { _id: mongoose.Types.ObjectId(userId) }, // Convert the string _id to a MongoDB ObjectId
+            { 
+              isSubscribed: true,
+              stripeCustomerId: stripeCustomerId // Update the stripeCustomerId
+            },
+            { new: true } // Return the updated document
+          );
+        } catch (error) {
+          console.error('Error updating user on customer.subscription.created:', error);
+        }
+        break;
+    
     case 'customer.subscription.updated':
-      const updatedSubscription = event.data.object;
-      stripeCustomerId = updatedSubscription.customer;
-      const isCurrentlySubscribed = updatedSubscription.status === 'active' || updatedSubscription.status === 'trialing';
-      await User.findOneAndUpdate(
-        { stripeCustomerId: stripeCustomerId },
-        { isSubscribed: isCurrentlySubscribed },
-        { new: true }
-      );
-      break;
+        const updatedSubscription = event.data.object;
+        const currentStripeCustomerId = updatedSubscription.customer;
+        const isCurrentlySubscribed = updatedSubscription.status === 'active' || updatedSubscription.status === 'trialing';
+    
+        try {
+          // Find the user by Stripe Customer ID and update
+          await User.findOneAndUpdate(
+            { stripeCustomerId: currentStripeCustomerId },
+            { isSubscribed: isCurrentlySubscribed },
+            { new: true }
+          );
+        } catch (error) {
+          console.error('Error updating user on customer.subscription.updated:', error);
+        }
+        break;
 
     case 'customer.subscription.deleted':
       const deletedSubscription = event.data.object;
