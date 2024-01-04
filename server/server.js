@@ -126,6 +126,7 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
   const event = request.body;
 //   let stripeCustomerId;
+let userId; // Declare userId at the beginning of the switch block
   
   console.log("Received event:", event);
   console.log("Event type:", event.type);
@@ -210,15 +211,26 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       );
       break;
 
-    case 'invoice.payment_succeeded':
-      const successfulInvoice = event.data.object;
-      stripeCustomerId = successfulInvoice.customer;
+      
+
+  case 'invoice.payment_succeeded':
+    const successfulInvoice = event.data.object;
+    
+    // Extract the user's _id from the metadata
+    userId = successfulInvoice.metadata.userId; // Assign value to userId
+  
+    try {
+      // Find the user by _id and update
       await User.findOneAndUpdate(
-        { stripeCustomerId: stripeCustomerId },
+        { _id: new mongoose.Types.ObjectId(userId) },
         { isSubscribed: true },
         { new: true }
       );
-      break;
+    } catch (error) {
+      console.error('Error updating user on invoice.payment_succeeded:', error);
+    }
+    break;
+      
 
     case 'invoice.payment_failed':
       const failedInvoice = event.data.object;
