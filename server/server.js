@@ -241,7 +241,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
       
 
-        case 'payment_intent.succeeded':
+        case 'payment_intent.created':
         const paymentIntent = event.data.object;
         stripeCustomerId = paymentIntent.customer;
       
@@ -253,7 +253,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
             { new: true }
           );
         } else {
-          console.error('No Stripe Customer ID found in payment_intent.succeeded');
+          console.error('No Stripe Customer ID found in payment_intent.created');
         }
         break;
 
