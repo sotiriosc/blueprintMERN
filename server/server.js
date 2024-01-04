@@ -96,8 +96,8 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
   const event = request.body;
   let stripeCustomerId;
   
-  // console.log("Received event:", event);
-  // console.log("Event type:", event.type);
+  console.log("Received event:", event);
+  console.log("Event type:", event.type);
 
 
 
@@ -105,7 +105,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
-      // console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
+      console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
     
 
       // Assuming the customer id is stored in the metadata of the payment intent
@@ -305,8 +305,8 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: 'https://balancedblueprintblog-087c8e263340.herokuapp.com/webhook/myProfile?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://balancedblueprintblog-087c8e263340.herokuapp.com/webhook/myProfile',
+      success_url: 'https://www.balancedblueprint.ca/webhook/myProfile?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://www.balancedblueprint.ca/webhook/myProfile',
       client_reference_id: user._id.toString(),
     });
     res.json({ id: session.id });
