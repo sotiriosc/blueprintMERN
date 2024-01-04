@@ -331,14 +331,19 @@ app.get('/checkout-session', async (req, res) => {
       return res.status(404).send('Session not found');
     }
 
-    // Optionally, find the user associated with this session and update as needed
-
-
-    // const user = await User.findOne({ stripeCustomerId: session.customer });
-    // if (user) {
-    //   // Update user data as needed
-    // }
-
+    // Find the user associated with this session and update as needed
+    const userId = session.metadata.userId;
+    if (userId) {
+      const user = await User.findOne({ _id: new mongoose.Types.ObjectId(userId) });
+      if (user) {
+        // Update user data as needed
+        // For example, update the stripeCustomerId and isSubscribed status
+        await User.findByIdAndUpdate(userId, {
+          stripeCustomerId: session.customer,
+          isSubscribed: true // Update this depending on your business logic
+        });
+      }
+    }
 
     // Return the session details to the client
     res.json(session);
@@ -347,6 +352,7 @@ app.get('/checkout-session', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 
 app.post('/chat-gpt', authMiddleware, async (req, res) => {
