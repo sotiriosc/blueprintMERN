@@ -136,7 +136,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
   try {
     // Handle the event
-    let userId; // Declare userId at the beginning of the switch block
+    // let userId; // Declare userId at the beginning of the switch block
     let stripeCustomerId
      switch (event.type) {
       case 'payment_intent.succeeded':
