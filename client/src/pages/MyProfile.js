@@ -31,8 +31,10 @@ const MyProfile = () => {
     try {
       const sessionResponse = await fetch('/create-checkout-session', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // If you need to send additional data, include it here
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${AuthService.getToken()}` // Include the token here
+        },
       });
       const session = await sessionResponse.json();
   
