@@ -98,7 +98,7 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
-        price: 'price_1OSrqRBy17P1QCFTS2ZDLrTf', 
+        price: 'price_1OUynZBy17P1QCFTWPMYj5zY', 
         quantity: 1,
       }],
       mode: 'subscription',
@@ -393,7 +393,7 @@ app.post('/create-subscription', async (req, res) => {
     const { customerId } = req.body; // ID of the existing customer in Stripe
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
-      items: [{ price: 'price_1OSrqRBy17P1QCFTS2ZDLrTf' }],
+      items: [{ price: 'price_1OUynZBy17P1QCFTWPMYj5zY' }],
       expand: ['latest_invoice.payment_intent'],
     });
     res.json(subscription);
