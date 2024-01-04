@@ -242,37 +242,48 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       
 
         case 'payment_intent.created':
-        const paymentIntent = event.data.object;
-        stripeCustomerId = paymentIntent.customer;
+        try {
+          const paymentIntent = event.data.object;
+          // Here, you're not declaring stripeCustomerId, just assigning it a new value
+          stripeCustomerId = paymentIntent.customer;
       
-        if (stripeCustomerId) {
-          // Find the user by Stripe Customer ID and update
-          await User.findOneAndUpdate(
-            { stripeCustomerId: stripeCustomerId },
-            { isSubscribed: true },
-            { new: true }
-          );
-        } else {
-          console.error('No Stripe Customer ID found in payment_intent.created');
+          if (stripeCustomerId) {
+            // Update isSubscribed to true in your database
+            await User.findOneAndUpdate(
+              { stripeCustomerId: stripeCustomerId },
+              { isSubscribed: true },
+              { new: true }
+            );
+          } else {
+            console.error('No Stripe Customer ID found in payment_intent.succeeded');
+          }
+        } catch (error) {
+          console.error('Error handling payment_intent.succeeded:', error);
+          // Since stripeCustomerId is declared in a higher scope, it can be safely used here
         }
         break;
 
         case 'payment_intent.succeeded':
           try {
             const paymentIntent = event.data.object;
-            // Here, you're not declaring stripeCustomerId, just assigning it a new value
             stripeCustomerId = paymentIntent.customer;
         
             if (stripeCustomerId) {
-              // Your existing logic to update the user
+              // Update isSubscribed to true in your database
+              await User.findOneAndUpdate(
+                { stripeCustomerId: stripeCustomerId },
+                { isSubscribed: true },
+                { new: true }
+              );
+              console.log(`Subscription updated for customer ID: ${stripeCustomerId}`);
             } else {
               console.error('No Stripe Customer ID found in payment_intent.succeeded');
             }
           } catch (error) {
             console.error('Error handling payment_intent.succeeded:', error);
-            // Since stripeCustomerId is declared in a higher scope, it can be safely used here
           }
           break;
+        
         
 
       default:
