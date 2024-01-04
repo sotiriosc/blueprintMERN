@@ -122,38 +122,6 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 
-// app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
-  
-//   const event = request.body;
-//   let stripeCustomerId;
-  
-//   console.log("Received event:", event);
-//   console.log("Event type:", event.type);
-
-
-
-//   // Handle the event
-//   switch (event.type) {
-//     case 'payment_intent.succeeded':
-//       const paymentIntent = event.data.object;
-//       console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
-//       console.error("Error handling payment_intent.succeeded:", error);
-
-//       // Assuming the customer id is stored in the metadata of the payment intent
-//       const customerId = paymentIntent.metadata.customerId;
-
-//       // Find the user with the given customer id and update their fields
-//       await User.findOneAndUpdate(
-//         { stripeCustomerId: customerId },
-//         {
-//           isSubscribed: true,
-//           stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
-//         }
-        
-//       );
-
-      
-//       break;
 app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
   const event = request.body;
 
@@ -270,6 +238,22 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       );
       break;
 
+      case 'checkout.session.completed':
+        const session = event.data.object; // Access the session object
+        userId = session.metadata.userId; // Get userId from metadata
+
+        if (userId) {
+          // Update user in the database
+          await User.findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(userId) },
+            { isSubscribed: true, stripeCustomerId: session.customer },
+            { new: true }
+          );
+        } else {
+          console.error('No userId found in metadata for checkout.session.completed');
+        }
+        break;
+
       default:
         console.log(`Unhandled event type ${event.type}`);
     }
@@ -279,6 +263,8 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
     console.error('Error in processing webhook:', error);
     response.status(500).json({ error: 'Internal Server Error' });
   }
+
+ 
 });
 
 
