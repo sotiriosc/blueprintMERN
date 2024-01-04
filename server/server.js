@@ -195,9 +195,9 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
         break;
       
         case 'customer.subscription.created':
-          const subscriptionCreated = event.data.object;
+          const subscription = event.data.object;
         
-          if (subscriptionCreated.metadata && subscriptionCreated.metadata.userId) {
+          if (subscription.metadata && subscriptionCreated.metadata.userId) {
            const userId = subscription.metadata.userId; // Assign the value to the already declared userId
         
             await User.findOneAndUpdate(
@@ -244,10 +244,8 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       
 
       case 'invoice.payment_succeeded':
-  const successfulInvoice = event.data.object;
-  
-  // Make sure the metadata contains userId
-  if (successfulInvoice.metadata && successfulInvoice.metadata.userId) {
+        const successfulInvoice = event.data.object;
+        if (successfulInvoice.metadata && successfulInvoice.metadata.userId) {
     const userId = successfulInvoice.metadata.userId; // Extract userId from metadata
 
     try {
