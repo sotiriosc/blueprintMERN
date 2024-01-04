@@ -162,14 +162,23 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
     
     
       case 'customer.subscription.created':
-      const subscriptionCreated = event.data.object;
-      stripeCustomerId = subscriptionCreated.customer;
-      await User.findOneAndUpdate(
-        { stripeCustomerId: stripeCustomerId },
-        { isSubscribed: true },
-        { new: true }
-      );
-      break;
+  const subscriptionCreated = event.data.object;
+  const stripeCustomerId = subscriptionCreated.customer;
+
+  // Retrieve the user ID from your database that matches this stripeCustomerId
+  const user = await User.findOne({ _id: stripeCustomerId });
+
+  if (user) {
+    // Update the user's record with the Stripe customer ID and subscription status
+    await User.findByIdAndUpdate(user._id, {
+      stripeCustomerId: stripeCustomerId,
+      isSubscribed: true
+    });
+  } else {
+    console.log(`No user found with ID: ${stripeCustomerId}`);
+  }
+  break;
+
 
     case 'customer.subscription.updated':
       const updatedSubscription = event.data.object;
