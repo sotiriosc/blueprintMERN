@@ -151,28 +151,16 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       
       
         case 'customer.subscription.created':
-        const subscription = event.data.object;
-        userId = subscription.metadata.userId;
-
-        if (!userId) {
-          // Check if latest_invoice and payment_intent are available
-          if (subscription.latest_invoice && subscription.latest_invoice.payment_intent) {
-            const paymentIntentId = subscription.latest_invoice.payment_intent;
-            const session = await stripe.checkout.sessions.retrieve(paymentIntentId);
-            userId = session.metadata.userId;
-          }
-        }
-
-        if (userId) {
+          const subscription = event.data.object;
+          const stripeCustomerId = subscription.customer;
+  
+          // Use stripeCustomerId to find the user and update isSubscribed
           await User.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(userId) },
-            { isSubscribed: true, stripeCustomerId: subscription.customer },
+            { stripeCustomerId: stripeCustomerId },
+            { isSubscribed: true },
             { new: true }
           );
-        } else {
-          console.error('No userId found in metadata for customer.subscription.created');
-        }
-        break;
+          break;
 
 
     
@@ -243,10 +231,10 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
         userId = session.metadata.userId; // Get userId from metadata
 
         if (userId) {
-          // Update user in the database
+          // Only update stripeCustomerId in the database
           await User.findOneAndUpdate(
             { _id: new mongoose.Types.ObjectId(userId) },
-            { isSubscribed: true, stripeCustomerId: session.customer },
+            { stripeCustomerId: session.customer },
             { new: true }
           );
         } else {
