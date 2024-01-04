@@ -154,16 +154,20 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       
       
         case 'customer.subscription.created':
-          const subscription = event.data.object;
-          stripeCustomerId = event.data.object.customer;
+  const subscriptionCreated = event.data.object;
+  const stripeCustomerIdCreated = subscriptionCreated.customer;
   
-          // Use stripeCustomerId to find the user and update isSubscribed
-          await User.findOneAndUpdate(
-            { stripeCustomerId: stripeCustomerId },
-            { isSubscribed: true },
-            { new: true }
-          );
-          break;
+  // Update isSubscribed to true when a new subscription is created
+  if (stripeCustomerIdCreated) {
+    await User.findOneAndUpdate(
+      { stripeCustomerId: stripeCustomerIdCreated },
+      { isSubscribed: true },
+      { new: true }
+    );
+  } else {
+    console.error('No Stripe Customer ID found in customer.subscription.created');
+  }
+  break;
 
 
     
@@ -184,16 +188,21 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
             }
             break;
 
-        case 'customer.subscription.deleted':
-          const deletedSubscription = event.data.object;
-          stripeCustomerId = event.data.object.customer;
-  
-          await User.findOneAndUpdate(
-            { stripeCustomerId: stripeCustomerId },
-            { isSubscribed: false },
-            { new: true }
-          );
-          break;
+            case 'customer.subscription.deleted':
+              const subscriptionDeleted = event.data.object;
+              const stripeCustomerIdDeleted = subscriptionDeleted.customer;
+            
+              // Update isSubscribed to false when a subscription is deleted
+              if (stripeCustomerIdDeleted) {
+                await User.findOneAndUpdate(
+                  { stripeCustomerId: stripeCustomerIdDeleted },
+                  { isSubscribed: false },
+                  { new: true }
+                );
+              } else {
+                console.error('No Stripe Customer ID found in customer.subscription.deleted');
+              }
+              break;
       
 
           case 'invoice.payment_succeeded':
