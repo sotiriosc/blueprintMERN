@@ -105,23 +105,23 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
-      console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
-      console.error("Error handling payment_intent.succeeded:", error);
 
       // Assuming the customer id is stored in the metadata of the payment intent
       const customerId = paymentIntent.metadata.customerId;
 
       // Find the user with the given customer id and update their fields
-      await User.findOneAndUpdate(
-        { stripeCustomerId: customerId },
-        {
-          isSubscribed: true,
-          stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
-        }
-        
-      );
+      try {
+        await User.findOneAndUpdate(
+          { stripeCustomerId: customerId },
+          {
+            isSubscribed: true,
+            stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
+          }
+        );
+      } catch (error) {
+        console.error('Error updating user:', error);
+      }
 
-      
       break;
       
       case 'customer.subscription.created':
