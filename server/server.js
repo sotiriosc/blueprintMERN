@@ -212,19 +212,27 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       
 
       case 'invoice.payment_succeeded':
-        const successfulInvoice = event.data.object;
-        userId = successfulInvoice.metadata.userId; // Extract the user's _id from the metadata
+  const successfulInvoice = event.data.object;
+  
+  // Make sure the metadata contains userId
+  if (successfulInvoice.metadata && successfulInvoice.metadata.userId) {
+    const userId = successfulInvoice.metadata.userId; // Extract userId from metadata
 
-        try {
-          await User.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(userId) },
-            { isSubscribed: true },
-            { new: true }
-          );
-        } catch (error) {
-          console.error('Error updating user on invoice.payment_succeeded:', error);
-        }
-        break;
+    try {
+      // Find the user by _id and update
+      await User.findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(userId) },
+        { isSubscribed: true },
+        { new: true }
+      );
+    } catch (error) {
+      console.error('Error updating user on invoice.payment_succeeded:', error);
+    }
+  } else {
+    console.log('No userId found in metadata for invoice.payment_succeeded');
+  }
+  break;
+
       
    
 
