@@ -91,29 +91,25 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 app.post('/webhook', express.json({type: 'application/json'}), async (request, response) => {
   const event = request.body;
-  console.log('Received webhook event:', event.type);
   let stripeCustomerId;
 
   // Handle the event
   switch (event.type) {
     case 'payment_intent.succeeded':
-      console.log('Handling payment_intent.succeeded:', event.data);
       const paymentIntent = event.data.object;
 
       // Assuming the customer id is stored in the metadata of the payment intent
       const customerId = paymentIntent.metadata.customerId;
 
       // Find the user with the given customer id and update their fields
-      const updatedUser = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { stripeCustomerId: customerId },
         {
           isSubscribed: true,
           stripeCustomerId: paymentIntent.customer // Update the stripeCustomerId with the id from the payment intent
-        },
-        { new: true } // Return the updated document
+        }
       );
 
-      console.log("User updated:", updatedUser);
       break;
       
       case 'customer.subscription.created':
@@ -167,14 +163,9 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       );
       break;
 
-      console.log('Received payment_intent.succeeded event:', event.data);
-      console.log('Updated user subscription status in database for customer:', customerId);
-
     default:
-      // console.log(`Unhandled event type ${event.type}`);
-      
+      console.log(`Unhandled event type ${event.type}`);
   }
-
 
   response.json({received: true});
 });
@@ -296,12 +287,12 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
-        price: 'price_1OSStVBy17P1QCFTHI2hRnB4', 
+        price: 'price_1OOtI3By17P1QCFTPVjXwSZ7', 
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: 'https://balancedblueprintblog-087c8e263340.herokuapp.com/myProfile?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://balancedblueprintblog-087c8e263340.herokuapp.com/myProfile',
+      success_url: 'http://localhost:3001/webhook/myProfile?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:3001/webhook/myProfile',
       client_reference_id: user._id.toString(),
     });
     res.json({ id: session.id });
@@ -318,7 +309,7 @@ app.post('/create-subscription', async (req, res) => {
     const { customerId } = req.body; // ID of the existing customer in Stripe
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
-      items: [{ price: 'price_1OSStVBy17P1QCFTHI2hRnB4' }],
+      items: [{ price: 'price_1OOtI3By17P1QCFTPVjXwSZ7' }],
       expand: ['latest_invoice.payment_intent'],
     });
     res.json(subscription);
