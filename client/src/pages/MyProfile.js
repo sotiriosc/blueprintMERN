@@ -4,7 +4,7 @@ import { fetchUserProfile } from '../utils/queries';
 import { UPDATE_USER_SUBSCRIPTION, UPDATE_USER_STRIPE_ID } from '../utils/mutations';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51NFRHWBy17P1QCFTHMBKTdPb3voTwpxZ7N5d6PNs65YXZuAY7vi3jmQbNCj4Yo7ENCrVDIVHCoCDa59SoaKl2bcS00ASsBfLiL');
+const stripePromise = loadStripe('pk_live_51NFRHWBy17P1QCFTyHfvu6cpVrtMcQzXrKnjQeluNbQvqbwEbIPaJKl7l5OjMkZSbLWQXuv1if04W18Ytb3XK8YC00cnVM5L57');
 
 const MyProfile = () => {
   const { loading, data, refetch } = useQuery(fetchUserProfile);
@@ -94,7 +94,7 @@ const MyProfile = () => {
     
   
     try {
-      const response = await fetch('http://localhost:3001/cancel-subscription', {
+      const response = await fetch('https://balancedblueprintblog-087c8e263340.herokuapp.com/cancel-subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
