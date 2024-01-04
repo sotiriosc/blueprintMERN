@@ -159,6 +159,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
   console.log("Received event:", event);
   console.log("Event type:", event.type);
+  console.log("Webhook received:", JSON.stringify(request.body, null, 2));
 
   try {
     let stripeCustomerId;
@@ -197,7 +198,7 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
           const subscriptionCreated = event.data.object;
         
           if (subscriptionCreated.metadata && subscriptionCreated.metadata.userId) {
-            userId = subscriptionCreated.metadata.userId; // Assign the value to the already declared userId
+           const userId = subscription.metadata.userId; // Assign the value to the already declared userId
         
             await User.findOneAndUpdate(
               { _id: new mongoose.Types.ObjectId(userId) },
