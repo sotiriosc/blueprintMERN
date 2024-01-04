@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { fetchUserProfile } from '../utils/queries';
 import { UPDATE_USER_SUBSCRIPTION, UPDATE_USER_STRIPE_ID } from '../utils/mutations';
 import { loadStripe } from '@stripe/stripe-js';
+import AuthService from '../utils/auth';
 
 const stripePromise = loadStripe('pk_live_51NFRHWBy17P1QCFTyHfvu6cpVrtMcQzXrKnjQeluNbQvqbwEbIPaJKl7l5OjMkZSbLWQXuv1if04W18Ytb3XK8YC00cnVM5L57');
 
