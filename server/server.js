@@ -305,8 +305,8 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: 'https://www.balancedblueprint.ca/webhook/myProfile?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://www.balancedblueprint.ca/webhook/myProfile',
+      success_url: 'https://www.balancedblueprint.ca/myProfile?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://www.balancedblueprint.ca/myProfile',
       client_reference_id: user._id.toString(),
     });
     res.json({ id: session.id });
