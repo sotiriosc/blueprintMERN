@@ -165,19 +165,24 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
   const subscriptionCreated = event.data.object;
   const stripeCustomerId = subscriptionCreated.customer;
 
-  // Retrieve the user ID from your database that matches this stripeCustomerId
-  const user = await User.findOne({ _id: stripeCustomerId });
+  // Extract the user's _id from the metadata
+  const userId = subscriptionCreated.metadata.userId; // Adjust according to your actual metadata key
 
-  if (user) {
-    // Update the user's record with the Stripe customer ID and subscription status
-    await User.findByIdAndUpdate(user._id, {
-      stripeCustomerId: stripeCustomerId,
-      isSubscribed: true
-    });
-  } else {
-    console.log(`No user found with ID: ${stripeCustomerId}`);
+  try {
+    // Find the user by _id and update
+    await User.findOneAndUpdate(
+      { _id: mongoose.Types.ObjectId(userId) }, // Convert the string _id to a MongoDB ObjectId
+      { 
+        isSubscribed: true,
+        stripeCustomerId: stripeCustomerId // Update the stripeCustomerId
+      },
+      { new: true } // Return the updated document
+    );
+  } catch (error) {
+    console.error('Error updating user on customer.subscription.created:', error);
   }
   break;
+
 
 
     case 'customer.subscription.updated':
@@ -359,14 +364,16 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
       mode: 'subscription',
       success_url: 'https://www.balancedblueprint.ca/myProfile?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://www.balancedblueprint.ca/myProfile',
+      metadata: { userId: user._id.toString() }, // Add user's _id to metadata
       client_reference_id: user._id.toString(),
     });
     res.json({ id: session.id });
   } catch (err) {
     console.error('Error creating checkout session:', err);
     res.status(500).json({ error: err.message });
-}
+  }
 });
+
 
 
 // Endpoint to create a subscription
