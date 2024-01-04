@@ -163,56 +163,46 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
   try {
     let stripeCustomerId;
+    let userId; // Declare userId here for broader scope
+
     switch (event.type) {
       case 'payment_intent.succeeded':
         const paymentIntent = event.data.object;
-        let userId;
-        
-        if (paymentIntent.metadata && paymentIntent.metadata.userId) {
-          userId = paymentIntent.metadata.userId; // Use the userId from paymentIntent metadata if available
-        } else {
-          // Retrieve the associated checkout session if userId is not in paymentIntent metadata
-          const sessionId = paymentIntent.metadata.checkoutSessionId; // Ensure this ID is stored in metadata
-          const session = await stripe.checkout.sessions.retrieve(sessionId);
-          userId = session.metadata.userId; // Get userId from session metadata
-        }
-        
-        console.log('Handling payment_intent.succeeded for paymentIntent:', paymentIntent);
-
+        userId = paymentIntent.metadata.userId; 
+      
         if (userId) {
-          // Find the user by _id and update
           await User.findOneAndUpdate(
             { _id: new mongoose.Types.ObjectId(userId) },
-            {
-              isSubscribed: true,
-              stripeCustomerId: paymentIntent.customer
-            },
+            { isSubscribed: true, stripeCustomerId: paymentIntent.customer },
             { new: true }
           );
         } else {
-          console.log('No userId found in metadata for payment_intent.succeeded');
+          console.error('No userId found in metadata for payment_intent.succeeded');
         }
         break;
       
+      
         case 'customer.subscription.created':
           const subscription = event.data.object;
-        
-          if (subscription.metadata && subscriptionCreated.metadata.userId) {
-           const userId = subscription.metadata.userId; // Assign the value to the already declared userId
-        
-            await User.findOneAndUpdate(
-              { _id: new mongoose.Types.ObjectId(userId) },
-              { 
-                isSubscribed: true,
-                stripeCustomerId: subscriptionCreated.customer
-              },
-              { new: true }
-            );
-          } else {
-            console.log('No userId found in metadata for customer.subscription.created');
-          }
-          break;
-        
+          userId = subscription.metadata.userId;
+
+  if (!userId) {
+    // If userId is not in metadata, retrieve the checkout session
+    const session = await stripe.checkout.sessions.retrieve(subscription.latest_invoice.payment_intent);
+    userId = session.metadata.userId;
+  }
+
+  if (userId) {
+    await User.findOneAndUpdate(
+      { _id: new mongoose.Types.ObjectId(userId) },
+      { isSubscribed: true, stripeCustomerId: subscription.customer },
+      { new: true }
+    );
+  } else {
+    console.error('No userId found in metadata for customer.subscription.created');
+  }
+  break;
+
     
     case 'customer.subscription.updated':
         const updatedSubscription = event.data.object;
