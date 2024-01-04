@@ -98,7 +98,7 @@ app.post('/create-checkout-session', authMiddleware, async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
-        price: 'price_1OSStVBy17P1QCFTHI2hRnB4', 
+        price: 'price_1OSrqRBy17P1QCFTS2ZDLrTf', 
         quantity: 1,
       }],
       mode: 'subscription',
@@ -137,18 +137,20 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
     switch (event.type) {
       case 'payment_intent.succeeded':
         const paymentIntent = event.data.object;
-        userId = paymentIntent.metadata.userId; 
+        stripeCustomerId = paymentIntent.customer;
       
-        if (userId) {
+        if (stripeCustomerId) {
+          // Find the user by Stripe Customer ID and update
           await User.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(userId) },
-            { isSubscribed: true, stripeCustomerId: paymentIntent.customer },
+            { stripeCustomerId: stripeCustomerId },
+            { isSubscribed: true },
             { new: true }
           );
         } else {
-          console.error('No userId found in metadata for payment_intent.succeeded');
+          console.error('No Stripe Customer ID found in payment_intent.succeeded');
         }
         break;
+      
       
       
         case 'customer.subscription.created':
@@ -165,22 +167,22 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
 
     
-    case 'customer.subscription.updated':
-        const updatedSubscription = event.data.object;
-        const currentStripeCustomerId = updatedSubscription.customer;
-        const isCurrentlySubscribed = updatedSubscription.status === 'active' || updatedSubscription.status === 'trialing';
-    
-        try {
-          // Find the user by Stripe Customer ID and update
-          await User.findOneAndUpdate(
-            { stripeCustomerId: currentStripeCustomerId },
-            { isSubscribed: isCurrentlySubscribed },
-            { new: true }
-          );
-        } catch (error) {
-          console.error('Error updating user on customer.subscription.updated:', error);
-        }
-        break;
+          case 'customer.subscription.updated':
+            const updatedSubscription = event.data.object;
+            const currentStripeCustomerId = updatedSubscription.customer;
+            const isCurrentlySubscribed = updatedSubscription.status === 'active' || updatedSubscription.status === 'trialing';
+          
+            try {
+              // Find the user by Stripe Customer ID and update
+              await User.findOneAndUpdate(
+                { stripeCustomerId: currentStripeCustomerId },
+                { isSubscribed: isCurrentlySubscribed },
+                { new: true }
+              );
+            } catch (error) {
+              console.error('Error updating user on customer.subscription.updated:', error);
+            }
+            break;
 
         case 'customer.subscription.deleted':
           const deletedSubscription = event.data.object;
@@ -194,25 +196,27 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
           break;
       
 
-      case 'invoice.payment_succeeded':
-        const successfulInvoice = event.data.object;
-        if (successfulInvoice.metadata && successfulInvoice.metadata.userId) {
-    const userId = successfulInvoice.metadata.userId; // Extract userId from metadata
-
-    try {
-      // Find the user by _id and update
-      await User.findOneAndUpdate(
-        { _id: new mongoose.Types.ObjectId(userId) },
-        { isSubscribed: true },
-        { new: true }
-      );
-    } catch (error) {
-      console.error('Error updating user on invoice.payment_succeeded:', error);
-    }
-  } else {
-    console.log('No userId found in metadata for invoice.payment_succeeded');
-  }
-  break;
+          case 'invoice.payment_succeeded':
+            const successfulInvoice = event.data.object;
+            
+            // Retrieve the Stripe Customer ID
+            const stripeCustomerId = successfulInvoice.customer;
+          
+            if (stripeCustomerId) {
+              try {
+                // Find the user by Stripe Customer ID and update
+                await User.findOneAndUpdate(
+                  { stripeCustomerId: stripeCustomerId },
+                  { isSubscribed: true },
+                  { new: true }
+                );
+              } catch (error) {
+                console.error('Error updating user on invoice.payment_succeeded:', error);
+              }
+            } else {
+              console.log('No stripeCustomerId found for invoice.payment_succeeded');
+            }
+            break;
 
       
    
@@ -380,7 +384,7 @@ app.post('/create-subscription', async (req, res) => {
     const { customerId } = req.body; // ID of the existing customer in Stripe
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
-      items: [{ price: 'price_1OSStVBy17P1QCFTHI2hRnB4' }],
+      items: [{ price: 'price_1OSrqRBy17P1QCFTS2ZDLrTf' }],
       expand: ['latest_invoice.payment_intent'],
     });
     res.json(subscription);
