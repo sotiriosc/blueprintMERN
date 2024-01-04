@@ -135,23 +135,22 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
     let stripeCustomerId;
 
     switch (event.type) {
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object;
-        stripeCustomerId = paymentIntent.customer;
-      
-        if (stripeCustomerId) {
-          // Find the user by Stripe Customer ID and update
+
+      case 'checkout.session.completed':
+        const session = event.data.object; // Access the session object
+        userId = session.metadata.userId; // Get userId from metadata
+
+        if (userId) {
+          // Only update stripeCustomerId in the database
           await User.findOneAndUpdate(
-            { stripeCustomerId: stripeCustomerId },
-            { isSubscribed: true },
+            { _id: new mongoose.Types.ObjectId(userId) },
+            { stripeCustomerId: session.customer },
             { new: true }
           );
         } else {
-          console.error('No Stripe Customer ID found in payment_intent.succeeded');
+          console.error('No userId found in metadata for checkout.session.completed');
         }
         break;
-      
-      
       
         case 'customer.subscription.created':
   const subscriptionCreated = event.data.object;
@@ -240,21 +239,44 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       );
       break;
 
-      case 'checkout.session.completed':
-        const session = event.data.object; // Access the session object
-        userId = session.metadata.userId; // Get userId from metadata
+      
 
-        if (userId) {
-          // Only update stripeCustomerId in the database
+        case 'payment_intent.succeeded':
+        const paymentIntent = event.data.object;
+        stripeCustomerId = paymentIntent.customer;
+      
+        if (stripeCustomerId) {
+          // Find the user by Stripe Customer ID and update
           await User.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(userId) },
-            { stripeCustomerId: session.customer },
+            { stripeCustomerId: stripeCustomerId },
+            { isSubscribed: true },
             { new: true }
           );
         } else {
-          console.error('No userId found in metadata for checkout.session.completed');
+          console.error('No Stripe Customer ID found in payment_intent.succeeded');
         }
         break;
+
+        case 'payment_intent.succeeded':
+    try {
+      const paymentIntent = event.data.object;
+      stripeCustomerId = paymentIntent.customer;
+    
+      if (stripeCustomerId) {
+        // Find the user by Stripe Customer ID and update
+        await User.findOneAndUpdate(
+          { stripeCustomerId: stripeCustomerId },
+          { isSubscribed: true },
+          { new: true }
+        );
+      } else {
+        console.error('No Stripe Customer ID found in payment_intent.succeeded');
+      }
+    } catch (error) {
+      console.error('Error handling payment_intent.succeeded:', error);
+      // Handle or log the error appropriately
+    }
+    break;
 
       default:
         console.log(`Unhandled event type ${event.type}`);
