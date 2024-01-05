@@ -306,25 +306,25 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
       console.error('No userId found in metadata for checkout.session.completed');
     }
     break;
-  //       case 'customer.subscription.created':
-  // const subscriptionCreated = event.data.object;
-  // const stripeCustomerIdForSubscription = subscriptionCreated.customer;
+        case 'customer.subscription.created':
+  const subscriptionCreated = event.data.object;
+  const stripeCustomerIdForSubscription = subscriptionCreated.customer;
   
-  // if (stripeCustomerIdForSubscription) {
-  //   try {
-  //     const updatedUser = await User.findOneAndUpdate(
-  //       { stripeCustomerId: stripeCustomerIdForSubscription },
-  //       { isSubscribed: true },
-  //       { new: true }
-  //     );
-  //     console.log(`User subscription status updated on customer.subscription.created for customer ID: ${stripeCustomerIdForSubscription}`);
-  //   } catch (error) {
-  //     console.error('Error updating user on customer.subscription.created:', error);
-  //   }
-  // } else {
-  //   console.error('No Stripe Customer ID found in customer.subscription.created');
-  // }
-  // break;
+  if (stripeCustomerIdForSubscription) {
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { stripeCustomerId: stripeCustomerIdForSubscription },
+        { isSubscribed: true },
+        { new: true }
+      );
+      console.log(`User subscription status updated on customer.subscription.created for customer ID: ${stripeCustomerIdForSubscription}`);
+    } catch (error) {
+      console.error('Error updating user on customer.subscription.created:', error);
+    }
+  } else {
+    console.error('No Stripe Customer ID found in customer.subscription.created');
+  }
+  break;
 
 
     
@@ -362,25 +362,25 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
               break;
       
 
-              // case 'invoice.payment_succeeded':
-              //   const successfulInvoice = event.data.object;
-              //   const stripeCustomerIdForInvoice = successfulInvoice.customer;
+              case 'invoice.payment_succeeded':
+                const successfulInvoice = event.data.object;
+                const stripeCustomerIdForInvoice = successfulInvoice.customer;
                 
-              //   if (stripeCustomerIdForInvoice) {
-              //     try {
-              //       const updatedUser = await User.findOneAndUpdate(
-              //         { stripeCustomerId: stripeCustomerIdForInvoice },
-              //         { isSubscribed: true },
-              //         { new: true }
-              //       );
-              //       console.log(`Updated user subscription status on invoice.payment_succeeded for customer ID: ${stripeCustomerIdForInvoice}`);
-              //     } catch (error) {
-              //       console.error('Error updating user on invoice.payment_succeeded:', error);
-              //     }
-              //   } else {
-              //     console.log('No Stripe Customer ID found for invoice.payment_succeeded');
-              //   }
-              //   break;
+                if (stripeCustomerIdForInvoice) {
+                  try {
+                    const updatedUser = await User.findOneAndUpdate(
+                      { stripeCustomerId: stripeCustomerIdForInvoice },
+                      { isSubscribed: true },
+                      { new: true }
+                    );
+                    console.log(`Updated user subscription status on invoice.payment_succeeded for customer ID: ${stripeCustomerIdForInvoice}`);
+                  } catch (error) {
+                    console.error('Error updating user on invoice.payment_succeeded:', error);
+                  }
+                } else {
+                  console.log('No Stripe Customer ID found for invoice.payment_succeeded');
+                }
+                break;
 
       
    
@@ -397,27 +397,27 @@ app.post('/webhook', express.json({type: 'application/json'}), async (request, r
 
       
 
-        // case 'payment_intent.created':
-        // try {
-        //   const paymentIntent = event.data.object;
-        //   // Here, you're not declaring stripeCustomerId, just assigning it a new value
-        //   stripeCustomerId = paymentIntent.customer;
+        case 'payment_intent.created':
+        try {
+          const paymentIntent = event.data.object;
+          // Here, you're not declaring stripeCustomerId, just assigning it a new value
+          stripeCustomerId = paymentIntent.customer;
       
-        //   if (stripeCustomerId) {
-        //     // Update isSubscribed to true in your database
-        //     await User.findOneAndUpdate(
-        //       { stripeCustomerId: stripeCustomerId },
-        //       { isSubscribed: true },
-        //       { new: true }
-        //     );
-        //   } else {
-        //     console.error('No Stripe Customer ID found in payment_intent.succeeded');
-        //   }
-        // } catch (error) {
-        //   console.error('Error handling payment_intent.succeeded:', error);
-        //   // Since stripeCustomerId is declared in a higher scope, it can be safely used here
-        // }
-        // break;
+          if (stripeCustomerId) {
+            // Update isSubscribed to true in your database
+            await User.findOneAndUpdate(
+              { stripeCustomerId: stripeCustomerId },
+              { isSubscribed: true },
+              { new: true }
+            );
+          } else {
+            console.error('No Stripe Customer ID found in payment_intent.succeeded');
+          }
+        } catch (error) {
+          console.error('Error handling payment_intent.succeeded:', error);
+          // Since stripeCustomerId is declared in a higher scope, it can be safely used here
+        }
+        break;
 
         
         
